@@ -12,7 +12,7 @@ router.get('/', staffController.getAllStaff);
 router.get('/:id', staffController.getStaffById);
 
 // Обновить сотрудника
-router.put('/update/:id', staffController.updateStaff);
+router.put('/:id', staffController.updateStaff);
 
 // Частично обновить сотрудника
 router.patch('/:id', staffController.partialUpdateStaff);
