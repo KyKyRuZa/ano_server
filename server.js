@@ -20,6 +20,28 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('/var/www/uploads/'));
 
 
+// Маршрут для загрузки файла
+app.post('/upload', upload.single('file'), (req, res) => {
+  try {
+    if (!req.file) {
+      throw new Error('Файл не был загружен');
+    }
+
+    res.json({
+      success: true,
+      message: 'Файл успешно загружен',
+      filename: req.file.filename,
+      path: `/uploads/${req.file.filename}`
+    });
+  } catch (error) {
+    console.error('Ошибка загрузки:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
 // Подключаем маршруты
 const staffRoutes = require('./routes/staffRoutes');
 const programsRouter = require('./routes/programs');
