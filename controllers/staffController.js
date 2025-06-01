@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 exports.createStaff = async (req, res) => {
-  upload(req, res, async (err) => {
+  upload.single('photo')(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }

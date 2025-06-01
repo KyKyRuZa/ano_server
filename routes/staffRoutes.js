@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { upload } = require('../middleware/upload');
 const staffController = require('../controllers/staffController');
 
 // Создать сотрудника
-router.post('/', staffController.createStaff);
+router.post('/', upload.single('photo'), staffController.createStaff);
 // Получить всех сотрудников
 router.get('/', staffController.getAllStaff);
 
