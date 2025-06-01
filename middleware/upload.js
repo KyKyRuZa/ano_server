@@ -13,7 +13,7 @@ if (!fs.existsSync(uploadPath)) {
 // Настройка Multer с проверкой ошибок
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '/var/www/uploads/');
+    cb(null, '/var/www/uploads/server_img/');
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -39,7 +39,7 @@ const upload = multer({
 
 module.exports = { 
  upload,
-  uploadPath: '/var/www/uploads/',
+  uploadPath: '/var/www/uploads/server_img/',
   handleMulterError: (err, req, res, next) => {
     if (err instanceof multer.MulterError) {
       return res.status(400).json({ error: err.message });
