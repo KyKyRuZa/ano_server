@@ -10,41 +10,31 @@ const { upload, uploadPath, handleMulterError } = require('./middleware/upload')
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+// Функция для получения времени по МСК
+function getMoscowTime() {
+  return new Date().toLocaleString('ru-RU', {
+    timeZone: 'Europe/Moscow',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+}
+
 // Middleware для логирования запросов
 app.use((req, res, next) => {
   const startTime = Date.now();
   
-  // Логируем входящий запрос
-  console.log(`📥 [${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
-  
-  if (req.body && Object.keys(req.body).length > 0) {
-    console.log(`   Body:`, JSON.stringify(req.body, null, 2));
-  }
-  
-  if (req.query && Object.keys(req.query).length > 0) {
-    console.log(`   Query:`, req.query);
-  }
-
   // Перехватываем ответ
   const originalSend = res.send;
   res.send = function(data) {
     const duration = Date.now() - startTime;
+    const moscowTime = getMoscowTime();
     
-    // Логируем ответ
-    console.log(`📤 [${new Date().toISOString()}] ${req.method} ${req.originalUrl} - ${res.statusCode} (${duration}ms)`);
-    
-    // Логируем тело ответа (ограничиваем размер для читаемости)
-    try {
-      const responseData = typeof data === 'string' ? data : JSON.stringify(data);
-      const truncatedData = responseData.length > 500 ? 
-        responseData.substring(0, 500) + '...[truncated]' : 
-        responseData;
-      console.log(`   Response:`, truncatedData);
-    } catch (e) {
-      console.log(`   Response: [не удалось сериализовать]`);
-    }
-    
-    console.log('─'.repeat(80)); // Разделитель для читаемости
+    // Простое логирование: время, метод, URL, статус
+    console.log(`[${moscowTime}] ${req.method} ${req.originalUrl} - ${res.statusCode} (${duration}ms)`);
     
     originalSend.call(this, data);
   };
@@ -96,10 +86,8 @@ app.use(handleMulterError);
 
 // Улучшенная обработка ошибок
 app.use((err, req, res, next) => {
-  console.error('🚨 Глобальная ошибка:', err.stack);
-  console.error(`   URL: ${req.method} ${req.originalUrl}`);
-  console.error(`   IP: ${req.ip}`);
-  console.error(`   User-Agent: ${req.get('User-Agent')}`);
+  const moscowTime = getMoscowTime();
+  console.error(`[${moscowTime}] ❌ ОШИБКА: ${req.method} ${req.originalUrl} - ${err.message}`);
 
   res.status(500).json({
     success: false,
@@ -110,18 +98,19 @@ app.use((err, req, res, next) => {
 
 // Запуск сервера
 app.listen(PORT, () => {
-  console.log(`🚀 Сервер запущен на порту ${PORT}`);
-  console.log(`📁 Файлы загружаются в: ${uploadPath}`);
+  const moscowTime = getMoscowTime();
+  console.log(`[${moscowTime}] 🚀 Сервер запущен на порту ${PORT}`);
+  console.log(`[${moscowTime}] 📁 Файлы загружаются в: ${uploadPath}`);
 
   // Финальная проверка доступности папки
   fs.access(uploadPath, fs.constants.W_OK, (err) => {
     if (err) {
-      console.error('⚠️ Внимание: нет прав на запись в папку загрузки!');
+      console.error(`[${moscowTime}] ⚠️ Внимание: нет прав на запись в папку загрузки!`);
       console.error('Выполните:');
       console.error(`chmod 775 "${uploadPath}"`);
       console.error(`chown -R n:www-data "${uploadPath}"`);
     } else {
-      console.log('✅ Папка для загрузок доступна для записи');
+      console.log(`[${moscowTime}] ✅ Папка для загрузок доступна для записи`);
     }
   });
 });
