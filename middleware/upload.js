@@ -2,7 +2,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const uploadPath = path.join(__dirname, '../uploads');
+const uploadPath = '/var/www/uploads/server_img/';
 
 // Проверяем и создаем папку uploads при запуске
 if (!fs.existsSync(uploadPath)) {
@@ -13,13 +13,14 @@ if (!fs.existsSync(uploadPath)) {
 // Настройка Multer с проверкой ошибок
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '/var/www/uploads/server_img/');
+    cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
   }
 });
+
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
   if (allowedTypes.includes(file.mimetype)) {
@@ -28,18 +29,18 @@ const fileFilter = (req, file, cb) => {
     cb(new Error('Неподдерживаемый тип файла'), false);
   }
 };
+
 const upload = multer({ 
   storage: storage,
+  fileFilter: fileFilter,
   limits: {
-    fileSize: 20 * 1024 * 1024 // 20MB
+    fileSize: 20 * 1024 * 1024 
   }
 });
 
-
-
 module.exports = { 
- upload,
-  uploadPath: '/var/www/uploads/server_img/',
+  upload,
+  uploadPath,
   handleMulterError: (err, req, res, next) => {
     if (err instanceof multer.MulterError) {
       return res.status(400).json({ error: err.message });

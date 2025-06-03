@@ -1,20 +1,5 @@
 const Staff = require('../models/Staff');
-const multer = require('multer');
-const path = require('path');
-
-
-// Настройка Multer
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, '/var/www/uploads/server_img/'); 
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + '-' + file.originalname);
-    }
-  });
-
-
-const upload = multer({ storage: storage });
+const { upload } = require('../middleware/upload');
 
 exports.createStaff = async (req, res) => {
   upload.single('photo')(req, res, async (err) => {
@@ -43,7 +28,7 @@ exports.createStaff = async (req, res) => {
 };
 
 exports.updateStaff = async (req, res) => {
-  upload(req, res, async (err) => {
+  upload.single('photo')(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
@@ -73,7 +58,7 @@ exports.updateStaff = async (req, res) => {
 };
 
 exports.partialUpdateStaff = async (req, res) => {
-  upload(req, res, async (err) => {
+  upload.single('photo')(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
@@ -84,7 +69,7 @@ exports.partialUpdateStaff = async (req, res) => {
 
       // Если есть файл, добавляем путь к фото
       if (req.file) {
-        updates.photo = `//uploads/server_img/${req.file.filename}`;
+        updates.photo = `/uploads/server_img/${req.file.filename}`;
       }
 
       // Проверяем, какие поля переданы в req.body
