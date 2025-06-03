@@ -3,34 +3,22 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
+const { getMoscowTime } = require('./utils/timeUtils');
+const logger = require('./helpers/logger');
 const { upload, uploadPath, handleMulterError } = require('./middleware/upload');
 require('dotenv').config({ path: './config/.env' });
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Получение времени по МСК
-function getMoscowTime() {
-  return new Date().toLocaleString('ru-RU', {
-    timeZone: 'Europe/Moscow',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  });
-}
-
-// Middleware для логирования
+// Middleware для логирования запросов
 app.use((req, res, next) => {
   const startTime = Date.now();
 
   const originalSend = res.send;
   res.send = function(data) {
     const duration = Date.now() - startTime;
-    const moscowTime = getMoscowTime();
-    console.log(`[${moscowTime}] ${req.method} ${req.originalUrl} - ${res.statusCode} (${duration}ms)`);
+    logger.info(`${req.method} ${req.originalUrl} - ${res.statusCode} (${duration}ms)`);
     originalSend.call(this, data);
   };
 
@@ -54,7 +42,9 @@ app.post('/upload', upload.single('file'), (req, res) => {
       path: `/uploads/${req.file.filename}`
     });
   } catch (error) {
-    console.error('❌ Ошибка загрузки:', error);
+    logger.error(`Ошибка загрузки файла: ${error.message}`, {
+      stack: error.stack
+    });
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -66,8 +56,12 @@ app.use(handleMulterError);
 
 // Обработка ошибок
 app.use((err, req, res, next) => {
-  const moscowTime = getMoscowTime();
-  console.error(`[${moscowTime}] ❌ ОШИБКА: ${req.method} ${req.originalUrl} - ${err.message}`);
+  logger.error(`Ошибка обработки запроса: ${err.message}`, {
+    method: req.method,
+    url: req.originalUrl,
+    stack: err.stack
+  });
+
   res.status(500).json({ success: false, error: 'Внутренняя ошибка сервера' });
 });
 
@@ -78,18 +72,17 @@ const options = {
 };
 
 https.createServer(options, app).listen(PORT, () => {
-  const moscowTime = getMoscowTime();
-  console.log(`[${moscowTime}] 🚀 Сервер запущен на порту ${PORT} (HTTPS)`);
-  console.log(`[${moscowTime}] 📁 Файлы загружаются в: ${uploadPath}`);
+  logger.info(`🚀 Сервер запущен на порту ${PORT} (HTTPS)`);
+  logger.info(`📁 Файлы загружаются в: ${uploadPath}`);
 
   fs.access(uploadPath, fs.constants.W_OK, (err) => {
     if (err) {
-      console.error(`[${moscowTime}] ⚠️ Нет прав на запись в папку загрузки!`);
-      console.error('Выполните:');
-      console.error(`chmod 775 "${uploadPath}"`);
-      console.error(`chown -R www-data:www-data "${uploadPath}"`);
+      logger.error(`⚠️ Нет прав на запись в папку загрузки!`);
+      logger.warn(`Выполните следующие команды:`);
+      logger.warn(`chmod 775 "${uploadPath}"`);
+      logger.warn(`chown -R www-data:www-data "${uploadPath}"`);
     } else {
-      console.log(`[${moscowTime}] ✅ Папка для загрузок доступна для записи`);
+      logger.info(`✅ Папка для загрузок доступна для записи`);
     }
   });
 });
