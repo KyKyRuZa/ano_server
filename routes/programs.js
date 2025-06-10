@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const programController = require('../controllers/programController');
+const programsController = require('../controllers/programController');
 
-router.post('/', programController.create);
-router.get('/', programController.getAll);
 
+
+router.get('/', programsController.createProgram );
+router.get('/:id', programsController.getProgramById);
+router.post('/',programsController.updateProgram);
+router.patch('/:id', programsController.partialUpdateProgram);
+router.delete('/:id', programsController.deleteProgram);
 
 module.exports = router;
