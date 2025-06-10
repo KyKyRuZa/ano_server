@@ -1,5 +1,5 @@
-const pool = require('../db');
-const path = require('path');
+const pool = require('../database');
+
 
 module.exports = {
   // Создать проект
