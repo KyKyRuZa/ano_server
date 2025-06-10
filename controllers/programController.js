@@ -88,7 +88,7 @@ const updateProgram = async (req, res) => {
       console.error('Ошибка при обновлении программы:', error);
       res.status(500).json({
         error: 'Ошибка сервера',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+       
       });
     }
   });
@@ -138,7 +138,7 @@ const partialUpdateProgram = async (req, res) => {
       console.error('Ошибка при частичном обновлении программы:', error);
       res.status(500).json({
         error: 'Ошибка сервера',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+       
       });
     }
   });
@@ -167,7 +167,7 @@ const deleteProgram = async (req, res) => {
     console.error('Ошибка при удалении программы:', error);
     res.status(500).json({
       error: 'Ошибка сервера',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+     
     });
   }
 };
@@ -180,7 +180,7 @@ const getAllPrograms = async (req, res) => {
     console.error('Ошибка при получении программ:', error);
     res.status(500).json({
       error: 'Ошибка сервера',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+     
     });
   }
 };
@@ -199,7 +199,7 @@ const getProgramById = async (req, res) => {
     console.error('Ошибка при получении программы:', error);
     res.status(500).json({
       error: 'Ошибка сервера',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+     
     });
   }
 };

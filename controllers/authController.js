@@ -52,7 +52,7 @@ const login = async (req, res) => {
     console.error('Ошибка в login:', error);
     res.status(500).json({ 
       error: 'Ошибка сервера',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+     
     });
   }
 };

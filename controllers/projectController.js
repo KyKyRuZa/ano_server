@@ -5,11 +5,6 @@ const path = require('path');
 
 const UPLOAD_DIR = './uploads/projects';
 
-// Создаем папку для загрузок, если её нет
-if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-}
-
 const createProject = async (req, res) => {
   upload.single('media')(req, res, async (err) => {
     if (err) {
@@ -38,7 +33,7 @@ const createProject = async (req, res) => {
       console.error('Ошибка при создании проекта:', error);
       res.status(500).json({
         error: 'Ошибка сервера',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+       
       });
     }
   });
@@ -82,7 +77,7 @@ const updateProject = async (req, res) => {
       console.error('Ошибка при обновлении проекта:', error);
       res.status(500).json({
         error: 'Ошибка сервера',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+       
       });
     }
   });
@@ -133,7 +128,7 @@ const partialUpdateProject = async (req, res) => {
       console.error('Ошибка при частичном обновлении проекта:', error);
       res.status(500).json({
         error: 'Ошибка сервера',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+       
       });
     }
   });
@@ -162,7 +157,7 @@ const deleteProject = async (req, res) => {
     console.error('Ошибка при удалении проекта:', error);
     res.status(500).json({
       error: 'Ошибка сервера',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+     
     });
   }
 };
@@ -175,7 +170,7 @@ const getAllProjects = async (req, res) => {
     console.error('Ошибка при получении проектов:', error);
     res.status(500).json({
       error: 'Ошибка сервера',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+     
     });
   }
 };
@@ -194,7 +189,7 @@ const getProjectById = async (req, res) => {
     console.error('Ошибка при получении проекта:', error);
     res.status(500).json({
       error: 'Ошибка сервера',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+     
     });
   }
 };
