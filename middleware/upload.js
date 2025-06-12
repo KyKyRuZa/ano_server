@@ -8,10 +8,8 @@ const storage = multer.diskStorage({
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
-    const originalName = file.originalname.replace(/\s+/g, '_');
-    const ext = path.extname(originalName);
-    const baseName = path.basename(originalName, ext);
-    cb(null, `${baseName}-${uniqueSuffix}${ext}`);
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
   }
 });
 
@@ -31,19 +29,8 @@ const upload = multer({
     fileSize: 30 * 1024 * 1024 
   }
 });
-const handleMulterError = (err, req, res, next) => {
-  if (err instanceof multer.MulterError) {
-    console.error(`Multer error: ${err.message}`);
-    return res.status(400).json({ error: 'Ошибка загрузки файла' });
-  } else if (err) {
-    console.error(`Unexpected error during upload: ${err.message}`);
-    return res.status(500).json({ error: 'Внутренняя ошибка сервера' });
-  }
-  next();
-};
 
 module.exports = { 
   upload,
-  uploadPath,
-  handleMulterError
+  uploadPath
 };
