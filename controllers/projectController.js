@@ -2,34 +2,32 @@ const Project = require('../models/Project');
 const { upload } = require('../middleware/upload');
 
 const createProject = async (req, res) => {
-  upload.single('media_path')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
-    }
-
-    try {
-      const { title, description, media_type } = req.body;
-
-      // Путь должен соответствовать месту сохранения файла
-      const media_path = req.file 
-        ? `/uploads/server/${req.file.filename}` 
-        : null;
-
-      console.log('req.file:', req.file);
-      console.log('media_path:', media_path);
-
-      const project = await Project.create({
-        media_path,
-        title,
-        description,
-        media_type
+  try {
+    await new Promise((resolve, reject) => {
+      upload.single('media_path')(req, res, (err) => {
+        if (err) return reject(err);
+        resolve();
       });
+    });
 
-      res.status(201).json(project);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  });
+    console.log('req.file:', req.file); // ← проверяем, пришёл ли файл
+
+    const { title, description, media_type } = req.body;
+    const imagePath = req.file ? `/uploads/server/${req.file.filename}` : null;
+
+    const project = await Project.create({
+      image: imagePath, // ← поле в модели может называться "image"
+      title,
+      description,
+      media_type
+    });
+
+    res.status(201).json(project);
+
+  } catch (error) {
+    console.error('Ошибка:', error.message);
+    res.status(500).json({ error: error.message });
+  }
 };
 
 const updateProject = async (req, res) => {
