@@ -39,7 +39,7 @@ const updateProject = async (req, res) => {
     try {
       const { id } = req.params;
       const { title, description, media_type } = req.body;
-      const media_path = req.file ? `/uploads/server/projects/${req.file.filename}` : undefined;
+      const media_path = req.file ? `/uploads/server/${req.file.filename}` : undefined;
 
       const project = await Project.update(id, {
         media_path,
@@ -70,7 +70,7 @@ const partialUpdateProject = async (req, res) => {
       const updates = {}; 
 
       if (req.file) {
-        updates.media_path = `/uploads/server/projects/${req.file.filename}`;
+        updates.media_path = `/uploads/server/${req.file.filename}`;
       }
 
       const fields = ['title', 'description', 'media_type'];

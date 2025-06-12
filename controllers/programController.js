@@ -9,7 +9,7 @@ const createProgram = async (req, res) => {
 
     try {
       const { title, description, media_type } = req.body; // Добавить media_type
-      const file = req.file ? `/uploads/server/programs/${req.file.filename}` : null;
+      const file = req.file ? `/uploads/server/${req.file.filename}` : null;
 
       // Определить media_type из файла, если не передан
       let finalMediaType = media_type;
@@ -52,7 +52,7 @@ const updateProgram = async (req, res) => {
       
       // Обновляем файл только если он загружен
       if (req.file) {
-        updateData.file = `/uploads/server/programs/${req.file.filename}`;
+        updateData.file = `/uploads/server/${req.file.filename}`;
         
         // Определяем media_type из файла
         if (req.file.mimetype.startsWith('image/')) {
@@ -91,7 +91,7 @@ const partialUpdateProgram = async (req, res) => {
       const updates = {}; 
 
       if (req.file) {
-        updates.file = `/uploads/server/programs/${req.file.filename}`;
+        updates.file = `/uploads/server/${req.file.filename}`;
       }
 
       const fields = ['title', 'description'];

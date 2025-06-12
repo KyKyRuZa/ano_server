@@ -9,7 +9,8 @@ const programsRouter = require('./routes/programsRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const authRoutes = require('./routes/authRoutes');
 
-const { upload, uploadPath, handleMulterError } = require('./middleware/upload');
+const { upload, uploadPath } = require('./middleware/upload');
+const handleMulterError = require('./middleware/handleMulterError');
 
 require('dotenv').config();
 

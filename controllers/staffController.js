@@ -8,7 +8,7 @@ const createStaff = async (req, res) => {
     }
     try {
       const { name, position, callsign, about, external_texts } = req.body;
-      const photo = req.file ? `/uploads/server/staff/${req.file.filename}` : null;
+      const photo = req.file ? `/uploads/server/${req.file.filename}` : null;
 
       const staff = await Staff.create({
         photo,
@@ -35,7 +35,7 @@ const updateStaff = async (req, res) => {
     try {
       const { id } = req.params;
       const { name, position, callsign, about} = req.body;
-      const photo = req.file ? `/uploads/server/staff/${req.file.filename}` : undefined;
+      const photo = req.file ? `/uploads/server/${req.file.filename}` : undefined;
 
       const staff = await Staff.update(id, {
         photo,
@@ -67,7 +67,7 @@ const partialUpdateStaff = async (req, res) => {
       const updates = {}; 
 
       if (req.file) {
-        updates.photo = `/uploads/server/staff/${req.file.filename}`;
+        updates.photo = `/uploads/server/${req.file.filename}`;
       }
 
       const fields = ['name', 'position', 'callsign', 'about'];
