@@ -9,7 +9,14 @@ const createProject = async (req, res) => {
 
     try {
       const { title, description, media_type } = req.body;
-      const media_path = req.file ? `/uploads/server/projects/${req.file.filename}` : null;
+
+      // Путь должен соответствовать месту сохранения файла
+      const media_path = req.file 
+        ? `/uploads/server/${req.file.filename}` 
+        : null;
+
+      console.log('req.file:', req.file);
+      console.log('media_path:', media_path);
 
       const project = await Project.create({
         media_path,
