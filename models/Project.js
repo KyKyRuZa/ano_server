@@ -1,6 +1,5 @@
 const pool = require('../database');
 
-
 module.exports = {
   // Создать проект
   async create({ title, description, mediaPath, mediaType }) {
@@ -73,7 +72,8 @@ module.exports = {
         title,
         description,
         media_path AS "mediaPath",
-        media_type AS "mediaType"
+        media_type AS "mediaType",
+        created_at AS "createdAt"
     `;
     const { rows } = await pool.query(query, [
       id,
@@ -87,8 +87,9 @@ module.exports = {
 
   // Удалить проект
   async delete(id) {
-    const query = 'DELETE FROM projects WHERE id = $1';
-    await pool.query(query, [id]);
+    const query = 'DELETE FROM projects WHERE id = $1 RETURNING *';
+    const { rows } = await pool.query(query, [id]);
+    return rows[0];
   },
 
   // Дополнительные методы:
@@ -107,4 +108,3 @@ module.exports = {
     return rows[0]?.media_path;
   }
 };
-

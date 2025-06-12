@@ -8,8 +8,8 @@ const createProgram = async (req, res) => {
     }
 
     try {
-      const { title, description, media_type } = req.body; // Добавить media_type
-      const file = req.file ? `/uploads/server/${req.file.filename}` : null;
+      const { title, description, media_type } = req.body;
+      const image = req.file ? `/uploads/server/${req.file.filename}` : null;
 
       // Определить media_type из файла, если не передан
       let finalMediaType = media_type;
@@ -24,15 +24,15 @@ const createProgram = async (req, res) => {
       }
 
       const program = await Program.create({
-        file,
         title,
         description,
-        media_type: finalMediaType // Добавить в создание
+        image,
+        media_type: finalMediaType
       });
 
       res.status(201).json(program);
     } catch (error) {
-      console.error('Error creating program:', error); // Добавить логирование
+      console.error('Error creating program:', error);
       res.status(500).json({ error: error.message });
     }
   });
@@ -48,11 +48,14 @@ const updateProgram = async (req, res) => {
       const { id } = req.params;
       const { title, description, media_type } = req.body;
       
-      const updateData = { title, description };
+      const updateData = {};
+      
+      if (title !== undefined) updateData.title = title;
+      if (description !== undefined) updateData.description = description;
       
       // Обновляем файл только если он загружен
       if (req.file) {
-        updateData.file = `/uploads/server/${req.file.filename}`;
+        updateData.image = `/uploads/server/${req.file.filename}`;
         
         // Определяем media_type из файла
         if (req.file.mimetype.startsWith('image/')) {
@@ -91,10 +94,19 @@ const partialUpdateProgram = async (req, res) => {
       const updates = {}; 
 
       if (req.file) {
-        updates.file = `/uploads/server/${req.file.filename}`;
+        updates.image = `/uploads/server/${req.file.filename}`;
+        
+        // Определяем media_type из файла
+        if (req.file.mimetype.startsWith('image/')) {
+          updates.media_type = 'image';
+        } else if (req.file.mimetype.startsWith('video/')) {
+          updates.media_type = 'video';
+        } else {
+          updates.media_type = 'document';
+        }
       }
 
-      const fields = ['title', 'description'];
+      const fields = ['title', 'description', 'media_type'];
       fields.forEach(field => {
         if (req.body[field] !== undefined) {
           updates[field] = req.body[field];
@@ -113,6 +125,7 @@ const partialUpdateProgram = async (req, res) => {
 
       res.json(program);
     } catch (error) {
+      console.error('Error updating program:', error);
       res.status(500).json({ error: error.message });
     }
   });
@@ -145,7 +158,7 @@ const getAllPrograms = async (req, res) => {
 const getProgramById = async (req, res) => {
   try {
     const { id } = req.params;
-    const program = await Program.getById(id);
+    const program = await Program.findById(id);
 
     if (!program) {
       return res.status(404).json({ error: 'Program not found' });

@@ -8,6 +8,7 @@ class Program {
         title,
         description,
         image,
+        media_type,
         created_at,
         updated_at
       FROM programs 
@@ -24,6 +25,7 @@ class Program {
         title,
         description,
         image,
+        media_type,
         created_at,
         updated_at
       FROM programs 
@@ -34,19 +36,19 @@ class Program {
   }
 
   static async create(data) {
-    const { title, description, image } = data;
+    const { title, description, image, media_type } = data;
     const query = `
-      INSERT INTO programs (title, description, image, created_at, updated_at)
-      VALUES ($1, $2, $3, NOW(), NOW())
+      INSERT INTO programs (title, description, image, media_type, created_at, updated_at)
+      VALUES ($1, $2, $3, $4, NOW(), NOW())
       RETURNING *
     `;
-    const values = [title, description, image];
+    const values = [title, description, image, media_type];
     const { rows } = await pool.query(query, values);
     return rows[0];
   }
 
   static async update(id, data) {
-    const allowedFields = ['title', 'description', 'image'];
+    const allowedFields = ['title', 'description', 'image', 'media_type'];
     const updateFields = [];
     const values = [];
     let paramIndex = 1;
@@ -82,6 +84,11 @@ class Program {
     const query = 'DELETE FROM programs WHERE id = $1 RETURNING *';
     const { rows } = await pool.query(query, [id]);
     return rows[0];
+  }
+
+  // Добавляем метод getById для совместимости с контроллером
+  static async getById(id) {
+    return this.findById(id);
   }
 }
 

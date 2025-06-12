@@ -10,16 +10,28 @@ const createProject = async (req, res) => {
       });
     });
 
-    console.log('req.file:', req.file); // ← проверяем, пришёл ли файл
+    console.log('req.file:', req.file);
 
     const { title, description, media_type } = req.body;
-    const imagePath = req.file ? `/uploads/server/${req.file.filename}` : null;
+    const mediaPath = req.file ? `/uploads/server/${req.file.filename}` : null;
+
+    // Определить media_type из файла, если не передан
+    let finalMediaType = media_type;
+    if (req.file && !finalMediaType) {
+      if (req.file.mimetype.startsWith('image/')) {
+        finalMediaType = 'image';
+      } else if (req.file.mimetype.startsWith('video/')) {
+        finalMediaType = 'video';
+      } else {
+        finalMediaType = 'document';
+      }
+    }
 
     const project = await Project.create({
-      image: imagePath, // ← поле в модели может называться "image"
       title,
       description,
-      media_type
+      mediaPath,
+      mediaType: finalMediaType
     });
 
     res.status(201).json(project);
@@ -39,14 +51,28 @@ const updateProject = async (req, res) => {
     try {
       const { id } = req.params;
       const { title, description, media_type } = req.body;
-      const media_path = req.file ? `/uploads/server/${req.file.filename}` : undefined;
+      const mediaPath = req.file ? `/uploads/server/${req.file.filename}` : undefined;
 
-      const project = await Project.update(id, {
-        media_path,
-        title,
-        description,
-        media_type
-      });
+      const updateData = {};
+      
+      if (title !== undefined) updateData.title = title;
+      if (description !== undefined) updateData.description = description;
+      if (mediaPath !== undefined) updateData.mediaPath = mediaPath;
+      
+      // Определяем media_type из файла или используем переданный
+      if (req.file) {
+        if (req.file.mimetype.startsWith('image/')) {
+          updateData.mediaType = 'image';
+        } else if (req.file.mimetype.startsWith('video/')) {
+          updateData.mediaType = 'video';
+        } else {
+          updateData.mediaType = 'document';
+        }
+      } else if (media_type) {
+        updateData.mediaType = media_type;
+      }
+
+      const project = await Project.update(id, updateData);
 
       if (!project) {
         return res.status(404).json({ error: 'Project not found' });
@@ -54,6 +80,7 @@ const updateProject = async (req, res) => {
 
       res.json(project);
     } catch (error) {
+      console.error('Error updating project:', error);
       res.status(500).json({ error: error.message });
     }
   });
@@ -70,15 +97,28 @@ const partialUpdateProject = async (req, res) => {
       const updates = {}; 
 
       if (req.file) {
-        updates.media_path = `/uploads/server/${req.file.filename}`;
+        updates.mediaPath = `/uploads/server/${req.file.filename}`;
+        
+        // Определяем media_type из файла
+        if (req.file.mimetype.startsWith('image/')) {
+          updates.mediaType = 'image';
+        } else if (req.file.mimetype.startsWith('video/')) {
+          updates.mediaType = 'video';
+        } else {
+          updates.mediaType = 'document';
+        }
       }
 
-      const fields = ['title', 'description', 'media_type'];
+      const fields = ['title', 'description'];
       fields.forEach(field => {
         if (req.body[field] !== undefined) {
           updates[field] = req.body[field];
         }
       });
+
+      if (req.body.media_type !== undefined) {
+        updates.mediaType = req.body.media_type;
+      }
 
       if (Object.keys(updates).length === 0) {
         return res.status(400).json({ error: 'No fields to update' });
@@ -92,6 +132,7 @@ const partialUpdateProject = async (req, res) => {
 
       res.json(project);
     } catch (error) {
+      console.error('Error updating project:', error);
       res.status(500).json({ error: error.message });
     }
   });
@@ -124,7 +165,7 @@ const getAllProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
-    const project = await Project.getById(id);
+    const project = await Project.findById(id);
 
     if (!project) {
       return res.status(404).json({ error: 'Project not found' });
