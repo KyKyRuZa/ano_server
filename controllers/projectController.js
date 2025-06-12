@@ -109,7 +109,7 @@ const deleteProject = async (req, res) => {
 
 const getAllProjects = async (req, res) => {
   try {
-    const projects = await Project.getAll();
+    const projects = await Project.findAll();
     res.json(projects);
   } catch (error) {
     res.status(500).json({ error: error.message });

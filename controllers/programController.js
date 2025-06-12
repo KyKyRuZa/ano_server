@@ -107,7 +107,7 @@ const deleteProgram = async (req, res) => {
 
 const getAllPrograms = async (req, res) => {
   try {
-    const programs = await Program.getAll();
+    const programs = await Program.findAll();
     res.json(programs);
   } catch (error) {
     res.status(500).json({ error: error.message });
