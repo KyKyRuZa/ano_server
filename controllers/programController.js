@@ -8,17 +8,31 @@ const createProgram = async (req, res) => {
     }
 
     try {
-      const { title, description } = req.body;
+      const { title, description, media_type } = req.body; // Добавить media_type
       const file = req.file ? `/uploads/server/programs/${req.file.filename}` : null;
+
+      // Определить media_type из файла, если не передан
+      let finalMediaType = media_type;
+      if (req.file && !finalMediaType) {
+        if (req.file.mimetype.startsWith('image/')) {
+          finalMediaType = 'image';
+        } else if (req.file.mimetype.startsWith('video/')) {
+          finalMediaType = 'video';
+        } else {
+          finalMediaType = 'document';
+        }
+      }
 
       const program = await Program.create({
         file,
         title,
-        description
+        description,
+        media_type: finalMediaType // Добавить в создание
       });
 
       res.status(201).json(program);
     } catch (error) {
+      console.error('Error creating program:', error); // Добавить логирование
       res.status(500).json({ error: error.message });
     }
   });
@@ -32,14 +46,27 @@ const updateProgram = async (req, res) => {
 
     try {
       const { id } = req.params;
-      const { title, description } = req.body;
-      const file = req.file ? `/uploads/server/programs/${req.file.filename}` : undefined;
+      const { title, description, media_type } = req.body;
+      
+      const updateData = { title, description };
+      
+      // Обновляем файл только если он загружен
+      if (req.file) {
+        updateData.file = `/uploads/server/programs/${req.file.filename}`;
+        
+        // Определяем media_type из файла
+        if (req.file.mimetype.startsWith('image/')) {
+          updateData.media_type = 'image';
+        } else if (req.file.mimetype.startsWith('video/')) {
+          updateData.media_type = 'video';
+        } else {
+          updateData.media_type = 'document';
+        }
+      } else if (media_type) {
+        updateData.media_type = media_type;
+      }
 
-      const program = await Program.update(id, {
-        file,
-        title,
-        description
-      });
+      const program = await Program.update(id, updateData);
 
       if (!program) {
         return res.status(404).json({ error: 'Program not found' });
@@ -47,6 +74,7 @@ const updateProgram = async (req, res) => {
 
       res.json(program);
     } catch (error) {
+      console.error('Error updating program:', error);
       res.status(500).json({ error: error.message });
     }
   });
