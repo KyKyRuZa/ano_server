@@ -5,7 +5,7 @@ const cors = require('cors');
 const logger = require('./helpers/logger');
 
 const staffRoutes = require('./routes/staffRoutes');
-const programsRouter = require('./routes/programs');
+const programsRouter = require('./routes/programsRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const authRoutes = require('./routes/authRoutes');
 
