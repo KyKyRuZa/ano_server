@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { upload } = require('../middleware/upload');
 const staffController = require('../controllers/staffController');
 
 router.post('/', staffController.createStaff);

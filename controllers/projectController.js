@@ -1,117 +1,74 @@
 const Project = require('../models/Project');
 const { upload } = require('../middleware/upload');
-const fs = require('fs');
-const path = require('path');
-
-const UPLOAD_DIR = './uploads/projects';
 
 const createProject = async (req, res) => {
-  upload.single('media')(req, res, async (err) => {
+  upload.single('media_path')(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
 
     try {
-      const { title, description } = req.body;
-      
-      if (!title) {
-        return res.status(400).json({ error: 'Название проекта обязательно' });
-      }
-
-      const mediaPath = req.file ? path.join('projects', req.file.filename) : null;
-      const mediaType = req.file ? (req.file.mimetype.startsWith('image') ? 'image' : 'video') : null;
+      const { title, description, media_type } = req.body;
+      const media_path = req.file ? `/uploads/server/projects/${req.file.filename}` : null;
 
       const project = await Project.create({
+        media_path,
         title,
         description,
-        mediaPath,
-        mediaType
+        media_type
       });
 
       res.status(201).json(project);
     } catch (error) {
-      console.error('Ошибка при создании проекта:', error);
-      res.status(500).json({
-        error: 'Ошибка сервера',
-       
-      });
+      res.status(500).json({ error: error.message });
     }
   });
 };
 
 const updateProject = async (req, res) => {
-  upload.single('media')(req, res, async (err) => {
+  upload.single('media_path')(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
 
     try {
       const { id } = req.params;
-      const { title, description } = req.body;
+      const { title, description, media_type } = req.body;
+      const media_path = req.file ? `/uploads/server/projects/${req.file.filename}` : undefined;
 
-      // Получаем текущий проект
-      const currentProject = await Project.findById(id);
-      if (!currentProject) {
-        return res.status(404).json({ error: 'Проект не найден' });
-      }
-
-      // Удаление старого файла
-      if (req.file && currentProject.media_path) {
-        const oldFilePath = path.join('./uploads', currentProject.media_path);
-        if (fs.existsSync(oldFilePath)) {
-          fs.unlinkSync(oldFilePath);
-        }
-      }
-
-      // Подготовка данных для обновления
-      const updateData = {
-        title: title || currentProject.title,
-        description: description || currentProject.description,
-        mediaPath: req.file ? path.join('projects', req.file.filename) : currentProject.media_path,
-        mediaType: req.file ? (req.file.mimetype.startsWith('image') ? 'image' : 'video') : currentProject.media_type
-      };
-
-      const updatedProject = await Project.update(id, updateData);
-      res.status(200).json(updatedProject);
-    } catch (error) {
-      console.error('Ошибка при обновлении проекта:', error);
-      res.status(500).json({
-        error: 'Ошибка сервера',
-       
+      const project = await Project.update(id, {
+        media_path,
+        title,
+        description,
+        media_type
       });
+
+      if (!project) {
+        return res.status(404).json({ error: 'Project not found' });
+      }
+
+      res.json(project);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   });
 };
 
 const partialUpdateProject = async (req, res) => {
-  upload.single('media')(req, res, async (err) => {
+  upload.single('media_path')(req, res, async (err) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
 
     try {
       const { id } = req.params;
-      const updates = {};
+      const updates = {}; 
 
-      // Получаем текущий проект
-      const currentProject = await Project.findById(id);
-      if (!currentProject) {
-        return res.status(404).json({ error: 'Проект не найден' });
-      }
-
-      // Удаление старого файла при загрузке нового
       if (req.file) {
-        if (currentProject.media_path) {
-          const oldFilePath = path.join('./uploads', currentProject.media_path);
-          if (fs.existsSync(oldFilePath)) {
-            fs.unlinkSync(oldFilePath);
-          }
-        }
-        updates.mediaPath = path.join('projects', req.file.filename);
-        updates.mediaType = req.file.mimetype.startsWith('image') ? 'image' : 'video';
+        updates.media_path = `/uploads/server/projects/${req.file.filename}`;
       }
 
-      const fields = ['title', 'description'];
+      const fields = ['title', 'description', 'media_type'];
       fields.forEach(field => {
         if (req.body[field] !== undefined) {
           updates[field] = req.body[field];
@@ -122,14 +79,15 @@ const partialUpdateProject = async (req, res) => {
         return res.status(400).json({ error: 'No fields to update' });
       }
 
-      const updatedProject = await Project.update(id, updates);
-      res.status(200).json(updatedProject);
+      const project = await Project.update(id, updates);
+
+      if (!project) {
+        return res.status(404).json({ error: 'Project not found' });
+      }
+
+      res.json(project);
     } catch (error) {
-      console.error('Ошибка при частичном обновлении проекта:', error);
-      res.status(500).json({
-        error: 'Ошибка сервера',
-       
-      });
+      res.status(500).json({ error: error.message });
     }
   });
 };
@@ -137,60 +95,39 @@ const partialUpdateProject = async (req, res) => {
 const deleteProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const project = await Project.findById(id);
-    
+    const project = await Project.delete(id);
+
     if (!project) {
-      return res.status(404).json({ error: 'Проект не найден' });
+      return res.status(404).json({ error: 'Project not found' });
     }
 
-    // Удаление файла
-    if (project.media_path) {
-      const filePath = path.join('./uploads', project.media_path);
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-      }
-    }
-
-    await Project.delete(id);
     res.json({ message: 'Project deleted successfully' });
   } catch (error) {
-    console.error('Ошибка при удалении проекта:', error);
-    res.status(500).json({
-      error: 'Ошибка сервера',
-     
-    });
+    res.status(500).json({ error: error.message });
   }
 };
 
 const getAllProjects = async (req, res) => {
   try {
-    const projects = await Project.findAll();
-    res.status(200).json(projects);
+    const projects = await Project.getAll();
+    res.json(projects);
   } catch (error) {
-    console.error('Ошибка при получении проектов:', error);
-    res.status(500).json({
-      error: 'Ошибка сервера',
-     
-    });
+    res.status(500).json({ error: error.message });
   }
 };
 
 const getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
-    const project = await Project.findById(id);
-    
+    const project = await Project.getById(id);
+
     if (!project) {
-      return res.status(404).json({ error: 'Проект не найден' });
+      return res.status(404).json({ error: 'Project not found' });
     }
-    
-    res.status(200).json(project);
+
+    res.json(project);
   } catch (error) {
-    console.error('Ошибка при получении проекта:', error);
-    res.status(500).json({
-      error: 'Ошибка сервера',
-     
-    });
+    res.status(500).json({ error: error.message });
   }
 };
 

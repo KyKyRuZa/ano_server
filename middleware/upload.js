@@ -1,13 +1,7 @@
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 
-const uploadPath = '/var/www/uploads/server_img/';
-
-if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath, { recursive: true });
-  console.log('Создана папка для загрузок:', uploadPath);
-}
+const uploadPath = '/var/www/uploads/server/';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
