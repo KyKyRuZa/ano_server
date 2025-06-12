@@ -9,7 +9,8 @@ const programsRouter = require('./routes/programsRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const authRoutes = require('./routes/authRoutes');
 
-const { upload, uploadPath,handleMulterError } = require('./middleware/upload');
+const { upload, uploadPath } = require('./middleware/upload');
+const handleMulterError = require('./middleware/handleMulterError');
 
 require('dotenv').config();
 
@@ -20,7 +21,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('/var/www/uploads/'));
-
 
 app.use((req, res, next) => {
   const startTime = Date.now();
@@ -33,22 +33,6 @@ app.use((req, res, next) => {
   };
 
   next();
-});
-
-app.post('/upload', upload.single('file'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({
-      success: false,
-      error: 'Файл не был загружен'
-    });
-  }
-
-  res.json({
-    success: true,
-    message: 'Файл успешно загружен',
-    filename: req.file.filename,
-    path: `/uploads/${req.file.filename}`
-  });
 });
 
 app.use('/api/staff', staffRoutes);
