@@ -74,7 +74,7 @@ class AuthController {
         }
     }
 
-    static async login(req, res) {
+    async login(req, res) {
         try {
             const { login, password } = req.body;
 
@@ -109,7 +109,8 @@ class AuthController {
             res.status(500).json({ error: 'Ошибка при авторизации', details: error.message });
         }
     }
-    static async refreshToken(req, res) {
+
+    async refreshToken(req, res) {
         try {
             const { refreshToken } = req.body;
 
