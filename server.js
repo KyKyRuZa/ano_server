@@ -13,7 +13,7 @@ const StaffRoute = require('./routes/StaffRoute');
 const ProjectRoute = require('./routes/ProjectRoute');
 const ProgramRoute = require('./routes/ProgramRoute');
 
-('dotenv').config();
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT;
