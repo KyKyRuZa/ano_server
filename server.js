@@ -7,22 +7,46 @@ const https = require('https');
 const fs = require('fs');
 const morgan = require('morgan');
 const path = require('path');
+const winston = require('winston');
+const { format, transports } = winston;
+const { combine, printf } = format;
 
 const AuthRoute = require('./routes/AuthRoute');
 const StaffRoute = require('./routes/StaffRoute');
 const ProjectRoute = require('./routes/ProjectRoute');
 const ProgramRoute = require('./routes/ProgramRoute');
 
-require('dotenv').config();
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT;
+
+const logFormat = printf(({ level, message, timestamp }) => {
+  return `${timestamp} [${level.toUpperCase()}]: ${message}`;
+});
+
+const logger = winston.createLogger({
+  level: 'info',
+  format: combine(
+    format.timestamp(),
+    logFormat
+  ),
+  transports: [
+    new transports.Console()
+  ]
+});
+
+const morganMiddleware = morgan('combined', {
+  stream: {
+    write: (message) => logger.info(message.trim())
+  }
+});
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan('winston')); 
+app.use(morganMiddleware);
 
 app.use('/uploads', express.static('/var/www/uploads/'));
 
@@ -47,9 +71,9 @@ const startServer = async () => {
     console.log('🔗 Подключение к базе данных установлено');
 
     await sequelize.sync({ force: false });
-    const PORT = process.env.PORT ;
+    
     https.createServer(options, app).listen(PORT, () => {
-      console.log(`🔒 Сервер запущен на ${PORT}`); 
+      console.log(`🔒 Сервер запущен на порту ${PORT}`);
     });
 
   } catch (error) {
