@@ -1,187 +1,153 @@
+const fs = require('fs').promises;
 const Project = require('../models/Project');
-const { upload } = require('../middleware/upload');
 
-const createProject = async (req, res) => {
-  try {
-    await new Promise((resolve, reject) => {
-      upload.single('media_path')(req, res, (err) => {
-        if (err) return reject(err);
-        resolve();
-      });
-    });
-
-    console.log('req.file:', req.file);
-
-    const { title, description, media_type } = req.body;
-    const mediaPath = req.file ? `/uploads/server/${req.file.filename}` : null;
-
-    // Определить media_type из файла, если не передан
-    let finalMediaType = media_type;
-    if (req.file && !finalMediaType) {
-      if (req.file.mimetype.startsWith('image/')) {
-        finalMediaType = 'image';
-      } else if (req.file.mimetype.startsWith('video/')) {
-        finalMediaType = 'video';
-      } else {
-        finalMediaType = 'document';
-      }
-    }
-
-    const project = await Project.create({
-      title,
-      description,
-      mediaPath,
-      mediaType: finalMediaType
-    });
-
-    res.status(201).json(project);
-
-  } catch (error) {
-    console.error('Ошибка:', error.message);
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const updateProject = async (req, res) => {
-  upload.single('media_path')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
-    }
-
-    try {
-      const { id } = req.params;
-      const { title, description, media_type } = req.body;
-      const mediaPath = req.file ? `/uploads/server/${req.file.filename}` : undefined;
-
-      const updateData = {};
-      
-      if (title !== undefined) updateData.title = title;
-      if (description !== undefined) updateData.description = description;
-      if (mediaPath !== undefined) updateData.mediaPath = mediaPath;
-      
-      // Определяем media_type из файла или используем переданный
-      if (req.file) {
-        if (req.file.mimetype.startsWith('image/')) {
-          updateData.mediaType = 'image';
-        } else if (req.file.mimetype.startsWith('video/')) {
-          updateData.mediaType = 'video';
-        } else {
-          updateData.mediaType = 'document';
+class ProjectController {
+    async getAll(req, res) {
+        try {
+            const projects = await Project.findAll({
+                order: [['createdAt', 'DESC']] // Сортировка по дате создания
+            });
+            res.json(projects);
+        } catch (error) {
+            console.error('Ошибка получения проектов:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при получении списка проектов',
+                details: error.message 
+            });
         }
-      } else if (media_type) {
-        updateData.mediaType = media_type;
-      }
-
-      const project = await Project.update(id, updateData);
-
-      if (!project) {
-        return res.status(404).json({ error: 'Project not found' });
-      }
-
-      res.json(project);
-    } catch (error) {
-      console.error('Error updating project:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-};
-
-const partialUpdateProject = async (req, res) => {
-  upload.single('media_path')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
     }
 
-    try {
-      const { id } = req.params;
-      const updates = {}; 
+    async create(req, res) {
+        try {
+            console.log('Incoming create request:', {
+                body: req.body,
+                file: req.file
+            });
 
-      if (req.file) {
-        updates.mediaPath = `/uploads/server/${req.file.filename}`;
-        
-        // Определяем media_type из файла
-        if (req.file.mimetype.startsWith('image/')) {
-          updates.mediaType = 'image';
-        } else if (req.file.mimetype.startsWith('video/')) {
-          updates.mediaType = 'video';
-        } else {
-          updates.mediaType = 'document';
+            // Проверка обязательных полей
+            if (!req.body.title || req.body.title.trim() === '') {
+                return res.status(400).json({ 
+                    error: 'Название проекта обязательно' 
+                });
+            }
+
+            // Подготовка данных для создания
+            const projectData = {
+                title: req.body.title.trim(),
+                description: req.body.description ? req.body.description.trim() : null,
+                media: null
+            };
+
+            // Обработка медиафайла
+            if (req.file) {
+                projectData.media = req.file.path.replace(/\\/g, '/');
+            }
+
+            // Создание проекта
+            const project = await Project.create(projectData);
+
+            res.status(201).json(project);
+        } catch (error) {
+            console.error('Полная ошибка создания проекта:', error);
+            
+            // Обработка ошибок Sequelize
+            if (error.name === 'SequelizeValidationError') {
+                return res.status(400).json({ 
+                    error: 'Ошибка валидации',
+                    details: error.errors.map(e => e.message)
+                });
+            }
+
+            res.status(500).json({ 
+                error: 'Ошибка при создании проекта',
+                details: error.message 
+            });
         }
-      }
+    }
 
-      const fields = ['title', 'description'];
-      fields.forEach(field => {
-        if (req.body[field] !== undefined) {
-          updates[field] = req.body[field];
+    async getOne(req, res) {
+        try {
+            const project = await Project.findByPk(req.params.id);
+            if (!project) {
+                return res.status(404).json({ error: 'Проект не найден' });
+            }
+            res.json(project);
+        } catch (error) {
+            console.error('Ошибка получения проекта:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при получении проекта',
+                details: error.message 
+            });
         }
-      });
-
-      if (req.body.media_type !== undefined) {
-        updates.mediaType = req.body.media_type;
-      }
-
-      if (Object.keys(updates).length === 0) {
-        return res.status(400).json({ error: 'No fields to update' });
-      }
-
-      const project = await Project.update(id, updates);
-
-      if (!project) {
-        return res.status(404).json({ error: 'Project not found' });
-      }
-
-      res.json(project);
-    } catch (error) {
-      console.error('Error updating project:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-};
-
-const deleteProject = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const project = await Project.delete(id);
-
-    if (!project) {
-      return res.status(404).json({ error: 'Project not found' });
     }
 
-    res.json({ message: 'Project deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+    async update(req, res) {
+        try {
+            const project = await Project.findByPk(req.params.id);
+            if (!project) {
+                return res.status(404).json({ error: 'Проект не найден' });
+            }
 
-const getAllProjects = async (req, res) => {
-  try {
-    const projects = await Project.findAll();
-    res.json(projects);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+            // Подготовка данных для обновления
+            const updateData = {
+                title: req.body.title ? req.body.title.trim() : project.title,
+                description: req.body.description ? req.body.description.trim() : project.description
+            };
 
-const getProjectById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const project = await Project.findById(id);
+            // Обработка медиафайла
+            if (req.file) {
+                // Удаление старого файла, если существует
+                if (project.media) {
+                    try {
+                        await fs.unlink(project.media);
+                    } catch (unlinkError) {
+                        console.warn('Не удалось удалить старый файл:', unlinkError);
+                    }
+                }
+                updateData.media = req.file.path.replace(/\\/g, '/');
+            }
 
-    if (!project) {
-      return res.status(404).json({ error: 'Project not found' });
+            // Обновление проекта
+            await project.update(updateData);
+
+            res.json(project);
+        } catch (error) {
+            console.error('Ошибка обновления проекта:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при обновлении проекта',
+                details: error.message 
+            });
+        }
     }
 
-    res.json(project);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+    async delete(req, res) {
+        try {
+            const project = await Project.findByPk(req.params.id);
+            if (!project) {
+                return res.status(404).json({ error: 'Проект не найден' });
+            }
 
-module.exports = {
-  createProject,
-  updateProject,
-  partialUpdateProject,
-  deleteProject,
-  getAllProjects,
-  getProjectById
-};
+            // Удаление медиафайла
+            if (project.media) {
+                try {
+                    await fs.unlink(project.media);
+                } catch (unlinkError) {
+                    console.warn('Не удалось удалить файл:', unlinkError);
+                }
+            }
+
+            // Удаление проекта
+            await project.destroy();
+
+            res.json({ message: 'Проект успешно удален' });
+        } catch (error) {
+            console.error('Ошибка удаления проекта:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при удалении проекта',
+                details: error.message 
+            });
+        }
+    }
+}
+
+module.exports = new ProjectController();

@@ -1,180 +1,153 @@
+const fs = require('fs').promises;
 const Program = require('../models/Program');
-const { upload } = require('../middleware/upload');
 
-const createProgram = async (req, res) => {
-  upload.single('file')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
-    }
-
-    try {
-      const { title, description, media_type } = req.body;
-      const image = req.file ? `/uploads/server/${req.file.filename}` : null;
-
-      // Определить media_type из файла, если не передан
-      let finalMediaType = media_type;
-      if (req.file && !finalMediaType) {
-        if (req.file.mimetype.startsWith('image/')) {
-          finalMediaType = 'image';
-        } else if (req.file.mimetype.startsWith('video/')) {
-          finalMediaType = 'video';
-        } else {
-          finalMediaType = 'document';
+class ProgramController {
+    async getAll(req, res) {
+        try {
+            const programs = await Program.findAll({
+                order: [['createdAt', 'DESC']] // Сортировка по дате создания
+            });
+            res.json(programs);
+        } catch (error) {
+            console.error('Ошибка получения программ:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при получении списка программ',
+                details: error.message 
+            });
         }
-      }
-
-      const program = await Program.create({
-        title,
-        description,
-        image,
-        media_type: finalMediaType
-      });
-
-      res.status(201).json(program);
-    } catch (error) {
-      console.error('Error creating program:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-};
-
-const updateProgram = async (req, res) => {
-  upload.single('file')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
     }
 
-    try {
-      const { id } = req.params;
-      const { title, description, media_type } = req.body;
-      
-      const updateData = {};
-      
-      if (title !== undefined) updateData.title = title;
-      if (description !== undefined) updateData.description = description;
-      
-      // Обновляем файл только если он загружен
-      if (req.file) {
-        updateData.image = `/uploads/server/${req.file.filename}`;
-        
-        // Определяем media_type из файла
-        if (req.file.mimetype.startsWith('image/')) {
-          updateData.media_type = 'image';
-        } else if (req.file.mimetype.startsWith('video/')) {
-          updateData.media_type = 'video';
-        } else {
-          updateData.media_type = 'document';
+    async create(req, res) {
+        try {
+            console.log('Incoming create request:', {
+                body: req.body,
+                file: req.file
+            });
+
+            // Проверка обязательных полей
+            if (!req.body.title || req.body.title.trim() === '') {
+                return res.status(400).json({ 
+                    error: 'Название программы обязательно' 
+                });
+            }
+
+            // Подготовка данных для создания
+            const programData = {
+                title: req.body.title.trim(),
+                description: req.body.description ? req.body.description.trim() : null,
+                media: null
+            };
+
+            // Обработка медиафайла
+            if (req.file) {
+                programData.media = req.file.path.replace(/\\/g, '/');
+            }
+
+            // Создание программы
+            const program = await Program.create(programData);
+
+            res.status(201).json(program);
+        } catch (error) {
+            console.error('Полная ошибка создания программы:', error);
+            
+            // Обработка ошибок Sequelize
+            if (error.name === 'SequelizeValidationError') {
+                return res.status(400).json({ 
+                    error: 'Ошибка валидации',
+                    details: error.errors.map(e => e.message)
+                });
+            }
+
+            res.status(500).json({ 
+                error: 'Ошибка при создании программы',
+                details: error.message 
+            });
         }
-      } else if (media_type) {
-        updateData.media_type = media_type;
-      }
-
-      const program = await Program.update(id, updateData);
-
-      if (!program) {
-        return res.status(404).json({ error: 'Program not found' });
-      }
-
-      res.json(program);
-    } catch (error) {
-      console.error('Error updating program:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-};
-
-const partialUpdateProgram = async (req, res) => {
-  upload.single('file')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
     }
 
-    try {
-      const { id } = req.params;
-      const updates = {}; 
-
-      if (req.file) {
-        updates.image = `/uploads/server/${req.file.filename}`;
-        
-        // Определяем media_type из файла
-        if (req.file.mimetype.startsWith('image/')) {
-          updates.media_type = 'image';
-        } else if (req.file.mimetype.startsWith('video/')) {
-          updates.media_type = 'video';
-        } else {
-          updates.media_type = 'document';
+    async getOne(req, res) {
+        try {
+            const program = await Program.findByPk(req.params.id);
+            if (!program) {
+                return res.status(404).json({ error: 'Программа не найдена' });
+            }
+            res.json(program);
+        } catch (error) {
+            console.error('Ошибка получения программы:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при получении программы',
+                details: error.message 
+            });
         }
-      }
+    }
 
-      const fields = ['title', 'description', 'media_type'];
-      fields.forEach(field => {
-        if (req.body[field] !== undefined) {
-          updates[field] = req.body[field];
+    async update(req, res) {
+        try {
+            const program = await Program.findByPk(req.params.id);
+            if (!program) {
+                return res.status(404).json({ error: 'Программа не найдена' });
+            }
+
+            // Подготовка данных для обновления
+            const updateData = {
+                title: req.body.title ? req.body.title.trim() : program.title,
+                description: req.body.description ? req.body.description.trim() : program.description
+            };
+
+            // Обработка медиафайла
+            if (req.file) {
+                // Удаление старого файла, если существует
+                if (program.media) {
+                    try {
+                        await fs.unlink(program.media);
+                    } catch (unlinkError) {
+                        console.warn('Не удалось удалить старый файл:', unlinkError);
+                    }
+                }
+                updateData.media = req.file.path.replace(/\\/g, '/');
+            }
+
+            // Обновление программы
+            await program.update(updateData);
+
+            res.json(program);
+        } catch (error) {
+            console.error('Ошибка обновления программы:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при обновлении программы',
+                details: error.message 
+            });
         }
-      });
-
-      if (Object.keys(updates).length === 0) {
-        return res.status(400).json({ error: 'No fields to update' });
-      }
-
-      const program = await Program.update(id, updates);
-
-      if (!program) {
-        return res.status(404).json({ error: 'Program not found' });
-      }
-
-      res.json(program);
-    } catch (error) {
-      console.error('Error updating program:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-};
-
-const deleteProgram = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const program = await Program.delete(id);
-
-    if (!program) {
-      return res.status(404).json({ error: 'Program not found' });
     }
 
-    res.json({ message: 'Program deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+    async delete(req, res) {
+        try {
+            const program = await Program.findByPk(req.params.id);
+            if (!program) {
+                return res.status(404).json({ error: 'Программа не найдена' });
+            }
 
-const getAllPrograms = async (req, res) => {
-  try {
-    const programs = await Program.findAll();
-    res.json(programs);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+            // Удаление медиафайла
+            if (program.media) {
+                try {
+                    await fs.unlink(program.media);
+                } catch (unlinkError) {
+                    console.warn('Не удалось удалить файл:', unlinkError);
+                }
+            }
 
-const getProgramById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const program = await Program.findById(id);
+            // Удаление программы
+            await program.destroy();
 
-    if (!program) {
-      return res.status(404).json({ error: 'Program not found' });
+            res.json({ message: 'Программа успешно удалена' });
+        } catch (error) {
+            console.error('Ошибка удаления программы:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при удалении программы',
+                details: error.message 
+            });
+        }
     }
+}
 
-    res.json(program);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-module.exports = {
-  createProgram,
-  updateProgram,
-  partialUpdateProgram,
-  deleteProgram,
-  getAllPrograms,
-  getProgramById
-};
+module.exports = new ProgramController();

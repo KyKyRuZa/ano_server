@@ -1,175 +1,112 @@
+const fs = require('fs').promises;
 const Staff = require('../models/Staff');
-const { upload } = require('../middleware/upload');
 
-const createStaff = async (req, res) => {
-  upload.single('photo')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
-    }
-    try {
-      const { name, position, callsign, about, external_texts } = req.body;
-      const photo = req.file ? `/uploads/server/${req.file.filename}` : null;
-
-      console.log('Creating staff with data:', {
-        name,
-        position,
-        callsign,
-        about,
-        external_texts,
-        photo
-      });
-
-      const staff = await Staff.create({
-        photo,
-        name,
-        position,
-        callsign,
-        about,
-        external_texts
-      });
-
-      console.log('Staff created successfully:', staff);
-      res.status(201).json(staff);
-    } catch (error) {
-      console.error('Error creating staff:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-};
-
-const updateStaff = async (req, res) => {
-  upload.single('photo')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
-    }
-
-    try {
-      const { id } = req.params;
-      const { name, position, callsign, about, external_texts } = req.body;
-      const photo = req.file ? `/uploads/server/${req.file.filename}` : undefined;
-
-      console.log('Updating staff with data:', {
-        id,
-        name,
-        position,
-        callsign,
-        about,
-        external_texts,
-        photo
-      });
-
-      const updateData = {};
-      if (name !== undefined) updateData.name = name;
-      if (position !== undefined) updateData.position = position;
-      if (callsign !== undefined) updateData.callsign = callsign;
-      if (about !== undefined) updateData.about = about;
-      if (external_texts !== undefined) updateData.external_texts = external_texts;
-      if (photo !== undefined) updateData.photo = photo;
-
-      const staff = await Staff.update(id, updateData);
-
-      if (!staff) {
-        return res.status(404).json({ error: 'Staff member not found' });
-      }
-
-      console.log('Staff updated successfully:', staff);
-      res.json(staff);
-    } catch (error) {
-      console.error('Error updating staff:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-};
-
-const partialUpdateStaff = async (req, res) => {
-  upload.single('photo')(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
-    }
-
-    try {
-      const { id } = req.params;
-      const updates = {}; 
-
-      if (req.file) {
-        updates.photo = `/uploads/server/${req.file.filename}`;
-      }
-
-      const fields = ['name', 'position', 'callsign', 'about', 'external_texts'];
-      fields.forEach(field => {
-        if (req.body[field] !== undefined) {
-          updates[field] = req.body[field];
+class StaffController {
+    async getAll(req, res) {
+        try {
+            const staff = await Staff.findAll();
+            res.json(staff);
+        } catch (error) {
+            res.status(500).json({ error: 'Ошибка при получении списка сотрудников' });
         }
-      });
-
-      console.log('Partial update with data:', { id, updates });
-
-      if (Object.keys(updates).length === 0) {
-        return res.status(400).json({ error: 'No fields to update' });
-      }
-
-      const staff = await Staff.update(id, updates);
-
-      if (!staff) {
-        return res.status(404).json({ error: 'Staff member not found' });
-      }
-
-      console.log('Staff partially updated successfully:', staff);
-      res.json(staff);
-    } catch (error) {
-      console.error('Error partially updating staff:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-};
-
-const deleteStaff = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const staff = await Staff.delete(id);
-
-    if (!staff) {
-      return res.status(404).json({ error: 'Staff member not found' });
     }
 
-    res.json({ message: 'Staff member deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting staff:', error);
-    res.status(500).json({ error: error.message });
-  }
-};
+    async create(req, res) {
+        try {
+            let mediaPath = null;
+            if (req.file) {
+                mediaPath = req.file.path.replace(/\\/g, '/');
+            }
 
-const getAllStaff = async (req, res) => {
-  try {
-    const staff = await Staff.getAll();
-    res.json(staff);
-  } catch (error) {
-    console.error('Error getting all staff:', error);
-    res.status(500).json({ error: error.message });
-  }
-};
+            const staff = await Staff.create({
+                fullname: req.body.fullname || req.body.name,
+                position: req.body.position,
+                callsign: req.body.callsign || null,
+                description: req.body.description || req.body.about || null,
+                media: mediaPath
+            });
 
-const getStaffById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const staff = await Staff.getById(id);
-
-    if (!staff) {
-      return res.status(404).json({ error: 'Staff member not found' });
+            res.status(201).json(staff);
+        } catch (error) {
+            console.error('Ошибка создания сотрудника:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при создании сотрудника',
+                details: error.message 
+            });
+        }
     }
 
-    res.json(staff);
-  } catch (error) {
-    console.error('Error getting staff by id:', error);
-    res.status(500).json({ error: error.message });
-  }
-};
+    async getOne(req, res) {
+        try {
+            const staff = await Staff.findByPk(req.params.id);
+            if (!staff) {
+                return res.status(404).json({ error: 'Сотрудник не найден' });
+            }
+            res.json(staff);
+        } catch (error) {
+            res.status(500).json({ error: 'Ошибка при получении сотрудника' });
+        }
+    }
 
-module.exports = {
-  createStaff,
-  updateStaff,
-  partialUpdateStaff,
-  deleteStaff,
-  getAllStaff,
-  getStaffById
-};
+    async update(req, res) {
+        try {
+            const staff = await Staff.findByPk(req.params.id);
+            if (!staff) {
+                return res.status(404).json({ error: 'Сотрудник не найден' });
+            }
+
+            let mediaPath = staff.media;
+
+            if (req.file) {
+                // Удаляем старый файл, если существует
+                if (staff.media && await fs.exists(staff.media)) {
+                    await fs.unlink(staff.media);
+                }
+                mediaPath = req.file.path.replace(/\\/g, '/');
+            }
+
+            await staff.update({
+                fullname: req.body.fullname || req.body.name,
+                position: req.body.position,
+                callsign: req.body.callsign || null,
+                description: req.body.description || req.body.about || null,
+                media: mediaPath
+            });
+
+            res.json(staff);
+        } catch (error) {
+            console.error('Ошибка обновления сотрудника:', error);
+            res.status(500).json({ 
+                error: 'Ошибка при обновлении сотрудника',
+                details: error.message 
+            });
+        }
+    }
+
+    async delete(req, res) {
+        try {
+            const staff = await Staff.findByPk(req.params.id);
+            if (!staff) {
+                return res.status(404).json({ error: 'Сотрудник не найден' });
+            }
+
+             if (staff.media) {
+                try {
+                    await fs.unlink(staff.media);
+                } catch (unlinkError) {
+                    console.warn('Не удалось удалить файл:', unlinkError);
+                }
+            }
+
+            await staff.destroy();
+            res.json({ message: 'Сотрудник успешно удален' });
+        } catch (error) {
+            res.status(500).json({ 
+                error: 'Ошибка при удалении сотрудника',
+                details: error.message 
+            });
+        }
+    }
+}
+
+module.exports = new StaffController();
