@@ -3,150 +3,179 @@ const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
 require('dotenv').config();
 
-class AuthController {
-    static generateToken(admin) {
-        const JWT_SECRET = process.env.JWT_SECRET;
-        return jwt.sign(
-            { 
-                id: admin.id, 
-                login: admin.login, 
-                role: admin.role 
-            }, 
-            JWT_SECRET, 
-            { expiresIn: '1h' }
-        );
-    }
 
-    static generateRefreshToken(admin) {
-        const JWT_SECRET = process.env.JWT_SECRET;
-        return jwt.sign(
-            { 
-                id: admin.id, 
-                login: admin.login 
-            }, 
-            JWT_SECRET, 
-            { expiresIn: '7d' }
-        );
-    }
-    async register(req, res) {
-        try {
-            const { login, password, role = 'admin' } = req.body;
-            console.log('Register Request:', req.body);
-            // Проверка существования администратора с таким логином
-            const existingAdmin = await Admin.findOne({ where: { login } });
-            if (existingAdmin) {
-                return res.status(400).json({ error: 'Администратор с таким логином уже существует' });
-            }
+const generateToken = (payload) => {
+    return jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: '24h'
+    });
+};
 
-            // Хеширование пароля
-            const hashedPassword = await bcrypt.hash(password, 10);
+const generateRefreshToken = (payload) => {
+    return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
+        expiresIn: '7d'
+    });
+};
 
-            // Создание нового администратора
-            const admin = await Admin.create({
-                login,
-                password: hashedPassword,
-                role
-            });
-
-            // Создание JWT токена
-            const token = jwt.sign(
-                { 
-                    id: admin.id, 
-                    login: admin.login, 
-                    role: admin.role 
-                }, 
-                process.env.JWT_SECRET, 
-                { expiresIn: '24h' }
-            );
-
-            res.status(201).json({ 
-                message: 'Администратор успешно зарегистрирован', 
-                admin: { 
-                    id: admin.id, 
-                    login: admin.login, 
-                    role: admin.role 
-                },
-                token 
-            });
-        } catch (error) {
-            console.error('Ошибка при регистрации:', error);
-            res.status(500).json({ error: 'Ошибка при регистрации', details: error.message });
-        }
-    }
-
+const AuthController = {
     async login(req, res) {
         try {
             const { login, password } = req.body;
 
-            // Поиск администратора по логину
+            console.log('Попытка входа:', login);
+
+            if (!login || !password) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'Логин и пароль обязательны'
+                });
+            }
+
+            // Найти пользователя в базе данных
             const admin = await Admin.findOne({ where: { login } });
 
             if (!admin) {
-                return res.status(401).json({ error: 'Неверный логин или пароль' });
+                return res.status(401).json({
+                    success: false,
+                    error: 'Неверный логин или пароль'
+                });
             }
 
-            // Проверка пароля
-            const isMatch = await bcrypt.compare(password, admin.password);
-            if (!isMatch) {
-                return res.status(401).json({ error: 'Неверный логин или пароль' });
+            // Проверить пароль
+            const isPasswordValid = await bcrypt.compare(password, admin.password);
+
+            if (!isPasswordValid) {
+                return res.status(401).json({
+                    success: false,
+                    error: 'Неверный логин или пароль'
+                });
             }
 
-            // Генерация токенов
-            const token = this.generateToken(admin);
-            const refreshToken = this.generateRefreshToken(admin);
+            // Генерировать токены
+            const tokenPayload = {
+                id: admin.id,
+                login: admin.login
+            };
 
-            res.json({ 
-                token, 
+            const token = generateToken(tokenPayload);
+            const refreshToken = generateRefreshToken(tokenPayload);
+
+            console.log('Успешный вход для:', login);
+
+            res.json({
+                success: true,
+                message: 'Успешный вход',
+                token,
                 refreshToken,
-                admin: { 
-                    id: admin.id, 
-                    login: admin.login, 
-                    role: admin.role 
-                } 
+                admin: {
+                    id: admin.id,
+                    login: admin.login
+                }
             });
+
         } catch (error) {
             console.error('Ошибка при авторизации:', error);
-            res.status(500).json({ error: 'Ошибка при авторизации', details: error.message });
+            res.status(500).json({
+                success: false,
+                error: 'Ошибка при авторизации',
+                details: error.message
+            });
         }
-    }
+    },
+
+    async register(req, res) {
+        try {
+            const { login, password } = req.body;
+
+            if (!login || !password) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'Логин и пароль обязательны'
+                });
+            }
+
+            // Проверить, существует ли пользователь
+            const existingAdmin = await Admin.findOne({ where: { login } });
+
+            if (existingAdmin) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'Пользователь с таким логином уже существует'
+                });
+            }
+
+            // Хешировать пароль
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            // Создать нового пользователя
+            const admin = await Admin.create({
+                login,
+                password: hashedPassword
+            });
+
+            const tokenPayload = {
+                id: admin.id,
+                login: admin.login
+            };
+
+            const token = generateToken(tokenPayload);
+            const refreshToken = generateRefreshToken(tokenPayload);
+
+            res.status(201).json({
+                success: true,
+                message: 'Пользователь успешно создан',
+                token,
+                refreshToken,
+                admin: {
+                    id: admin.id,
+                    login: admin.login
+                }
+            });
+
+        } catch (error) {
+            console.error('Ошибка при регистрации:', error);
+            res.status(500).json({
+                success: false,
+                error: 'Ошибка при регистрации',
+                details: error.message
+            });
+        }
+    },
 
     async refreshToken(req, res) {
         try {
             const { refreshToken } = req.body;
 
             if (!refreshToken) {
-                return res.status(401).json({ error: 'Refresh токен не предоставлен' });
-            }
-
-            const JWT_SECRET = process.env.JWT_SECRET || 'fallback_very_secret_key_123';
-
-            try {
-                // Проверяем refresh токен
-                const decoded = jwt.verify(refreshToken, JWT_SECRET);
-
-                // Находим администратора
-                const admin = await Admin.findByPk(decoded.id);
-
-                if (!admin) {
-                    return res.status(401).json({ error: 'Пользователь не найден' });
-                }
-
-                // Генерируем новые токены
-                const newToken = this.generateToken(admin);
-                const newRefreshToken = this.generateRefreshToken(admin);
-
-                res.json({ 
-                    token: newToken, 
-                    refreshToken: newRefreshToken 
+                return res.status(400).json({
+                    success: false,
+                    error: 'Refresh token обязателен'
                 });
-            } catch (error) {
-                return res.status(401).json({ error: 'Неверный refresh токен' });
             }
+
+            const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET || 'your-refresh-secret-key');
+            
+            const tokenPayload = {
+                id: decoded.id,
+                login: decoded.login
+            };
+
+            const newToken = generateToken(tokenPayload);
+            const newRefreshToken = generateRefreshToken(tokenPayload);
+
+            res.json({
+                success: true,
+                token: newToken,
+                refreshToken: newRefreshToken
+            });
+
         } catch (error) {
             console.error('Ошибка обновления токена:', error);
-            res.status(500).json({ error: 'Ошибка обновления токена', details: error.message });
+            res.status(401).json({
+                success: false,
+                error: 'Недействительный refresh token'
+            });
         }
     }
-}
+};
 
-module.exports = new AuthController();
+module.exports = AuthController;
