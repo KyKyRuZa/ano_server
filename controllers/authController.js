@@ -2,22 +2,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
 
-// Функции для работы с токенами
-const generateToken = (payload) => {
-    return jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: '24h'
-    });
-};
-
-const generateRefreshToken = (payload) => {
-    return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
-        expiresIn: '7d'
-    });
-};
-
 const AuthController = {
     // POST /api/auth/login
-    async login(req, res) {
+    login: async (req, res) => {
         try {
             const { login, password } = req.body;
 
@@ -51,14 +38,19 @@ const AuthController = {
                 });
             }
 
-            // Создание токенов
+            // Создание токенов напрямую
             const tokenPayload = {
                 id: admin.id,
                 login: admin.login
             };
 
-            const token = generateToken(tokenPayload);
-            const refreshToken = generateRefreshToken(tokenPayload);
+            const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
+                expiresIn: '24h'
+            });
+
+            const refreshToken = jwt.sign(tokenPayload, process.env.JWT_REFRESH_SECRET, {
+                expiresIn: '7d'
+            });
 
             // Успешный ответ
             res.json({
@@ -78,13 +70,14 @@ const AuthController = {
             console.error('Ошибка при авторизации:', error);
             res.status(500).json({
                 success: false,
-                error: 'Внутренняя ошибка сервера'
+                error: 'Внутренняя ошибка сервера',
+                details: error.message
             });
         }
     },
 
     // POST /api/auth/register
-    async register(req, res) {
+    register: async (req, res) => {
         try {
             const { login, password } = req.body;
 
@@ -126,14 +119,19 @@ const AuthController = {
                 password: hashedPassword
             });
 
-            // Создание токенов
+            // Создание токенов напрямую
             const tokenPayload = {
                 id: admin.id,
                 login: admin.login
             };
 
-            const token = generateToken(tokenPayload);
-            const refreshToken = generateRefreshToken(tokenPayload);
+            const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
+                expiresIn: '24h'
+            });
+
+            const refreshToken = jwt.sign(tokenPayload, process.env.JWT_REFRESH_SECRET, {
+                expiresIn: '7d'
+            });
 
             // Успешный ответ (без пароля)
             res.status(201).json({
@@ -162,13 +160,14 @@ const AuthController = {
 
             res.status(500).json({
                 success: false,
-                error: 'Внутренняя ошибка сервера'
+                error: 'Внутренняя ошибка сервера',
+                details: error.message
             });
         }
     },
 
     // POST /api/auth/refresh-token
-    async refreshToken(req, res) {
+    refreshToken: async (req, res) => {
         try {
             const { refreshToken } = req.body;
 
@@ -201,14 +200,19 @@ const AuthController = {
                 });
             }
 
-            // Создание новых токенов
+            // Создание новых токенов напрямую
             const tokenPayload = {
                 id: admin.id,
                 login: admin.login
             };
 
-            const newToken = generateToken(tokenPayload);
-            const newRefreshToken = generateRefreshToken(tokenPayload);
+            const newToken = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
+                expiresIn: '24h'
+            });
+
+            const newRefreshToken = jwt.sign(tokenPayload, process.env.JWT_REFRESH_SECRET, {
+                expiresIn: '7d'
+            });
 
             // Успешный ответ
             res.json({
@@ -222,7 +226,8 @@ const AuthController = {
             console.error('Ошибка обновления токена:', error);
             res.status(500).json({
                 success: false,
-                error: 'Внутренняя ошибка сервера'
+                error: 'Внутренняя ошибка сервера',
+                details: error.message
             });
         }
     }
