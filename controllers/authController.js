@@ -1,36 +1,39 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
+const dotenv = require('dotenv');
+dotenv.config();
 
-function generateToken(payload) {
-    try {
-        console.log('Генерация токена для:', payload);
-        const token = jwt.sign(payload, process.env.JWT_SECRET, {
-            expiresIn: '24h'
-        });
-        console.log('Токен успешно сгенерирован');
-        return token;
-    } catch (error) {
-        console.error('Ошибка генерации токена:', error);
-        throw error;
-    }
-}
-
-function generateRefreshToken(payload) {
-    try {
-        console.log('Генерация refresh токена для:', payload);
-        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET , {
-            expiresIn: '7d'
-        });
-        console.log('Refresh токен успешно сгенерирован');
-        return refreshToken;
-    } catch (error) {
-        console.error('Ошибка генерации refresh токена:', error);
-        throw error;
-    }
-}
 
 const AuthController = {
+    generateToken(payload) {
+        try {
+            console.log('Генерация токена для:', payload);
+            const token = jwt.sign(payload, process.env.JWT_SECRET, {
+                expiresIn: '24h'
+            });
+            console.log('Токен успешно сгенерирован');
+            return token;
+        } catch (error) {
+            console.error('Ошибка генерации токена:', error);
+            throw error;
+        }
+    },
+
+    generateRefreshToken(payload) {
+        try {
+            console.log('Генерация refresh токена для:', payload);
+            const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
+                expiresIn: '7d'
+            });
+            console.log('Refresh токен успешно сгенерирован');
+            return refreshToken;
+        } catch (error) {
+            console.error('Ошибка генерации refresh токена:', error);
+            throw error;
+        }
+    },
+
     async login(req, res) {
         try {
             console.log('=== НАЧАЛО ПРОЦЕССА АВТОРИЗАЦИИ ===');
@@ -77,8 +80,8 @@ const AuthController = {
             console.log('Payload для токена:', tokenPayload);
 
             console.log('Генерация токенов...');
-            const token = generateToken(tokenPayload);
-            const refreshToken = generateRefreshToken(tokenPayload);
+            const token = this.generateToken(tokenPayload);
+            const refreshToken = this.generateRefreshToken(tokenPayload);
 
             console.log('Подготовка ответа...');
             const responseData = {
@@ -144,8 +147,8 @@ const AuthController = {
                 login: admin.login
             };
 
-            const token = generateToken(tokenPayload);
-            const refreshToken = generateRefreshToken(tokenPayload);
+            const token = this.generateToken(tokenPayload);
+            const refreshToken = this.generateRefreshToken(tokenPayload);
 
             res.status(201).json({
                 success: true,
@@ -179,15 +182,15 @@ const AuthController = {
                 });
             }
 
-            const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET || 'your-refresh-secret-key');
+            const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
             
             const tokenPayload = {
                 id: decoded.id,
                 login: decoded.login
             };
 
-            const newToken = generateToken(tokenPayload);
-            const newRefreshToken = generateRefreshToken(tokenPayload);
+            const newToken = this.generateToken(tokenPayload);
+            const newRefreshToken = this.generateRefreshToken(tokenPayload);
 
             res.json({
                 success: true,
