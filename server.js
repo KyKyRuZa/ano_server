@@ -89,7 +89,6 @@ const startServer = async () => {
     });
 
   } catch (error) {
-    console.error('❌ Ошибка при запуске сервера:', error.message);
     logger.error(`Ошибка при запуске сервера: ${error.message}`);
     process.exit(1);
   }

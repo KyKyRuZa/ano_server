@@ -6,15 +6,6 @@ const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         // Определяем папку в зависимости от типа файла
         let uploadPath = 'uploads/';
-        if (file.fieldname === 'media') {
-            if (req.baseUrl.includes('staff')) {
-                uploadPath += 'staff/';
-            } else if (req.baseUrl.includes('programs')) {
-                uploadPath += 'programs/';
-            } else if (req.baseUrl.includes('projects')) {
-                uploadPath += 'projects/';
-            }
-        }
         cb(null, uploadPath);
     },
     filename: function (req, file, cb) {
