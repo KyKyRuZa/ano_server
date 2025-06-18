@@ -1,133 +1,94 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
-require('dotenv').config();
 
-// Проверяем наличие переменных окружения при загрузке модуля
-console.log('🔍 AuthController загружается...');
-console.log('JWT_SECRET доступен:', !!process.env.JWT_SECRET);
-console.log('JWT_REFRESH_SECRET доступен:', !!process.env.JWT_REFRESH_SECRET);
-
-// Простые функции для генерации токенов
-function createToken(payload) {
-    console.log('📝 Создание токена для:', payload);
-    
-    if (!process.env.JWT_SECRET) {
-        throw new Error('JWT_SECRET не найден в переменных окружения');
-    }
-    
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+// Функции для работы с токенами
+const generateToken = (payload) => {
+    return jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: '24h'
     });
-    
-    console.log('✅ Токен создан успешно');
-    return token;
-}
+};
 
-function createRefreshToken(payload) {
-    console.log('📝 Создание refresh токена для:', payload);
-    
-    if (!process.env.JWT_REFRESH_SECRET) {
-        throw new Error('JWT_REFRESH_SECRET не найден в переменных окружения');
-    }
-    
-    const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
+const generateRefreshToken = (payload) => {
+    return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
         expiresIn: '7d'
     });
-    
-    console.log('✅ Refresh токен создан успешно');
-    return refreshToken;
-}
+};
 
-// Экспортируем объект с методами
-module.exports = {
+const AuthController = {
+    // POST /api/auth/login
     async login(req, res) {
-        console.log('🚀 === НАЧАЛО АВТОРИЗАЦИИ ===');
-        
         try {
             const { login, password } = req.body;
-            console.log('📥 Получены данные:', { login, password: password ? '***' : 'нет' });
 
-            // Проверка обязательных полей
+            // Валидация входных данных
             if (!login || !password) {
-                console.log('❌ Отсутствуют обязательные поля');
                 return res.status(400).json({
                     success: false,
                     error: 'Логин и пароль обязательны'
                 });
             }
 
-            // Поиск пользователя
-            console.log('🔍 Поиск пользователя в БД...');
-            const admin = await Admin.findOne({ where: { login } });
-            
+            // Поиск администратора по логину
+            const admin = await Admin.findOne({ 
+                where: { login } 
+            });
+
             if (!admin) {
-                console.log('❌ Пользователь не найден');
                 return res.status(401).json({
                     success: false,
                     error: 'Неверный логин или пароль'
                 });
             }
-            
-            console.log('✅ Пользователь найден:', admin.login);
 
             // Проверка пароля
-            console.log('🔐 Проверка пароля...');
             const isPasswordValid = await bcrypt.compare(password, admin.password);
-            
+
             if (!isPasswordValid) {
-                console.log('❌ Неверный пароль');
                 return res.status(401).json({
                     success: false,
                     error: 'Неверный логин или пароль'
                 });
             }
-            
-            console.log('✅ Пароль верный');
 
             // Создание токенов
-            console.log('🎫 Создание токенов...');
             const tokenPayload = {
                 id: admin.id,
                 login: admin.login
             };
 
-            const token = createToken(tokenPayload);
-            const refreshToken = createRefreshToken(tokenPayload);
+            const token = generateToken(tokenPayload);
+            const refreshToken = generateRefreshToken(tokenPayload);
 
-            // Отправка ответа
-            const response = {
+            // Успешный ответ
+            res.json({
                 success: true,
                 message: 'Успешный вход',
                 token,
                 refreshToken,
                 admin: {
                     id: admin.id,
-                    login: admin.login
+                    login: admin.login,
+                    createdAt: admin.createdAt,
+                    updatedAt: admin.updatedAt
                 }
-            };
-
-            console.log('✅ === АВТОРИЗАЦИЯ ЗАВЕРШЕНА УСПЕШНО ===');
-            res.json(response);
+            });
 
         } catch (error) {
-            console.error('💥 === ОШИБКА АВТОРИЗАЦИИ ===');
-            console.error('Тип:', error.constructor.name);
-            console.error('Сообщение:', error.message);
-            console.error('Стек:', error.stack);
-            
+            console.error('Ошибка при авторизации:', error);
             res.status(500).json({
                 success: false,
-                error: 'Ошибка при авторизации',
-                details: error.message
+                error: 'Внутренняя ошибка сервера'
             });
         }
     },
 
+    // POST /api/auth/register
     async register(req, res) {
         try {
             const { login, password } = req.body;
 
+            // Валидация входных данных
             if (!login || !password) {
                 return res.status(400).json({
                     success: false,
@@ -135,19 +96,31 @@ module.exports = {
                 });
             }
 
-            // Проверка существующего пользователя
-            const existingAdmin = await Admin.findOne({ where: { login } });
-            if (existingAdmin) {
+            // Проверка минимальной длины пароля
+            if (password.length < 6) {
                 return res.status(400).json({
+                    success: false,
+                    error: 'Пароль должен содержать минимум 6 символов'
+                });
+            }
+
+            // Проверка существования пользователя
+            const existingAdmin = await Admin.findOne({ 
+                where: { login } 
+            });
+
+            if (existingAdmin) {
+                return res.status(409).json({
                     success: false,
                     error: 'Пользователь с таким логином уже существует'
                 });
             }
 
             // Хеширование пароля
-            const hashedPassword = await bcrypt.hash(password, 10);
+            const saltRounds = 12;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-            // Создание пользователя
+            // Создание нового администратора
             const admin = await Admin.create({
                 login,
                 password: hashedPassword
@@ -159,34 +132,47 @@ module.exports = {
                 login: admin.login
             };
 
-            const token = createToken(tokenPayload);
-            const refreshToken = createRefreshToken(tokenPayload);
+            const token = generateToken(tokenPayload);
+            const refreshToken = generateRefreshToken(tokenPayload);
 
+            // Успешный ответ (без пароля)
             res.status(201).json({
                 success: true,
-                message: 'Пользователь успешно создан',
+                message: 'Администратор успешно создан',
                 token,
                 refreshToken,
                 admin: {
                     id: admin.id,
-                    login: admin.login
+                    login: admin.login,
+                    createdAt: admin.createdAt,
+                    updatedAt: admin.updatedAt
                 }
             });
 
         } catch (error) {
             console.error('Ошибка при регистрации:', error);
+            
+            // Обработка ошибок Sequelize
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                return res.status(409).json({
+                    success: false,
+                    error: 'Пользователь с таким логином уже существует'
+                });
+            }
+
             res.status(500).json({
                 success: false,
-                error: 'Ошибка при регистрации',
-                details: error.message
+                error: 'Внутренняя ошибка сервера'
             });
         }
     },
 
+    // POST /api/auth/refresh-token
     async refreshToken(req, res) {
         try {
             const { refreshToken } = req.body;
 
+            // Проверка наличия refresh token
             if (!refreshToken) {
                 return res.status(400).json({
                     success: false,
@@ -194,30 +180,52 @@ module.exports = {
                 });
             }
 
-            // Проверка refresh токена
-            const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+            // Верификация refresh token
+            let decoded;
+            try {
+                decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+            } catch (jwtError) {
+                return res.status(401).json({
+                    success: false,
+                    error: 'Недействительный refresh token'
+                });
+            }
+
+            // Проверка существования пользователя
+            const admin = await Admin.findByPk(decoded.id);
             
-            const tokenPayload = {
-                id: decoded.id,
-                login: decoded.login
-            };
+            if (!admin) {
+                return res.status(401).json({
+                    success: false,
+                    error: 'Пользователь не найден'
+                });
+            }
 
             // Создание новых токенов
-            const newToken = createToken(tokenPayload);
-            const newRefreshToken = createRefreshToken(tokenPayload);
+            const tokenPayload = {
+                id: admin.id,
+                login: admin.login
+            };
 
+            const newToken = generateToken(tokenPayload);
+            const newRefreshToken = generateRefreshToken(tokenPayload);
+
+            // Успешный ответ
             res.json({
                 success: true,
+                message: 'Токены обновлены',
                 token: newToken,
                 refreshToken: newRefreshToken
             });
 
         } catch (error) {
             console.error('Ошибка обновления токена:', error);
-            res.status(401).json({
+            res.status(500).json({
                 success: false,
-                error: 'Недействительный refresh token'
+                error: 'Внутренняя ошибка сервера'
             });
         }
     }
 };
+
+module.exports = AuthController;
