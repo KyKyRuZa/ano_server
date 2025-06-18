@@ -1,13 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
-require('dotenv').config();
 
-// Объявляем функции ДО использования в контроллере
-const generateToken = (payload) => {
+function generateToken(payload) {
     try {
         console.log('Генерация токена для:', payload);
-        const token = jwt.sign(payload, process.env.JWT_SECRET || 'your-secret-key', {
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
             expiresIn: '24h'
         });
         console.log('Токен успешно сгенерирован');
@@ -16,12 +14,12 @@ const generateToken = (payload) => {
         console.error('Ошибка генерации токена:', error);
         throw error;
     }
-};
+}
 
-const generateRefreshToken = (payload) => {
+function generateRefreshToken(payload) {
     try {
         console.log('Генерация refresh токена для:', payload);
-        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET || 'your-refresh-secret-key', {
+        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET , {
             expiresIn: '7d'
         });
         console.log('Refresh токен успешно сгенерирован');
@@ -30,9 +28,8 @@ const generateRefreshToken = (payload) => {
         console.error('Ошибка генерации refresh токена:', error);
         throw error;
     }
-};
+}
 
-// ТЕПЕРЬ объявляем контроллер
 const AuthController = {
     async login(req, res) {
         try {
@@ -167,34 +164,6 @@ const AuthController = {
                 success: false,
                 error: 'Ошибка при регистрации',
                 details: error.message
-            });
-        }
-    },
-
-    async getProfile(req, res) {
-        try {
-            const admin = await Admin.findByPk(req.user.id);
-            
-            if (!admin) {
-                return res.status(404).json({
-                    success: false,
-                    error: 'Пользователь не найден'
-                });
-            }
-
-            res.json({
-                success: true,
-                admin: {
-                    id: admin.id,
-                    login: admin.login
-                }
-            });
-
-        } catch (error) {
-            console.error('Ошибка получения профиля:', error);
-            res.status(500).json({
-                success: false,
-                error: 'Ошибка получения профиля'
             });
         }
     },
