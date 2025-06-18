@@ -1,11 +1,9 @@
 const multer = require('multer');
 const path = require('path');
 
-// Настройка multer для загрузки файлов
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        // Определяем папку в зависимости от типа файла
-        let uploadPath = 'uploads/';
+        let uploadPath = '/var/www/uploads/';
         cb(null, uploadPath);
     },
     filename: function (req, file, cb) {
