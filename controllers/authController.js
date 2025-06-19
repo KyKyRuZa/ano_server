@@ -1,236 +1,74 @@
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
+const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
-const AuthController = {
-    // POST /api/auth/login
-    login: async (req, res) => {
-        try {
-            const { login, password } = req.body;
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRES_IN = '24h';
 
-            // Валидация входных данных
-            if (!login || !password) {
-                return res.status(400).json({
-                    success: false,
-                    error: 'Логин и пароль обязательны'
-                });
-            }
-
-            // Поиск администратора по логину
-            const admin = await Admin.findOne({ 
-                where: { login } 
-            });
-
-            if (!admin) {
-                return res.status(401).json({
-                    success: false,
-                    error: 'Неверный логин или пароль'
-                });
-            }
-
-            // Проверка пароля
-            const isPasswordValid = await bcrypt.compare(password, admin.password);
-
-            if (!isPasswordValid) {
-                return res.status(401).json({
-                    success: false,
-                    error: 'Неверный логин или пароль'
-                });
-            }
-
-            // Создание токенов напрямую
-            const tokenPayload = {
-                id: admin.id,
-                login: admin.login
-            };
-
-            const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
-                expiresIn: '24h'
-            });
-
-            const refreshToken = jwt.sign(tokenPayload, process.env.JWT_REFRESH_SECRET, {
-                expiresIn: '7d'
-            });
-
-            // Успешный ответ
-            res.json({
-                success: true,
-                message: 'Успешный вход',
-                token,
-                refreshToken,
-                admin: {
-                    id: admin.id,
-                    login: admin.login,
-                    createdAt: admin.createdAt,
-                    updatedAt: admin.updatedAt
-                }
-            });
-
-        } catch (error) {
-            console.error('Ошибка при авторизации:', error);
-            res.status(500).json({
-                success: false,
-                error: 'Внутренняя ошибка сервера',
-                details: error.message
-            });
-        }
-    },
-
-    // POST /api/auth/register
-    register: async (req, res) => {
-        try {
-            const { login, password } = req.body;
-
-            // Валидация входных данных
-            if (!login || !password) {
-                return res.status(400).json({
-                    success: false,
-                    error: 'Логин и пароль обязательны'
-                });
-            }
-
-            // Проверка минимальной длины пароля
-            if (password.length < 6) {
-                return res.status(400).json({
-                    success: false,
-                    error: 'Пароль должен содержать минимум 6 символов'
-                });
-            }
-
-            // Проверка существования пользователя
-            const existingAdmin = await Admin.findOne({ 
-                where: { login } 
-            });
-
-            if (existingAdmin) {
-                return res.status(409).json({
-                    success: false,
-                    error: 'Пользователь с таким логином уже существует'
-                });
-            }
-
-            // Хеширование пароля
-            const saltRounds = 12;
-            const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-            // Создание нового администратора
-            const admin = await Admin.create({
-                login,
-                password: hashedPassword
-            });
-
-            // Создание токенов напрямую
-            const tokenPayload = {
-                id: admin.id,
-                login: admin.login
-            };
-
-            const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
-                expiresIn: '24h'
-            });
-
-            const refreshToken = jwt.sign(tokenPayload, process.env.JWT_REFRESH_SECRET, {
-                expiresIn: '7d'
-            });
-
-            // Успешный ответ (без пароля)
-            res.status(201).json({
-                success: true,
-                message: 'Администратор успешно создан',
-                token,
-                refreshToken,
-                admin: {
-                    id: admin.id,
-                    login: admin.login,
-                    createdAt: admin.createdAt,
-                    updatedAt: admin.updatedAt
-                }
-            });
-
-        } catch (error) {
-            console.error('Ошибка при регистрации:', error);
-            
-            // Обработка ошибок Sequelize
-            if (error.name === 'SequelizeUniqueConstraintError') {
-                return res.status(409).json({
-                    success: false,
-                    error: 'Пользователь с таким логином уже существует'
-                });
-            }
-
-            res.status(500).json({
-                success: false,
-                error: 'Внутренняя ошибка сервера',
-                details: error.message
-            });
-        }
-    },
-
-    // POST /api/auth/refresh-token
-    refreshToken: async (req, res) => {
-        try {
-            const { refreshToken } = req.body;
-
-            // Проверка наличия refresh token
-            if (!refreshToken) {
-                return res.status(400).json({
-                    success: false,
-                    error: 'Refresh token обязателен'
-                });
-            }
-
-            // Верификация refresh token
-            let decoded;
-            try {
-                decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
-            } catch (jwtError) {
-                return res.status(401).json({
-                    success: false,
-                    error: 'Недействительный refresh token'
-                });
-            }
-
-            // Проверка существования пользователя
-            const admin = await Admin.findByPk(decoded.id);
-            
-            if (!admin) {
-                return res.status(401).json({
-                    success: false,
-                    error: 'Пользователь не найден'
-                });
-            }
-
-            // Создание новых токенов напрямую
-            const tokenPayload = {
-                id: admin.id,
-                login: admin.login
-            };
-
-            const newToken = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
-                expiresIn: '24h'
-            });
-
-            const newRefreshToken = jwt.sign(tokenPayload, process.env.JWT_REFRESH_SECRET, {
-                expiresIn: '7d'
-            });
-
-            // Успешный ответ
-            res.json({
-                success: true,
-                message: 'Токены обновлены',
-                token: newToken,
-                refreshToken: newRefreshToken
-            });
-
-        } catch (error) {
-            console.error('Ошибка обновления токена:', error);
-            res.status(500).json({
-                success: false,
-                error: 'Внутренняя ошибка сервера',
-                details: error.message
-            });
-        }
-    }
+const generateToken = (id) => {
+  return jwt.sign({ id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 };
 
-module.exports = AuthController;
+const login = async (req, res) => {
+  try {
+    const { login, password } = req.body;
+    console.log('Запрос на вход:', { login });
+
+    // 1. Находим администратора
+    const admin = await Admin.findOne({ where: { login } });
+    console.log('Найденный администратор:', admin ? { 
+      id: admin.id, 
+      login: admin.login,
+      hashPrefix: admin.password?.slice(0, 20) 
+    } : null);
+
+    if (!admin) {
+      console.log('Администратор не найден');
+      return res.status(401).json({ error: 'Неверный логин или пароль' });
+    }
+
+    // 2. Проверяем пароль
+    console.log('Сравнение пароля:', {
+      inputPassword: password,
+      dbHash: admin.password,
+      hashStartsWith: admin.password?.slice(0, 6)
+    });
+
+    const trimmedPassword = password.trim();
+    const adminPassword = admin.password;
+    const isMatch = await bcrypt.compare(trimmedPassword, adminPassword);
+
+    if (!isMatch) {
+      console.log('Пароль не совпал');
+      return res.status(401).json({ error: 'Неверный логин или пароль' });
+    }
+
+    // 3. Генерируем токен
+    const token = generateToken(admin.id);
+    console.log('Успешная авторизация. Сгенерирован токен');
+    
+    const responseData = { 
+      token,
+      admin: { 
+        id: admin.id, 
+        login: admin.login 
+      }
+    };
+
+    res.json(responseData);
+
+  } catch (error) {
+    console.error('Ошибка в login:', error);
+    
+    const errorResponse = { 
+      error: 'Ошибка сервера'
+    };
+    
+    res.status(500).json(errorResponse);
+  }
+};
+
+module.exports = {
+  login
+};
