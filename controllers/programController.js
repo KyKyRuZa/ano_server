@@ -40,7 +40,7 @@ class ProgramController {
 
             // Обработка медиафайла
             if (req.file) {
-                programData.media = `var/www/uploads/${req.file.filename}`;
+                programData.media = `/uploads/${req.file.filename}`;
             }
 
             // Создание программы
@@ -104,7 +104,7 @@ class ProgramController {
                         console.warn('Не удалось удалить старый файл:', unlinkError);
                     }
                 }
-                updateData.media = `var/www/uploads/${req.file.filename}`;
+                updateData.media = `/uploads/${req.file.filename}`;
             }
 
             // Обновление программы

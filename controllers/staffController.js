@@ -1,6 +1,16 @@
 const fs = require('fs').promises;
 const Staff = require('../models/Staff');
 
+// Функция для проверки существования файла
+async function fileExists(filePath) {
+    try {
+        await fs.access(filePath);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
 class StaffController {
     async getAll(req, res) {
         try {
@@ -15,7 +25,7 @@ class StaffController {
         try {
             let mediaPath = null;
             if (req.file) {
-                mediaPath = `var/www/uploads/${req.file.filename}`;
+                mediaPath = `/uploads/${req.file.filename}`;
             }
 
             const staff = await Staff.create({
@@ -58,14 +68,19 @@ class StaffController {
             let mediaPath = staff.media;
 
             if (req.file) {
-               if (staff.media) {
+                // Удаляем старый файл, если существует
+                if (staff.media) {
                     try {
-                        await fs.unlink(project.media);
-                    } catch (unlinkError) {
-                        console.warn('Не удалось удалить старый файл:', unlinkError);
+                        const fullPath = `/var/www${staff.media}`;
+                        if (await fileExists(fullPath)) {
+                            await fs.unlink(fullPath);
+                        }
+                    } catch (err) {
+                        console.warn('Не удалось удалить старый файл:', err);
                     }
                 }
-                mediaPath = `var/www/uploads/${req.file.filename}`;
+
+                mediaPath = `/uploads/${req.file.filename}`;
             }
 
             await staff.update({
@@ -93,9 +108,12 @@ class StaffController {
                 return res.status(404).json({ error: 'Сотрудник не найден' });
             }
 
-             if (staff.media) {
+            if (staff.media) {
                 try {
-                    await fs.unlink(staff.media);
+                    const fullPath = `/var/www${staff.media}`;
+                    if (await fileExists(fullPath)) {
+                        await fs.unlink(fullPath);
+                    }
                 } catch (unlinkError) {
                     console.warn('Не удалось удалить файл:', unlinkError);
                 }
