@@ -1,5 +1,7 @@
 const fs = require('fs').promises;
 const Project = require('../models/Project');
+const path = require('path');
+
 
 // Функция для проверки существования файла
 async function fileExists(filePath) {
