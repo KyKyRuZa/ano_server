@@ -1,11 +1,21 @@
 const fs = require('fs').promises;
 const Project = require('../models/Project');
 
+// Функция для проверки существования файла
+async function fileExists(filePath) {
+    try {
+        await fs.access(filePath);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
 class ProjectController {
     async getAll(req, res) {
         try {
             const projects = await Project.findAll({
-                order: [['createdAt', 'DESC']] // Сортировка по дате создания
+                order: [['createdAt', 'DESC']]
             });
             res.json(projects);
         } catch (error) {
@@ -24,33 +34,28 @@ class ProjectController {
                 file: req.file
             });
 
-            // Проверка обязательных полей
             if (!req.body.title || req.body.title.trim() === '') {
                 return res.status(400).json({ 
                     error: 'Название проекта обязательно' 
                 });
             }
 
-            // Подготовка данных для создания
             const projectData = {
                 title: req.body.title.trim(),
                 description: req.body.description ? req.body.description.trim() : null,
                 media: null
             };
 
-            // Обработка медиафайла
             if (req.file) {
                 projectData.media = `/uploads/${req.file.filename}`;
             }
 
-            // Создание проекта
             const project = await Project.create(projectData);
 
             res.status(201).json(project);
         } catch (error) {
             console.error('Полная ошибка создания проекта:', error);
             
-            // Обработка ошибок Sequelize
             if (error.name === 'SequelizeValidationError') {
                 return res.status(400).json({ 
                     error: 'Ошибка валидации',
@@ -88,26 +93,27 @@ class ProjectController {
                 return res.status(404).json({ error: 'Проект не найден' });
             }
 
-            // Подготовка данных для обновления
             const updateData = {
                 title: req.body.title ? req.body.title.trim() : project.title,
                 description: req.body.description ? req.body.description.trim() : project.description
             };
 
-            // Обработка медиафайла
             if (req.file) {
-                // Удаление старого файла, если существует
+                // Формируем полный путь к старому файлу
                 if (project.media) {
+                    const fullPath = path.join('/var/www', project.media); // <-- здесь формируем полный путь
                     try {
-                        await fs.unlink(project.media);
+                        if (await fileExists(fullPath)) {
+                            await fs.unlink(fullPath);
+                        }
                     } catch (unlinkError) {
                         console.warn('Не удалось удалить старый файл:', unlinkError);
                     }
                 }
+
                 updateData.media = `/uploads/${req.file.filename}`;
             }
 
-            // Обновление проекта
             await project.update(updateData);
 
             res.json(project);
@@ -127,16 +133,17 @@ class ProjectController {
                 return res.status(404).json({ error: 'Проект не найден' });
             }
 
-            // Удаление медиафайла
             if (project.media) {
+                const fullPath = path.join('/var/www', project.media); // <-- здесь формируем полный путь
                 try {
-                    await fs.unlink(project.media);
+                    if (await fileExists(fullPath)) {
+                        await fs.unlink(fullPath);
+                    }
                 } catch (unlinkError) {
                     console.warn('Не удалось удалить файл:', unlinkError);
                 }
             }
 
-            // Удаление проекта
             await project.destroy();
 
             res.json({ message: 'Проект успешно удален' });

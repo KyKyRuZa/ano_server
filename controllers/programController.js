@@ -1,11 +1,22 @@
 const fs = require('fs').promises;
+const path = require('path');
 const Program = require('../models/Program');
+
+// Функция для проверки существования файла
+async function fileExists(filePath) {
+    try {
+        await fs.access(filePath);
+        return true;
+    } catch {
+        return false;
+    }
+}
 
 class ProgramController {
     async getAll(req, res) {
         try {
             const programs = await Program.findAll({
-                order: [['createdAt', 'DESC']] // Сортировка по дате создания
+                order: [['createdAt', 'DESC']]
             });
             res.json(programs);
         } catch (error) {
@@ -24,33 +35,28 @@ class ProgramController {
                 file: req.file
             });
 
-            // Проверка обязательных полей
             if (!req.body.title || req.body.title.trim() === '') {
                 return res.status(400).json({ 
                     error: 'Название программы обязательно' 
                 });
             }
 
-            // Подготовка данных для создания
             const programData = {
                 title: req.body.title.trim(),
                 description: req.body.description ? req.body.description.trim() : null,
                 media: null
             };
 
-            // Обработка медиафайла
             if (req.file) {
                 programData.media = `/uploads/${req.file.filename}`;
             }
 
-            // Создание программы
             const program = await Program.create(programData);
 
             res.status(201).json(program);
         } catch (error) {
             console.error('Полная ошибка создания программы:', error);
             
-            // Обработка ошибок Sequelize
             if (error.name === 'SequelizeValidationError') {
                 return res.status(400).json({ 
                     error: 'Ошибка валидации',
@@ -88,26 +94,27 @@ class ProgramController {
                 return res.status(404).json({ error: 'Программа не найдена' });
             }
 
-            // Подготовка данных для обновления
             const updateData = {
                 title: req.body.title ? req.body.title.trim() : program.title,
                 description: req.body.description ? req.body.description.trim() : program.description
             };
 
-            // Обработка медиафайла
             if (req.file) {
                 // Удаление старого файла, если существует
                 if (program.media) {
+                    const fullPath = path.join('/var/www', program.media); // <-- здесь формируем полный путь
                     try {
-                        await fs.unlink(program.media);
+                        if (await fileExists(fullPath)) {
+                            await fs.unlink(fullPath);
+                        }
                     } catch (unlinkError) {
                         console.warn('Не удалось удалить старый файл:', unlinkError);
                     }
                 }
+
                 updateData.media = `/uploads/${req.file.filename}`;
             }
 
-            // Обновление программы
             await program.update(updateData);
 
             res.json(program);
@@ -127,16 +134,17 @@ class ProgramController {
                 return res.status(404).json({ error: 'Программа не найдена' });
             }
 
-            // Удаление медиафайла
             if (program.media) {
+                const fullPath = path.join('/var/www', program.media); // <-- здесь формируем полный путь
                 try {
-                    await fs.unlink(program.media);
+                    if (await fileExists(fullPath)) {
+                        await fs.unlink(fullPath);
+                    }
                 } catch (unlinkError) {
                     console.warn('Не удалось удалить файл:', unlinkError);
                 }
             }
 
-            // Удаление программы
             await program.destroy();
 
             res.json({ message: 'Программа успешно удалена' });
