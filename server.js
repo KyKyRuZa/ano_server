@@ -55,7 +55,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morganMiddleware);
 
-app.use('/uploads', express.static('/var/www/uploads/'));
+app.use('/uploads', express.static('/var/www/uploads'));
 
 // Централизованная обработка ошибок
 app.use((err, req, res, next) => {

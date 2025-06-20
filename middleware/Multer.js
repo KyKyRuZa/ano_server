@@ -2,15 +2,18 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const uploadDir = path.join(__dirname, '/var/www/uploads/');
+// Папка для загрузки файлов — абсолютный путь
+const uploadDir = '/var/www/uploads/';
 
+// Создаем папку, если её нет (важно для первого запуска)
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
+// Настройка хранения
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, uploadPath);
+    destination: (req, file, cb) => {
+        cb(null, uploadDir); // сохраняем в /var/www/uploads/
     },
     filename: (req, file, cb) => {
         const ext = path.extname(file.originalname);
@@ -19,6 +22,7 @@ const storage = multer.diskStorage({
     }
 });
 
+// Фильтр файлов
 const fileFilter = (req, file, cb) => {
     const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (allowedTypes.includes(file.mimetype)) {
@@ -28,10 +32,11 @@ const fileFilter = (req, file, cb) => {
     }
 };
 
+// Экспортируем готовый upload
 const upload = multer({ 
-    storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 },
-    fileFilter: fileFilter
+    storage,
+    limits: { fileSize: 10 * 1024 * 1024 }, // 10 МБ
+    fileFilter
 });
 
 module.exports = { upload };

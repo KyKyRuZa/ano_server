@@ -58,9 +58,12 @@ class StaffController {
             let mediaPath = staff.media;
 
             if (req.file) {
-                // Удаляем старый файл, если существует
-                if (staff.media && await fs.exists(staff.media)) {
-                    await fs.unlink(staff.media);
+               if (staff.media) {
+                    try {
+                        await fs.unlink(project.media);
+                    } catch (unlinkError) {
+                        console.warn('Не удалось удалить старый файл:', unlinkError);
+                    }
                 }
                 mediaPath = `var/www/uploads/${req.file.filename}`;
             }
