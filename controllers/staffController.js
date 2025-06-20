@@ -15,7 +15,7 @@ class StaffController {
         try {
             let mediaPath = null;
             if (req.file) {
-                mediaPath = req.file.path.replace(/\\/g, '/');
+                mediaPath = `var/www/uploads/${req.file.filename}`;
             }
 
             const staff = await Staff.create({
@@ -62,7 +62,7 @@ class StaffController {
                 if (staff.media && await fs.exists(staff.media)) {
                     await fs.unlink(staff.media);
                 }
-                mediaPath = req.file.path.replace(/\\/g, '/');
+                mediaPath = `var/www/uploads/${req.file.filename}`;
             }
 
             await staff.update({

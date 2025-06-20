@@ -40,7 +40,7 @@ class ProjectController {
 
             // Обработка медиафайла
             if (req.file) {
-                projectData.media = req.file.path.replace(/\\/g, '/');
+                projectData.media = `var/www/uploads/${req.file.filename}`;
             }
 
             // Создание проекта
@@ -104,7 +104,7 @@ class ProjectController {
                         console.warn('Не удалось удалить старый файл:', unlinkError);
                     }
                 }
-                updateData.media = req.file.path.replace(/\\/g, '/');
+                updateData.media = `var/www/uploads/${req.file.filename}`;
             }
 
             // Обновление проекта
