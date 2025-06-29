@@ -15,6 +15,7 @@ const AuthRoute = require('./routes/AuthRoute');
 const StaffRoute = require('./routes/StaffRoute');
 const ProjectRoute = require('./routes/ProjectRoute');
 const ProgramRoute = require('./routes/ProgramRoute');
+const ProductRoute = require('./routes/ProductRoute');
 
 dotenv.config();
 
@@ -69,6 +70,7 @@ app.use('/api/auth', AuthRoute);
 app.use('/api/staff', StaffRoute);
 app.use('/api/projects', ProjectRoute);
 app.use('/api/programs', ProgramRoute);
+app.use('/api/products', ProductRoute);
 
 // SSL опции
 const options = {
