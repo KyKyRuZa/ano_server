@@ -38,7 +38,7 @@ class ProductController {
             };
 
             if (req.file) {
-                productData.media = `uploads/${req.file.filename}`;
+                productData.media = `/uploads/${req.file.filename}`;
             }
 
             const product = await Product.create(productData); // здесь исправлено
@@ -90,17 +90,20 @@ class ProductController {
             };
 
             if (req.file) {
-                if (product.media) {
-                    try {
-                        const oldFilePath = path.join(__dirname, '../uploads', path.basename(product.media));
-                        await fs.access(oldFilePath);
-                        await fs.unlink(oldFilePath);
-                    } catch (err) {
-                        console.warn('Не удалось удалить старый файл:', err);
+            // Удаление старого файла, если существует
+            if (product.media) {
+                const fullPath = path.join('/var/www', product.media); // <-- здесь формируем полный путь
+                try {
+                    if (await fileExists(fullPath)) {
+                        await fs.unlink(fullPath);
                     }
+                } catch (unlinkError) {
+                    console.warn('Не удалось удалить старый файл:', unlinkError);
                 }
-                updateData.media = `uploads/${req.file.filename}`;
             }
+
+            updateData.media = `/uploads/${req.file.filename}`;
+        }
 
             await product.update(updateData);
 
@@ -122,12 +125,16 @@ class ProductController {
             }
 
             if (product.media) {
-                try {
-                    await fs.unlink(product.media);
-                } catch (unlinkError) {
-                    console.warn('Не удалось удалить файл:', unlinkError);
-                }
-            }
+                            const fullPath = path.join('/var/www', product.media); // <-- здесь формируем полный путь
+                            try {
+                                if (await fileExists(fullPath)) {
+                                    await fs.unlink(fullPath);
+                                }
+                            } catch (unlinkError) {
+                                console.warn('Не удалось удалить файл:', unlinkError);
+                            }
+                        }
+            
 
             await product.destroy();
 
