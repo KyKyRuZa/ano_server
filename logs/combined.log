@@ -650,3 +650,87 @@
 {"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-27 17:29:20"}
 {"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-27 17:29:21"}
 {"level":"info","message":"🛑 Получен SIGINT, завершаем работу...","service":"api-server","timestamp":"2025-11-27 17:29:21"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-28 19:07:41"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-28 19:07:42"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-28 19:07:43"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-28 19:09:14"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-28 19:09:15"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-28 19:09:16"}
+{"ip":"::1","level":"info","login":"lucky","message":"Попытка входа","service":"api-server","timestamp":"2025-11-28 19:10:24"}
+{"adminId":5,"ip":"::1","level":"info","login":"lucky","message":"Успешная авторизация","service":"api-server","timestamp":"2025-11-28 19:10:24"}
+{"level":"info","message":"[2025-11-28 16:10:24] POST /api/auth/login 200 553.468 ms","service":"api-server","timestamp":"2025-11-28 19:10:24"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-28 19:10:24","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-28 19:10:24","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:24] GET /api/projects/ 200 68.868 ms","service":"api-server","timestamp":"2025-11-28 19:10:24"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344317042-xnz86d-media.png","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"level":"info","message":"[2025-11-28 16:10:25] GET /uploads/1764344317042-xnz86d-media.png 404 40.313 ms","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344129133-1wxrit-media.png","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"level":"info","message":"[2025-11-28 16:10:25] GET /uploads/1764344129133-1wxrit-media.png 404 46.447 ms","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344127245-46hytx-media.png","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"level":"info","message":"[2025-11-28 16:10:25] GET /uploads/1764344127245-46hytx-media.png 404 63.645 ms","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344192455-587pdr-media.png","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"level":"info","message":"[2025-11-28 16:10:25] GET /uploads/1764344192455-587pdr-media.png 404 82.221 ms","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"level":"info","message":"[2025-11-28 16:10:25] GET /api/projects/ 200 179.264 ms","service":"api-server","timestamp":"2025-11-28 19:10:25"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-28 19:10:28","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-28 19:10:28","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:28] GET /api/programs/ 200 64.874 ms","service":"api-server","timestamp":"2025-11-28 19:10:28"}
+{"level":"info","message":"[2025-11-28 16:10:28] GET /api/programs/ 200 64.513 ms","service":"api-server","timestamp":"2025-11-28 19:10:28"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-28 19:10:29","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-28 19:10:29","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:29] GET /api/staff/ 200 65.450 ms","service":"api-server","timestamp":"2025-11-28 19:10:29"}
+{"level":"info","message":"[2025-11-28 16:10:29] GET /api/staff/ 200 63.292 ms","service":"api-server","timestamp":"2025-11-28 19:10:29"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344718127-yqj68w-media.png","service":"api-server","timestamp":"2025-11-28 19:10:29"}
+{"level":"info","message":"[2025-11-28 16:10:29] GET /uploads/1764344718127-yqj68w-media.png 404 8.691 ms","service":"api-server","timestamp":"2025-11-28 19:10:29"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-28 19:10:30","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-28 19:10:30","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:30] GET /api/programs/ 200 77.445 ms","service":"api-server","timestamp":"2025-11-28 19:10:30"}
+{"level":"info","message":"[2025-11-28 16:10:30] GET /api/programs/ 200 74.311 ms","service":"api-server","timestamp":"2025-11-28 19:10:30"}
+{"destination":"/var/www/uploads/","filename":"1764346238524-hjzo3w-media.png","level":"info","message":"Файл успешно загружен","mimetype":"image/png","originalname":"photo.png","service":"api-server","size":22637,"timestamp":"2025-11-28 19:10:38"}
+{"body":{"description":"1","title":"1"},"hasFile":true,"ip":"::1","level":"info","message":"Создание новой программы","service":"api-server","timestamp":"2025-11-28 19:10:38"}
+{"hasMedia":true,"level":"info","message":"Программа успешно создана","programId":15,"service":"api-server","timestamp":"2025-11-28 19:10:38","title":"1"}
+{"level":"info","message":"[2025-11-28 16:10:38] POST /api/programs/ 201 85.627 ms","service":"api-server","timestamp":"2025-11-28 19:10:38"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-28 19:10:38","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:38] GET /api/programs/ 200 61.109 ms","service":"api-server","timestamp":"2025-11-28 19:10:38"}
+{"level":"info","message":"[2025-11-28 16:10:38] GET /uploads/1764346238524-hjzo3w-media.png 200 2.410 ms","service":"api-server","timestamp":"2025-11-28 19:10:38"}
+{"ip":"::1","level":"info","message":"Запрос списка статей","service":"api-server","timestamp":"2025-11-28 19:10:40","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка статей","service":"api-server","timestamp":"2025-11-28 19:10:40","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:40] GET /api/articles/?page=1&limit=10&sortBy=date&order=DESC 200 137.339 ms","service":"api-server","timestamp":"2025-11-28 19:10:40"}
+{"level":"info","message":"[2025-11-28 16:10:41] GET /api/articles/?page=1&limit=10&sortBy=date&order=DESC 200 255.539 ms","service":"api-server","timestamp":"2025-11-28 19:10:41"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-28 19:10:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-28 19:10:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:41] GET /api/staff/ 200 93.740 ms","service":"api-server","timestamp":"2025-11-28 19:10:41"}
+{"level":"info","message":"[2025-11-28 16:10:41] GET /api/staff/ 200 91.019 ms","service":"api-server","timestamp":"2025-11-28 19:10:41"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344718127-yqj68w-media.png","service":"api-server","timestamp":"2025-11-28 19:10:41"}
+{"level":"info","message":"[2025-11-28 16:10:41] GET /uploads/1764344718127-yqj68w-media.png 404 3.138 ms","service":"api-server","timestamp":"2025-11-28 19:10:41"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-28 19:10:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-28 19:10:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /api/programs/ 200 90.213 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /api/programs/ 200 91.721 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /uploads/1764346238524-hjzo3w-media.png 200 4.867 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-28 19:10:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-28 19:10:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /api/projects/ 200 93.001 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /api/projects/ 200 91.171 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344317042-xnz86d-media.png","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /uploads/1764344317042-xnz86d-media.png 404 10.029 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344192455-587pdr-media.png","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /uploads/1764344192455-587pdr-media.png 404 2.934 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344129133-1wxrit-media.png","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /uploads/1764344129133-1wxrit-media.png 404 6.297 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344127245-46hytx-media.png","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"info","message":"[2025-11-28 16:10:42] GET /uploads/1764344127245-46hytx-media.png 404 15.621 ms","service":"api-server","timestamp":"2025-11-28 19:10:42"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-28 19:12:03"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-28 19:12:52"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-28 19:12:53"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-28 19:12:54"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-28 19:14:05","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-28 16:14:06] GET /api/projects/ 200 614.280 ms","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344317042-xnz86d-media.png","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"info","message":"[2025-11-28 16:14:06] GET /uploads/1764344317042-xnz86d-media.png 404 4.727 ms","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344192455-587pdr-media.png","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"info","message":"[2025-11-28 16:14:06] GET /uploads/1764344192455-587pdr-media.png 404 5.099 ms","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344129133-1wxrit-media.png","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"info","message":"[2025-11-28 16:14:06] GET /uploads/1764344129133-1wxrit-media.png 404 1.823 ms","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/uploads/1764344127245-46hytx-media.png","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"info","message":"[2025-11-28 16:14:06] GET /uploads/1764344127245-46hytx-media.png 404 1.471 ms","service":"api-server","timestamp":"2025-11-28 19:14:06"}
+{"level":"info","message":"🛑 Получен SIGINT, завершаем работу...","service":"api-server","timestamp":"2025-11-28 19:14:09"}
