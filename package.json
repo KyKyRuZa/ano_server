@@ -1,5 +1,5 @@
 {
-  "name": "CRUD-system",
+  "name": "crud-system",
   "version": "2.0.0",
   "main": "server.js",
   "scripts": {

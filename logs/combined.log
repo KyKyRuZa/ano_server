@@ -1,0 +1,652 @@
+{"level":"info","message":"Запуск сервера...","port":"3000","service":"api-server","timestamp":"2025-11-26 19:35:37"}
+{"level":"info","message":"База данных: Подключение к базе данных установлено","service":"api-server","timestamp":"2025-11-26 19:35:38"}
+{"level":"info","message":"База данных: Модели базы данных синхронизированы","service":"api-server","timestamp":"2025-11-26 19:35:39"}
+{"level":"info","message":"HTTPS сервер запущен","port":"3000","service":"api-server","timestamp":"2025-11-26 19:35:39"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-26 20:24:43"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-26 20:24:44"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-26 20:24:44"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-26 20:25:08"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-26 20:25:09"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-26 20:25:10"}
+{"level":"info","message":"[2025-11-26 17:25:18] GET /health 200 3.353 ms","service":"api-server","timestamp":"2025-11-26 20:25:18"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/favicon.ico","service":"api-server","timestamp":"2025-11-26 20:25:19"}
+{"level":"info","message":"[2025-11-26 17:25:19] GET /favicon.ico 404 1.549 ms","service":"api-server","timestamp":"2025-11-26 20:25:19"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-26 20:26:04","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-26 17:26:04] GET /api/products 200 366.512 ms","service":"api-server","timestamp":"2025-11-26 20:26:04"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-26 20:28:49"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-26 20:28:50"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-26 20:28:51"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-26 20:29:22","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-26 17:29:22] GET /api/products 304 458.167 ms","service":"api-server","timestamp":"2025-11-26 20:29:23"}
+{"ip":"::1","level":"info","login":"lucky","message":"Попытка входа","service":"api-server","timestamp":"2025-11-26 20:30:51"}
+{"ip":"::1","level":"warn","login":"lucky","message":"Неверный пароль","service":"api-server","timestamp":"2025-11-26 20:30:52"}
+{"level":"info","message":"[2025-11-26 17:30:52] POST /api/auth/login 401 507.820 ms","service":"api-server","timestamp":"2025-11-26 20:30:52"}
+{"ip":"::1","level":"info","login":"lucky","message":"Попытка входа","service":"api-server","timestamp":"2025-11-26 20:31:03"}
+{"adminId":5,"ip":"::1","level":"info","login":"lucky","message":"Успешная авторизация","service":"api-server","timestamp":"2025-11-26 20:31:04"}
+{"level":"info","message":"[2025-11-26 17:31:04] POST /api/auth/login 200 483.520 ms","service":"api-server","timestamp":"2025-11-26 20:31:04"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-26 20:32:24"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-26 20:32:25"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-26 20:32:25"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/","service":"api-server","timestamp":"2025-11-26 20:34:03"}
+{"level":"info","message":"[2025-11-26 17:34:03] GET / 404 7.899 ms","service":"api-server","timestamp":"2025-11-26 20:34:03"}
+{"ip":"::1","level":"info","login":"lucky","message":"Попытка входа","service":"api-server","timestamp":"2025-11-26 20:35:58"}
+{"adminId":5,"ip":"::1","level":"info","login":"lucky","message":"Успешная авторизация","service":"api-server","timestamp":"2025-11-26 20:35:59"}
+{"level":"info","message":"[2025-11-26 17:35:59] POST /api/auth/login 200 1492.126 ms","service":"api-server","timestamp":"2025-11-26 20:35:59"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-27 15:50:17"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-27 15:50:18"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-27 15:50:18"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 15:57:34"}
+{"level":"info","message":"[2025-11-27 12:57:34] GET /apibot/messages 404 5.945 ms","service":"api-server","timestamp":"2025-11-27 15:57:34"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 15:57:37"}
+{"level":"info","message":"[2025-11-27 12:57:37] GET /apibot/messages 404 3.188 ms","service":"api-server","timestamp":"2025-11-27 15:57:37"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 15:58:36"}
+{"level":"info","message":"[2025-11-27 12:58:36] GET /apibot/messages 404 24.537 ms","service":"api-server","timestamp":"2025-11-27 15:58:36"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 15:58:36"}
+{"level":"info","message":"[2025-11-27 12:58:36] GET /apibot/messages 404 38.231 ms","service":"api-server","timestamp":"2025-11-27 15:58:36"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 15:59:41"}
+{"level":"info","message":"[2025-11-27 12:59:41] GET /apibot/messages 404 101.097 ms","service":"api-server","timestamp":"2025-11-27 15:59:41"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 15:59:41"}
+{"level":"info","message":"[2025-11-27 12:59:41] GET /apibot/messages 404 28.108 ms","service":"api-server","timestamp":"2025-11-27 15:59:41"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 16:01:23"}
+{"level":"info","message":"[2025-11-27 13:01:23] GET /apibot/messages 404 20.866 ms","service":"api-server","timestamp":"2025-11-27 16:01:24"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 16:01:24"}
+{"level":"info","message":"[2025-11-27 13:01:24] GET /apibot/messages 404 153.695 ms","service":"api-server","timestamp":"2025-11-27 16:01:24"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 16:02:09"}
+{"level":"info","message":"[2025-11-27 13:02:09] GET /apibot/messages 404 41.842 ms","service":"api-server","timestamp":"2025-11-27 16:02:09"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 16:02:09"}
+{"level":"info","message":"[2025-11-27 13:02:09] GET /apibot/messages 404 65.617 ms","service":"api-server","timestamp":"2025-11-27 16:02:10"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 16:03:40"}
+{"level":"info","message":"[2025-11-27 13:03:40] GET /apibot/messages 404 103.877 ms","service":"api-server","timestamp":"2025-11-27 16:03:40"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 16:03:40"}
+{"level":"info","message":"[2025-11-27 13:03:40] GET /apibot/messages 404 15.414 ms","service":"api-server","timestamp":"2025-11-27 16:03:40"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 16:24:44"}
+{"level":"info","message":"[2025-11-27 13:24:44] GET /apibot/messages 404 30.402 ms","service":"api-server","timestamp":"2025-11-27 16:24:44"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 16:24:44"}
+{"level":"info","message":"[2025-11-27 13:24:44] GET /apibot/messages 404 1.461 ms","service":"api-server","timestamp":"2025-11-27 16:24:44"}
+{"ip":"::1","level":"info","login":"lucky","message":"Попытка входа","service":"api-server","timestamp":"2025-11-27 16:27:42"}
+{"adminId":5,"ip":"::1","level":"info","login":"lucky","message":"Успешная авторизация","service":"api-server","timestamp":"2025-11-27 16:27:43"}
+{"level":"info","message":"[2025-11-27 13:27:43] POST /api/auth/login 200 482.909 ms","service":"api-server","timestamp":"2025-11-27 16:27:43"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:13","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:14] GET /api/projects 200 406.056 ms","service":"api-server","timestamp":"2025-11-27 16:28:14"}
+{"ip":"::1","level":"info","login":"lucky","message":"Попытка входа","service":"api-server","timestamp":"2025-11-27 16:28:24"}
+{"adminId":5,"ip":"::1","level":"info","login":"lucky","message":"Успешная авторизация","service":"api-server","timestamp":"2025-11-27 16:28:24"}
+{"level":"info","message":"[2025-11-27 13:28:24] POST /api/auth/login 200 167.061 ms","service":"api-server","timestamp":"2025-11-27 16:28:24"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:24","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:24","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:24] GET /api/projects 200 68.728 ms","service":"api-server","timestamp":"2025-11-27 16:28:24"}
+{"level":"info","message":"[2025-11-27 13:28:24] GET /api/projects 200 118.085 ms","service":"api-server","timestamp":"2025-11-27 16:28:24"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:28:25","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:28:25","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:25] GET /api/programs 200 65.933 ms","service":"api-server","timestamp":"2025-11-27 16:28:25"}
+{"level":"info","message":"[2025-11-27 13:28:25] GET /api/programs 200 64.281 ms","service":"api-server","timestamp":"2025-11-27 16:28:25"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:26","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:26","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:26] GET /api/projects 200 61.498 ms","service":"api-server","timestamp":"2025-11-27 16:28:26"}
+{"level":"info","message":"[2025-11-27 13:28:26] GET /api/projects 200 61.756 ms","service":"api-server","timestamp":"2025-11-27 16:28:26"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:28:38","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:28:38","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:38] GET /api/programs 200 423.134 ms","service":"api-server","timestamp":"2025-11-27 16:28:38"}
+{"level":"info","message":"[2025-11-27 13:28:38] GET /api/programs 200 421.631 ms","service":"api-server","timestamp":"2025-11-27 16:28:38"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:39","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:39","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:39] GET /api/projects 200 62.025 ms","service":"api-server","timestamp":"2025-11-27 16:28:39"}
+{"level":"info","message":"[2025-11-27 13:28:39] GET /api/projects 200 59.159 ms","service":"api-server","timestamp":"2025-11-27 16:28:39"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:28:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:28:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:41] GET /api/staff 200 65.013 ms","service":"api-server","timestamp":"2025-11-27 16:28:41"}
+{"level":"info","message":"[2025-11-27 13:28:41] GET /api/staff 200 60.790 ms","service":"api-server","timestamp":"2025-11-27 16:28:41"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:28:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:28:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:41] GET /api/products 200 61.596 ms","service":"api-server","timestamp":"2025-11-27 16:28:41"}
+{"level":"info","message":"[2025-11-27 13:28:41] GET /api/products 200 65.022 ms","service":"api-server","timestamp":"2025-11-27 16:28:41"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:43] GET /api/projects 200 59.705 ms","service":"api-server","timestamp":"2025-11-27 16:28:43"}
+{"level":"info","message":"[2025-11-27 13:28:43] GET /api/projects 200 62.197 ms","service":"api-server","timestamp":"2025-11-27 16:28:43"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:28:49","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:28:49","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:49] GET /api/staff 200 67.006 ms","service":"api-server","timestamp":"2025-11-27 16:28:49"}
+{"level":"info","message":"[2025-11-27 13:28:49] GET /api/staff 200 60.486 ms","service":"api-server","timestamp":"2025-11-27 16:28:49"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:50","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:28:50","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:28:50] GET /api/projects 200 60.580 ms","service":"api-server","timestamp":"2025-11-27 16:28:50"}
+{"level":"info","message":"[2025-11-27 13:28:50] GET /api/projects 200 64.595 ms","service":"api-server","timestamp":"2025-11-27 16:28:50"}
+{"ip":"::1","level":"warn","message":"Попытка доступа без токена","method":"POST","service":"api-server","timestamp":"2025-11-27 16:29:00","url":"/api/projects"}
+{"level":"info","message":"[2025-11-27 13:29:00] POST /api/projects 401 3.407 ms","service":"api-server","timestamp":"2025-11-27 16:29:00"}
+{"ip":"::1","level":"info","login":"lucky","message":"Попытка входа","service":"api-server","timestamp":"2025-11-27 16:48:40"}
+{"adminId":5,"ip":"::1","level":"info","login":"lucky","message":"Успешная авторизация","service":"api-server","timestamp":"2025-11-27 16:48:40"}
+{"level":"info","message":"[2025-11-27 13:48:40] POST /api/auth/login 200 463.202 ms","service":"api-server","timestamp":"2025-11-27 16:48:40"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:48:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:48:41] GET /api/projects/ 200 70.428 ms","service":"api-server","timestamp":"2025-11-27 16:48:41"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:48:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:48:41] GET /api/projects/ 304 61.910 ms","service":"api-server","timestamp":"2025-11-27 16:48:41"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:49:30","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:30] GET /api/programs/ 200 358.922 ms","service":"api-server","timestamp":"2025-11-27 16:49:30"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:49:30","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:30] GET /api/programs/ 304 58.733 ms","service":"api-server","timestamp":"2025-11-27 16:49:30"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:49:31","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:31] GET /api/projects/ 304 59.021 ms","service":"api-server","timestamp":"2025-11-27 16:49:31"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:49:31","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:31] GET /api/projects/ 304 58.996 ms","service":"api-server","timestamp":"2025-11-27 16:49:31"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:49:32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:32] GET /api/programs/ 304 58.753 ms","service":"api-server","timestamp":"2025-11-27 16:49:32"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:49:32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:32] GET /api/programs/ 304 59.222 ms","service":"api-server","timestamp":"2025-11-27 16:49:32"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:49:33","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:33] GET /api/projects/ 304 67.332 ms","service":"api-server","timestamp":"2025-11-27 16:49:33"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:49:33","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:33] GET /api/projects/ 304 58.683 ms","service":"api-server","timestamp":"2025-11-27 16:49:33"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:49:33","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:33] GET /api/programs/ 304 60.331 ms","service":"api-server","timestamp":"2025-11-27 16:49:33"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:49:33","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:33] GET /api/programs/ 304 58.321 ms","service":"api-server","timestamp":"2025-11-27 16:49:33"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:49:33","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:34] GET /api/staff/ 200 60.079 ms","service":"api-server","timestamp":"2025-11-27 16:49:34"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:49:34","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:34] GET /api/staff/ 304 58.740 ms","service":"api-server","timestamp":"2025-11-27 16:49:34"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:49:34","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:34] GET /api/programs/ 304 60.681 ms","service":"api-server","timestamp":"2025-11-27 16:49:34"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:49:34","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:49:34] GET /api/programs/ 304 57.963 ms","service":"api-server","timestamp":"2025-11-27 16:49:34"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:51:39","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:51:40] GET /api/programs/ 304 415.386 ms","service":"api-server","timestamp":"2025-11-27 16:51:40"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:51:40","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:51:40] GET /api/programs/ 304 58.556 ms","service":"api-server","timestamp":"2025-11-27 16:51:40"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:53:36","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:53:37] GET /api/projects/ 304 359.246 ms","service":"api-server","timestamp":"2025-11-27 16:53:37"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:53:37","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:53:37] GET /api/projects/ 304 69.783 ms","service":"api-server","timestamp":"2025-11-27 16:53:37"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:53:37","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:53:38] GET /api/programs/ 304 61.320 ms","service":"api-server","timestamp":"2025-11-27 16:53:38"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:53:38","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:53:38] GET /api/programs/ 304 57.864 ms","service":"api-server","timestamp":"2025-11-27 16:53:38"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:53:38","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:53:38] GET /api/projects/ 304 59.338 ms","service":"api-server","timestamp":"2025-11-27 16:53:38"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:53:38","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:53:38] GET /api/projects/ 304 58.199 ms","service":"api-server","timestamp":"2025-11-27 16:53:38"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:00","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:54:01","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:01] GET /api/programs/ 304 359.849 ms","service":"api-server","timestamp":"2025-11-27 16:54:01"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:01","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:01] GET /api/projects/ 304 181.016 ms","service":"api-server","timestamp":"2025-11-27 16:54:01"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:54:01","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:01] GET /api/programs/ 304 113.375 ms","service":"api-server","timestamp":"2025-11-27 16:54:01"}
+{"level":"info","message":"[2025-11-27 13:54:01] GET /api/projects/ 304 111.231 ms","service":"api-server","timestamp":"2025-11-27 16:54:01"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:01","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:01] GET /api/programs/ 304 60.654 ms","service":"api-server","timestamp":"2025-11-27 16:54:01"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:01","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:01] GET /api/programs/ 304 60.233 ms","service":"api-server","timestamp":"2025-11-27 16:54:01"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:54:02","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:02] GET /api/staff/ 304 61.816 ms","service":"api-server","timestamp":"2025-11-27 16:54:02"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:54:02","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:02] GET /api/staff/ 304 57.750 ms","service":"api-server","timestamp":"2025-11-27 16:54:02"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:54:02","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:03] GET /api/products/ 200 59.828 ms","service":"api-server","timestamp":"2025-11-27 16:54:03"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:54:03","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:03] GET /api/products/ 304 61.099 ms","service":"api-server","timestamp":"2025-11-27 16:54:03"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:03","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:03] GET /api/programs/ 304 60.207 ms","service":"api-server","timestamp":"2025-11-27 16:54:03"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:03","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:03] GET /api/programs/ 304 59.200 ms","service":"api-server","timestamp":"2025-11-27 16:54:03"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:54:03","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:03] GET /api/staff/ 304 59.028 ms","service":"api-server","timestamp":"2025-11-27 16:54:03"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:54:03","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:03] GET /api/staff/ 304 57.763 ms","service":"api-server","timestamp":"2025-11-27 16:54:03"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:54:04","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:04] GET /api/products/ 304 58.566 ms","service":"api-server","timestamp":"2025-11-27 16:54:04"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:54:04","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:04] GET /api/products/ 304 61.631 ms","service":"api-server","timestamp":"2025-11-27 16:54:04"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:54:04","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:04] GET /api/staff/ 304 63.330 ms","service":"api-server","timestamp":"2025-11-27 16:54:04"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:54:04","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:04] GET /api/staff/ 304 66.645 ms","service":"api-server","timestamp":"2025-11-27 16:54:04"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:54:05","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:06] GET /api/projects/ 304 353.308 ms","service":"api-server","timestamp":"2025-11-27 16:54:06"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:54:06","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:06] GET /api/projects/ 304 62.546 ms","service":"api-server","timestamp":"2025-11-27 16:54:06"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:06","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:06] GET /api/programs/ 304 59.504 ms","service":"api-server","timestamp":"2025-11-27 16:54:06"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:06","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:06] GET /api/programs/ 304 58.063 ms","service":"api-server","timestamp":"2025-11-27 16:54:06"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:54:36","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:36] GET /api/projects/ 304 362.271 ms","service":"api-server","timestamp":"2025-11-27 16:54:36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:54:36","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:36] GET /api/projects/ 304 58.579 ms","service":"api-server","timestamp":"2025-11-27 16:54:36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:40","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:40] GET /api/programs/ 304 58.614 ms","service":"api-server","timestamp":"2025-11-27 16:54:40"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:40","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:40] GET /api/programs/ 304 57.623 ms","service":"api-server","timestamp":"2025-11-27 16:54:40"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:54:48","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:48] GET /api/projects/ 304 58.848 ms","service":"api-server","timestamp":"2025-11-27 16:54:48"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:54:48","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:48] GET /api/projects/ 304 57.701 ms","service":"api-server","timestamp":"2025-11-27 16:54:48"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:48","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:48] GET /api/programs/ 304 57.936 ms","service":"api-server","timestamp":"2025-11-27 16:54:48"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:48","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:49] GET /api/programs/ 304 60.665 ms","service":"api-server","timestamp":"2025-11-27 16:54:49"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:54:49","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:49] GET /api/staff/ 304 60.715 ms","service":"api-server","timestamp":"2025-11-27 16:54:49"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:54:49","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:49] GET /api/staff/ 304 74.546 ms","service":"api-server","timestamp":"2025-11-27 16:54:49"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:50","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:50] GET /api/programs/ 304 60.282 ms","service":"api-server","timestamp":"2025-11-27 16:54:50"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:50","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:50] GET /api/programs/ 304 58.909 ms","service":"api-server","timestamp":"2025-11-27 16:54:50"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:54:50","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:50] GET /api/products/ 304 58.166 ms","service":"api-server","timestamp":"2025-11-27 16:54:50"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:54:50","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:50] GET /api/products/ 304 57.700 ms","service":"api-server","timestamp":"2025-11-27 16:54:50"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:51","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:51] GET /api/programs/ 304 60.793 ms","service":"api-server","timestamp":"2025-11-27 16:54:51"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:54:51","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:54:51] GET /api/programs/ 304 57.946 ms","service":"api-server","timestamp":"2025-11-27 16:54:51"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:55:30","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:30] GET /api/programs/ 304 362.718 ms","service":"api-server","timestamp":"2025-11-27 16:55:30"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:55:39","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:39] GET /api/programs/ 304 60.270 ms","service":"api-server","timestamp":"2025-11-27 16:55:39"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:55:45","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:45] GET /api/programs/ 304 58.400 ms","service":"api-server","timestamp":"2025-11-27 16:55:45"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:55:45","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:45] GET /api/projects/ 304 62.529 ms","service":"api-server","timestamp":"2025-11-27 16:55:45"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:55:45","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:46] GET /api/projects/ 304 57.868 ms","service":"api-server","timestamp":"2025-11-27 16:55:46"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:55:46","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:46] GET /api/programs/ 304 61.430 ms","service":"api-server","timestamp":"2025-11-27 16:55:46"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:55:46","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:46] GET /api/programs/ 304 58.433 ms","service":"api-server","timestamp":"2025-11-27 16:55:46"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:55:46","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:46] GET /api/projects/ 304 57.909 ms","service":"api-server","timestamp":"2025-11-27 16:55:46"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:55:46","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:46] GET /api/projects/ 304 58.541 ms","service":"api-server","timestamp":"2025-11-27 16:55:46"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:55:47","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:47] GET /api/programs/ 304 62.193 ms","service":"api-server","timestamp":"2025-11-27 16:55:47"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:55:47","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:47] GET /api/programs/ 304 59.315 ms","service":"api-server","timestamp":"2025-11-27 16:55:47"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:55:47","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:47] GET /api/staff/ 304 59.062 ms","service":"api-server","timestamp":"2025-11-27 16:55:47"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:55:47","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:47] GET /api/staff/ 304 60.168 ms","service":"api-server","timestamp":"2025-11-27 16:55:47"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:55:48","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:48] GET /api/products/ 304 58.572 ms","service":"api-server","timestamp":"2025-11-27 16:55:48"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:55:48","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:55:48] GET /api/products/ 304 60.055 ms","service":"api-server","timestamp":"2025-11-27 16:55:48"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:56:05","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:05] GET /api/products/ 304 363.700 ms","service":"api-server","timestamp":"2025-11-27 16:56:05"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:56:14","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:14] GET /api/projects/ 304 58.930 ms","service":"api-server","timestamp":"2025-11-27 16:56:14"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:56:14","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:14] GET /api/projects/ 304 58.400 ms","service":"api-server","timestamp":"2025-11-27 16:56:14"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:56:15","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:15] GET /api/programs/ 304 87.138 ms","service":"api-server","timestamp":"2025-11-27 16:56:15"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:56:15","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:15] GET /api/programs/ 304 59.578 ms","service":"api-server","timestamp":"2025-11-27 16:56:15"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:56:15","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:15] GET /api/products/ 304 57.982 ms","service":"api-server","timestamp":"2025-11-27 16:56:15"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:56:15","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:15] GET /api/products/ 304 59.786 ms","service":"api-server","timestamp":"2025-11-27 16:56:15"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:56:16","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:16] GET /api/staff/ 304 60.881 ms","service":"api-server","timestamp":"2025-11-27 16:56:16"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:56:16","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:16] GET /api/staff/ 304 57.816 ms","service":"api-server","timestamp":"2025-11-27 16:56:16"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:56:16","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:16] GET /api/programs/ 304 61.309 ms","service":"api-server","timestamp":"2025-11-27 16:56:16"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:56:16","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:16] GET /api/programs/ 304 65.770 ms","service":"api-server","timestamp":"2025-11-27 16:56:16"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:56:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:17] GET /api/staff/ 304 64.649 ms","service":"api-server","timestamp":"2025-11-27 16:56:17"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:56:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:17] GET /api/staff/ 304 58.350 ms","service":"api-server","timestamp":"2025-11-27 16:56:17"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:56:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:17] GET /api/products/ 304 59.553 ms","service":"api-server","timestamp":"2025-11-27 16:56:17"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:56:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:17] GET /api/products/ 304 59.176 ms","service":"api-server","timestamp":"2025-11-27 16:56:17"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:56:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:17] GET /api/staff/ 304 59.553 ms","service":"api-server","timestamp":"2025-11-27 16:56:17"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:56:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:17] GET /api/staff/ 304 58.694 ms","service":"api-server","timestamp":"2025-11-27 16:56:17"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:56:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:18] GET /api/programs/ 304 58.554 ms","service":"api-server","timestamp":"2025-11-27 16:56:18"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:56:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:18] GET /api/programs/ 304 62.252 ms","service":"api-server","timestamp":"2025-11-27 16:56:18"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:56:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:18] GET /api/projects/ 304 58.715 ms","service":"api-server","timestamp":"2025-11-27 16:56:18"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:56:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:18] GET /api/projects/ 304 57.533 ms","service":"api-server","timestamp":"2025-11-27 16:56:18"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:56:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:19] GET /api/programs/ 304 61.486 ms","service":"api-server","timestamp":"2025-11-27 16:56:19"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:56:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:56:19] GET /api/programs/ 304 57.642 ms","service":"api-server","timestamp":"2025-11-27 16:56:19"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:57:16","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:16] GET /api/projects/ 304 356.495 ms","service":"api-server","timestamp":"2025-11-27 16:57:16"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:57:16","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:57:16","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:16] GET /api/projects/ 304 61.175 ms","service":"api-server","timestamp":"2025-11-27 16:57:16"}
+{"level":"info","message":"[2025-11-27 13:57:16] GET /api/programs/ 304 79.721 ms","service":"api-server","timestamp":"2025-11-27 16:57:16"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:57:16","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:16] GET /api/programs/ 304 57.119 ms","service":"api-server","timestamp":"2025-11-27 16:57:16"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:57:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:17] GET /api/projects/ 304 62.253 ms","service":"api-server","timestamp":"2025-11-27 16:57:17"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 16:57:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:17] GET /api/projects/ 304 57.890 ms","service":"api-server","timestamp":"2025-11-27 16:57:17"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:57:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:17] GET /api/programs/ 304 64.760 ms","service":"api-server","timestamp":"2025-11-27 16:57:17"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:57:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:17] GET /api/programs/ 304 62.659 ms","service":"api-server","timestamp":"2025-11-27 16:57:17"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:57:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:18] GET /api/staff/ 304 60.332 ms","service":"api-server","timestamp":"2025-11-27 16:57:18"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:57:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:18] GET /api/staff/ 304 58.464 ms","service":"api-server","timestamp":"2025-11-27 16:57:18"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:57:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:18] GET /api/products/ 304 58.389 ms","service":"api-server","timestamp":"2025-11-27 16:57:18"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 16:57:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:19] GET /api/products/ 304 58.375 ms","service":"api-server","timestamp":"2025-11-27 16:57:19"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:57:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:19] GET /api/staff/ 304 60.107 ms","service":"api-server","timestamp":"2025-11-27 16:57:19"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 16:57:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:19] GET /api/staff/ 304 58.956 ms","service":"api-server","timestamp":"2025-11-27 16:57:19"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:57:20","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:20] GET /api/programs/ 304 58.532 ms","service":"api-server","timestamp":"2025-11-27 16:57:20"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 16:57:20","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 13:57:20] GET /api/programs/ 304 58.279 ms","service":"api-server","timestamp":"2025-11-27 16:57:20"}
+{"level":"info","message":"[2025-11-27 13:57:20] GET /api/products/ 429 0.577 ms","service":"api-server","timestamp":"2025-11-27 16:57:20"}
+{"level":"info","message":"[2025-11-27 13:57:20] GET /api/products/ 429 0.216 ms","service":"api-server","timestamp":"2025-11-27 16:57:20"}
+{"level":"info","message":"[2025-11-27 13:57:21] GET /api/programs/ 429 0.183 ms","service":"api-server","timestamp":"2025-11-27 16:57:21"}
+{"level":"info","message":"[2025-11-27 13:57:21] GET /api/programs/ 429 0.178 ms","service":"api-server","timestamp":"2025-11-27 16:57:21"}
+{"level":"info","message":"[2025-11-27 13:57:21] GET /api/staff/ 429 0.331 ms","service":"api-server","timestamp":"2025-11-27 16:57:21"}
+{"level":"info","message":"[2025-11-27 13:57:21] GET /api/staff/ 429 0.185 ms","service":"api-server","timestamp":"2025-11-27 16:57:21"}
+{"level":"info","message":"[2025-11-27 13:57:22] GET /api/projects/ 429 0.171 ms","service":"api-server","timestamp":"2025-11-27 16:57:22"}
+{"level":"info","message":"[2025-11-27 13:57:22] GET /api/projects/ 429 0.189 ms","service":"api-server","timestamp":"2025-11-27 16:57:22"}
+{"level":"info","message":"[2025-11-27 13:57:22] GET /api/staff/ 429 0.362 ms","service":"api-server","timestamp":"2025-11-27 16:57:22"}
+{"level":"info","message":"[2025-11-27 13:57:22] GET /api/staff/ 429 0.492 ms","service":"api-server","timestamp":"2025-11-27 16:57:22"}
+{"level":"info","message":"[2025-11-27 13:57:23] GET /api/projects/ 429 0.180 ms","service":"api-server","timestamp":"2025-11-27 16:57:23"}
+{"level":"info","message":"[2025-11-27 13:57:23] GET /api/projects/ 429 0.196 ms","service":"api-server","timestamp":"2025-11-27 16:57:23"}
+{"level":"info","message":"[2025-11-27 13:59:32] GET /api/programs/ 429 0.253 ms","service":"api-server","timestamp":"2025-11-27 16:59:32"}
+{"level":"info","message":"[2025-11-27 13:59:32] GET /api/programs/ 429 0.186 ms","service":"api-server","timestamp":"2025-11-27 16:59:32"}
+{"level":"info","message":"[2025-11-27 14:00:29] POST /api/auth/login 429 0.176 ms","service":"api-server","timestamp":"2025-11-27 17:00:29"}
+{"level":"info","message":"[2025-11-27 14:00:30] POST /api/auth/login 429 0.414 ms","service":"api-server","timestamp":"2025-11-27 17:00:30"}
+{"level":"info","message":"[2025-11-27 14:04:30] POST /api/auth/login 429 0.252 ms","service":"api-server","timestamp":"2025-11-27 17:04:30"}
+{"level":"info","message":"[2025-11-27 14:04:32] POST /api/auth/login 429 0.397 ms","service":"api-server","timestamp":"2025-11-27 17:04:32"}
+{"ip":"::1","level":"info","login":"lucky","message":"Попытка входа","service":"api-server","timestamp":"2025-11-27 17:08:51"}
+{"adminId":5,"ip":"::1","level":"info","login":"lucky","message":"Успешная авторизация","service":"api-server","timestamp":"2025-11-27 17:08:51"}
+{"level":"info","message":"[2025-11-27 14:08:51] POST /api/auth/login 200 448.416 ms","service":"api-server","timestamp":"2025-11-27 17:08:51"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:08:52","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:08:52","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:52] GET /api/programs/ 200 60.026 ms","service":"api-server","timestamp":"2025-11-27 17:08:52"}
+{"level":"info","message":"[2025-11-27 14:08:52] GET /api/programs/ 200 113.742 ms","service":"api-server","timestamp":"2025-11-27 17:08:52"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:08:54","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:08:54","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:54] GET /api/staff/ 200 58.202 ms","service":"api-server","timestamp":"2025-11-27 17:08:54"}
+{"level":"info","message":"[2025-11-27 14:08:54] GET /api/staff/ 200 62.020 ms","service":"api-server","timestamp":"2025-11-27 17:08:54"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:08:55","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:08:55","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:55] GET /api/projects/ 200 59.698 ms","service":"api-server","timestamp":"2025-11-27 17:08:55"}
+{"level":"info","message":"[2025-11-27 14:08:55] GET /api/projects/ 200 59.343 ms","service":"api-server","timestamp":"2025-11-27 17:08:55"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:08:55","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:08:55","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:55] GET /api/programs/ 200 58.401 ms","service":"api-server","timestamp":"2025-11-27 17:08:55"}
+{"level":"info","message":"[2025-11-27 14:08:55] GET /api/programs/ 200 60.245 ms","service":"api-server","timestamp":"2025-11-27 17:08:55"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:08:56","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:08:56","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:56] GET /api/staff/ 200 58.401 ms","service":"api-server","timestamp":"2025-11-27 17:08:56"}
+{"level":"info","message":"[2025-11-27 14:08:56] GET /api/staff/ 200 60.322 ms","service":"api-server","timestamp":"2025-11-27 17:08:56"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:08:56","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:08:56","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:56] GET /api/products/ 200 59.787 ms","service":"api-server","timestamp":"2025-11-27 17:08:56"}
+{"level":"info","message":"[2025-11-27 14:08:56] GET /api/products/ 200 60.439 ms","service":"api-server","timestamp":"2025-11-27 17:08:56"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:08:58","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:08:58","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:58] GET /api/staff/ 200 58.323 ms","service":"api-server","timestamp":"2025-11-27 17:08:58"}
+{"level":"info","message":"[2025-11-27 14:08:58] GET /api/staff/ 200 58.083 ms","service":"api-server","timestamp":"2025-11-27 17:08:58"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:08:59","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:08:59","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:59] GET /api/programs/ 200 59.802 ms","service":"api-server","timestamp":"2025-11-27 17:08:59"}
+{"level":"info","message":"[2025-11-27 14:08:59] GET /api/programs/ 200 59.325 ms","service":"api-server","timestamp":"2025-11-27 17:08:59"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:08:59","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:08:59","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:08:59] GET /api/projects/ 200 64.474 ms","service":"api-server","timestamp":"2025-11-27 17:08:59"}
+{"level":"info","message":"[2025-11-27 14:08:59] GET /api/projects/ 200 59.724 ms","service":"api-server","timestamp":"2025-11-27 17:08:59"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:09:00","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:09:00","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:09:00] GET /api/programs/ 200 59.220 ms","service":"api-server","timestamp":"2025-11-27 17:09:00"}
+{"level":"info","message":"[2025-11-27 14:09:00] GET /api/programs/ 200 58.973 ms","service":"api-server","timestamp":"2025-11-27 17:09:00"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:09:00","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:09:00","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:09:00] GET /api/projects/ 200 58.642 ms","service":"api-server","timestamp":"2025-11-27 17:09:00"}
+{"level":"info","message":"[2025-11-27 14:09:00] GET /api/projects/ 200 58.525 ms","service":"api-server","timestamp":"2025-11-27 17:09:00"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:09:02","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:09:02","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:09:02] GET /api/programs/ 200 59.589 ms","service":"api-server","timestamp":"2025-11-27 17:09:02"}
+{"level":"info","message":"[2025-11-27 14:09:02] GET /api/programs/ 200 59.440 ms","service":"api-server","timestamp":"2025-11-27 17:09:02"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:09:02","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:09:02","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:09:02] GET /api/staff/ 200 57.785 ms","service":"api-server","timestamp":"2025-11-27 17:09:02"}
+{"level":"info","message":"[2025-11-27 14:09:02] GET /api/staff/ 200 57.681 ms","service":"api-server","timestamp":"2025-11-27 17:09:02"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:09:03","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:09:03","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:09:03] GET /api/products/ 200 59.980 ms","service":"api-server","timestamp":"2025-11-27 17:09:03"}
+{"level":"info","message":"[2025-11-27 14:09:03] GET /api/products/ 200 58.210 ms","service":"api-server","timestamp":"2025-11-27 17:09:03"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:09:56","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:09:56","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:09:56] GET /api/programs/ 200 360.037 ms","service":"api-server","timestamp":"2025-11-27 17:09:56"}
+{"level":"info","message":"[2025-11-27 14:09:56] GET /api/programs/ 200 371.077 ms","service":"api-server","timestamp":"2025-11-27 17:09:56"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:10:04","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:10:04","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:10:04] GET /api/projects/ 200 63.548 ms","service":"api-server","timestamp":"2025-11-27 17:10:04"}
+{"level":"info","message":"[2025-11-27 14:10:04] GET /api/projects/ 200 61.309 ms","service":"api-server","timestamp":"2025-11-27 17:10:04"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:10:15","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:10:15] GET /api/projects/ 200 369.380 ms","service":"api-server","timestamp":"2025-11-27 17:10:15"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:10:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:10:17] GET /api/projects/ 200 67.901 ms","service":"api-server","timestamp":"2025-11-27 17:10:17"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:10:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:10:18","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:10:18] GET /api/programs/ 200 58.548 ms","service":"api-server","timestamp":"2025-11-27 17:10:18"}
+{"level":"info","message":"[2025-11-27 14:10:18] GET /api/programs/ 200 112.921 ms","service":"api-server","timestamp":"2025-11-27 17:10:18"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:10:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:10:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:10:19] GET /api/staff/ 200 60.737 ms","service":"api-server","timestamp":"2025-11-27 17:10:19"}
+{"level":"info","message":"[2025-11-27 14:10:19] GET /api/staff/ 200 59.777 ms","service":"api-server","timestamp":"2025-11-27 17:10:19"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:10:40","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:10:40] GET /api/staff/ 200 357.930 ms","service":"api-server","timestamp":"2025-11-27 17:10:40"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:10:43","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:10:43] GET /api/staff/ 200 113.832 ms","service":"api-server","timestamp":"2025-11-27 17:10:43"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:11:25","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:11:25","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:11:25","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:11:25","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:11:25] GET /api/projects/ 200 357.921 ms","service":"api-server","timestamp":"2025-11-27 17:11:25"}
+{"level":"info","message":"[2025-11-27 14:11:25] GET /api/projects/ 200 358.743 ms","service":"api-server","timestamp":"2025-11-27 17:11:25"}
+{"level":"info","message":"[2025-11-27 14:11:25] GET /api/programs/ 200 164.109 ms","service":"api-server","timestamp":"2025-11-27 17:11:25"}
+{"level":"info","message":"[2025-11-27 14:11:25] GET /api/programs/ 200 185.982 ms","service":"api-server","timestamp":"2025-11-27 17:11:25"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:11:26","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:11:26","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:11:26] GET /api/projects/ 200 60.859 ms","service":"api-server","timestamp":"2025-11-27 17:11:26"}
+{"level":"info","message":"[2025-11-27 14:11:26] GET /api/projects/ 200 65.216 ms","service":"api-server","timestamp":"2025-11-27 17:11:26"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:11:26","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:11:26","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:11:26] GET /api/programs/ 200 62.073 ms","service":"api-server","timestamp":"2025-11-27 17:11:26"}
+{"level":"info","message":"[2025-11-27 14:11:26] GET /api/programs/ 200 63.391 ms","service":"api-server","timestamp":"2025-11-27 17:11:26"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:11:27","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:11:27","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:11:27] GET /api/staff/ 200 62.136 ms","service":"api-server","timestamp":"2025-11-27 17:11:27"}
+{"level":"info","message":"[2025-11-27 14:11:27] GET /api/staff/ 200 64.582 ms","service":"api-server","timestamp":"2025-11-27 17:11:27"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:11:27","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:11:27","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:11:27] GET /api/products/ 200 58.275 ms","service":"api-server","timestamp":"2025-11-27 17:11:27"}
+{"level":"info","message":"[2025-11-27 14:11:27] GET /api/products/ 200 61.900 ms","service":"api-server","timestamp":"2025-11-27 17:11:27"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:21:36","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:21:36","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:21:37] GET /api/programs/ 200 362.739 ms","service":"api-server","timestamp":"2025-11-27 17:21:37"}
+{"level":"info","message":"[2025-11-27 14:21:37] GET /api/programs/ 200 359.364 ms","service":"api-server","timestamp":"2025-11-27 17:21:37"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:21:37","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:21:37","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:21:37] GET /api/staff/ 200 61.202 ms","service":"api-server","timestamp":"2025-11-27 17:21:37"}
+{"level":"info","message":"[2025-11-27 14:21:37] GET /api/staff/ 200 74.300 ms","service":"api-server","timestamp":"2025-11-27 17:21:37"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:21:38","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:21:38","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:21:38] GET /api/products/ 200 60.562 ms","service":"api-server","timestamp":"2025-11-27 17:21:38"}
+{"level":"info","message":"[2025-11-27 14:21:38] GET /api/products/ 200 58.542 ms","service":"api-server","timestamp":"2025-11-27 17:21:38"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:21:39","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:21:39","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:21:39] GET /api/staff/ 200 61.887 ms","service":"api-server","timestamp":"2025-11-27 17:21:39"}
+{"level":"info","message":"[2025-11-27 14:21:39] GET /api/staff/ 200 90.647 ms","service":"api-server","timestamp":"2025-11-27 17:21:39"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:21:39","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:21:39","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:21:39] GET /api/programs/ 200 58.259 ms","service":"api-server","timestamp":"2025-11-27 17:21:39"}
+{"level":"info","message":"[2025-11-27 14:21:39] GET /api/programs/ 200 58.729 ms","service":"api-server","timestamp":"2025-11-27 17:21:39"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:21:40","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:21:40","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:21:40] GET /api/projects/ 200 62.320 ms","service":"api-server","timestamp":"2025-11-27 17:21:40"}
+{"level":"info","message":"[2025-11-27 14:21:40] GET /api/projects/ 200 60.168 ms","service":"api-server","timestamp":"2025-11-27 17:21:40"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:21:43","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:21:43","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:21:43] GET /api/programs/ 200 59.199 ms","service":"api-server","timestamp":"2025-11-27 17:21:43"}
+{"level":"info","message":"[2025-11-27 14:21:43] GET /api/programs/ 200 59.035 ms","service":"api-server","timestamp":"2025-11-27 17:21:43"}
+{"level":"info","message":"[2025-11-27 14:21:47] POST /api/programs 400 12.697 ms","service":"api-server","timestamp":"2025-11-27 17:21:47"}
+{"destination":"/var/www/uploads/","filename":"1764253318123-n4j3lz-media.jpg","level":"info","message":"Файл успешно загружен","mimetype":"image/jpeg","originalname":"coach-1757684366468-245068128.jpg","service":"api-server","size":1947384,"timestamp":"2025-11-27 17:21:58"}
+{"body":{"description":"1","title":"1"},"hasFile":true,"ip":"::1","level":"info","message":"Создание новой программы","service":"api-server","timestamp":"2025-11-27 17:21:58"}
+{"hasMedia":true,"level":"info","message":"Программа успешно создана","programId":14,"service":"api-server","timestamp":"2025-11-27 17:21:58","title":"1"}
+{"level":"info","message":"[2025-11-27 14:21:58] POST /api/programs 201 391.729 ms","service":"api-server","timestamp":"2025-11-27 17:21:58"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:21:58","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:21:58] GET /api/programs/ 200 74.280 ms","service":"api-server","timestamp":"2025-11-27 17:21:58"}
+{"level":"info","message":"[2025-11-27 14:21:58] GET /uploads/1764253318123-n4j3lz-media.jpg 200 4.943 ms","service":"api-server","timestamp":"2025-11-27 17:21:58"}
+{"level":"info","message":"[2025-11-27 14:22:18] GET /uploads/1764253318123-n4j3lz-media.jpg 200 0.894 ms","service":"api-server","timestamp":"2025-11-27 17:22:18"}
+{"ip":"::1","level":"info","message":"Удаление программы","programId":"14","service":"api-server","timestamp":"2025-11-27 17:22:20","userId":5}
+{"level":"info","message":"Файл программы удален","path":"\\var\\www\\uploads\\1764253318123-n4j3lz-media.jpg","service":"api-server","timestamp":"2025-11-27 17:22:21"}
+{"hadMedia":true,"level":"info","message":"Программа успешно удалена","programId":"14","service":"api-server","timestamp":"2025-11-27 17:22:21"}
+{"level":"info","message":"[2025-11-27 14:22:21] DELETE /api/programs/14 200 433.402 ms","service":"api-server","timestamp":"2025-11-27 17:22:21"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:22:30","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:22:30","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:22:30] GET /api/staff/ 200 73.192 ms","service":"api-server","timestamp":"2025-11-27 17:22:30"}
+{"level":"info","message":"[2025-11-27 14:22:30] GET /api/staff/ 200 113.868 ms","service":"api-server","timestamp":"2025-11-27 17:22:30"}
+{"destination":"/var/www/uploads/","filename":"1764253362506-751sc1-media.jpg","level":"info","message":"Файл успешно загружен","mimetype":"image/jpeg","originalname":"coach-1757684366468-245068128.jpg","service":"api-server","size":1947384,"timestamp":"2025-11-27 17:22:42"}
+{"body":{"callsign":"Псих","description":"4124","fullname":"Никитин Михаил Андреевич","position":"Психолог"},"hasFile":true,"ip":"::1","level":"info","message":"Создание нового сотрудника","service":"api-server","timestamp":"2025-11-27 17:22:42"}
+{"callsign":"Псих","fullname":"Никитин Михаил Андреевич","hasMedia":true,"level":"info","message":"Сотрудник успешно создан","service":"api-server","staffId":40,"timestamp":"2025-11-27 17:22:42"}
+{"level":"info","message":"[2025-11-27 14:22:42] POST /api/staff 201 380.488 ms","service":"api-server","timestamp":"2025-11-27 17:22:42"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:22:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:22:42] GET /api/staff/ 200 66.411 ms","service":"api-server","timestamp":"2025-11-27 17:22:42"}
+{"level":"info","message":"[2025-11-27 14:22:42] GET /uploads/1764253362506-751sc1-media.jpg 200 1.124 ms","service":"api-server","timestamp":"2025-11-27 17:22:42"}
+{"level":"info","message":"[2025-11-27 14:23:38] GET /uploads/1764253362506-751sc1-media.jpg 200 0.834 ms","service":"api-server","timestamp":"2025-11-27 17:23:38"}
+{"ip":"::1","level":"info","message":"Удаление сотрудника","service":"api-server","staffId":"40","timestamp":"2025-11-27 17:23:40","userId":5}
+{"level":"info","message":"Файл сотрудника удален","path":"\\var\\www\\uploads\\1764253362506-751sc1-media.jpg","service":"api-server","timestamp":"2025-11-27 17:23:40"}
+{"callsign":"Псих","fullname":"Никитин Михаил Андреевич","hadMedia":true,"level":"info","message":"Сотрудник успешно удален","service":"api-server","staffId":"40","timestamp":"2025-11-27 17:23:40"}
+{"level":"info","message":"[2025-11-27 14:23:40] DELETE /api/staff/40 200 419.506 ms","service":"api-server","timestamp":"2025-11-27 17:23:40"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:23:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:23:41","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:23:42] GET /api/programs/ 200 60.297 ms","service":"api-server","timestamp":"2025-11-27 17:23:42"}
+{"level":"info","message":"[2025-11-27 14:23:42] GET /api/programs/ 200 115.250 ms","service":"api-server","timestamp":"2025-11-27 17:23:42"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:23:43","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:23:43","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:23:43] GET /api/projects/ 200 57.874 ms","service":"api-server","timestamp":"2025-11-27 17:23:43"}
+{"level":"info","message":"[2025-11-27 14:23:43] GET /api/projects/ 200 64.168 ms","service":"api-server","timestamp":"2025-11-27 17:23:43"}
+{"destination":"/var/www/uploads/","filename":"1764253428746-nv9sgz-media.png","level":"info","message":"Файл успешно загружен","mimetype":"image/png","originalname":"main.png","service":"api-server","size":1774486,"timestamp":"2025-11-27 17:23:48"}
+{"body":{"description":"21","title":"421"},"hasFile":true,"ip":"::1","level":"info","message":"Создание нового проекта","service":"api-server","timestamp":"2025-11-27 17:23:48"}
+{"hasMedia":true,"level":"info","message":"Проект успешно создан","projectId":21,"service":"api-server","timestamp":"2025-11-27 17:23:48","title":"421"}
+{"level":"info","message":"[2025-11-27 14:23:48] POST /api/projects 201 77.949 ms","service":"api-server","timestamp":"2025-11-27 17:23:48"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:23:48","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:23:48] GET /api/projects/ 200 75.329 ms","service":"api-server","timestamp":"2025-11-27 17:23:48"}
+{"level":"info","message":"[2025-11-27 14:23:48] GET /uploads/1764253428746-nv9sgz-media.png 200 1.318 ms","service":"api-server","timestamp":"2025-11-27 17:23:48"}
+{"level":"info","message":"[2025-11-27 14:23:50] GET /uploads/1764253428746-nv9sgz-media.png 200 0.844 ms","service":"api-server","timestamp":"2025-11-27 17:23:50"}
+{"ip":"::1","level":"info","message":"Удаление проекта","projectId":"21","service":"api-server","timestamp":"2025-11-27 17:23:50","userId":5}
+{"level":"info","message":"Файл проекта удален","path":"\\var\\www\\uploads\\1764253428746-nv9sgz-media.png","service":"api-server","timestamp":"2025-11-27 17:23:51"}
+{"hadMedia":true,"level":"info","message":"Проект успешно удален","projectId":"21","service":"api-server","timestamp":"2025-11-27 17:23:51"}
+{"level":"info","message":"[2025-11-27 14:23:51] DELETE /api/projects/21 200 120.833 ms","service":"api-server","timestamp":"2025-11-27 17:23:51"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:23:52","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:23:52","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:23:52] GET /api/products/ 200 64.758 ms","service":"api-server","timestamp":"2025-11-27 17:23:52"}
+{"level":"info","message":"[2025-11-27 14:23:52] GET /api/products/ 200 61.362 ms","service":"api-server","timestamp":"2025-11-27 17:23:52"}
+{"destination":"/var/www/uploads/","filename":"1764253436960-2elxi9-media.png","level":"info","message":"Файл успешно загружен","mimetype":"image/png","originalname":"main.png","service":"api-server","size":1774486,"timestamp":"2025-11-27 17:23:56"}
+{"body":{"description":"421","title":"241"},"hasFile":true,"ip":"::1","level":"info","message":"Создание нового продукта","service":"api-server","timestamp":"2025-11-27 17:23:56"}
+{"hasMedia":true,"level":"info","message":"Продукт успешно создан","productId":7,"service":"api-server","timestamp":"2025-11-27 17:23:57","title":"241"}
+{"level":"info","message":"[2025-11-27 14:23:57] POST /api/products 201 80.756 ms","service":"api-server","timestamp":"2025-11-27 17:23:57"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:23:57","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:23:57] GET /api/products/ 200 60.733 ms","service":"api-server","timestamp":"2025-11-27 17:23:57"}
+{"level":"info","message":"[2025-11-27 14:23:57] GET /uploads/1764253436960-2elxi9-media.png 200 3.474 ms","service":"api-server","timestamp":"2025-11-27 17:23:57"}
+{"level":"info","message":"[2025-11-27 14:23:58] GET /uploads/1764253436960-2elxi9-media.png 200 0.801 ms","service":"api-server","timestamp":"2025-11-27 17:23:58"}
+{"ip":"::1","level":"info","message":"Удаление продукта","productId":"7","service":"api-server","timestamp":"2025-11-27 17:23:59","userId":5}
+{"level":"info","message":"Файл удален","path":"\\var\\www\\uploads\\1764253436960-2elxi9-media.png","service":"api-server","timestamp":"2025-11-27 17:23:59"}
+{"hadMedia":true,"level":"info","message":"Продукт успешно удален","productId":"7","service":"api-server","timestamp":"2025-11-27 17:23:59"}
+{"level":"info","message":"[2025-11-27 14:23:59] DELETE /api/products/7 200 120.567 ms","service":"api-server","timestamp":"2025-11-27 17:23:59"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:00","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:00","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:24:00] GET /api/projects/ 200 58.810 ms","service":"api-server","timestamp":"2025-11-27 17:24:00"}
+{"level":"info","message":"[2025-11-27 14:24:00] GET /api/projects/ 200 59.337 ms","service":"api-server","timestamp":"2025-11-27 17:24:00"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 17:24:19"}
+{"level":"info","message":"[2025-11-27 14:24:19] GET /apibot/messages 404 0.602 ms","service":"api-server","timestamp":"2025-11-27 17:24:19"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 17:24:19"}
+{"level":"info","message":"[2025-11-27 14:24:19] GET /apibot/messages 404 19.918 ms","service":"api-server","timestamp":"2025-11-27 17:24:19"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:24:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:24:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:24:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:24:19","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:24:19] GET /api/products/ 200 439.922 ms","service":"api-server","timestamp":"2025-11-27 17:24:19"}
+{"level":"info","message":"[2025-11-27 14:24:19] GET /api/projects/ 200 438.882 ms","service":"api-server","timestamp":"2025-11-27 17:24:19"}
+{"level":"info","message":"[2025-11-27 14:24:19] GET /api/programs/ 200 443.088 ms","service":"api-server","timestamp":"2025-11-27 17:24:19"}
+{"level":"info","message":"[2025-11-27 14:24:19] GET /api/products/ 200 456.499 ms","service":"api-server","timestamp":"2025-11-27 17:24:19"}
+{"level":"info","message":"[2025-11-27 14:24:20] GET /api/projects/ 200 461.708 ms","service":"api-server","timestamp":"2025-11-27 17:24:20"}
+{"level":"info","message":"[2025-11-27 14:24:20] GET /api/programs/ 200 469.481 ms","service":"api-server","timestamp":"2025-11-27 17:24:20"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:20","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:24:20","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:24:20","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:20","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/projects/ 200 62.962 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/programs/ 200 64.010 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/products/ 200 72.250 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/projects/ 200 61.494 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/programs/ 200 58.768 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/products/ 200 58.061 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/projects/ 200 95.066 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/programs/ 200 67.645 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"ip":"::1","level":"info","message":"Запрос списка сотрудников","service":"api-server","timestamp":"2025-11-27 17:24:21","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/products/ 200 75.161 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/projects/ 200 64.911 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/staff/ 200 68.736 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/programs/ 200 77.094 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/products/ 200 69.761 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"info","message":"[2025-11-27 14:24:21] GET /api/staff/ 200 61.608 ms","service":"api-server","timestamp":"2025-11-27 17:24:21"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 17:24:32"}
+{"level":"info","message":"[2025-11-27 14:24:32] GET /apibot/messages 404 3.975 ms","service":"api-server","timestamp":"2025-11-27 17:24:32"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 17:24:32"}
+{"level":"info","message":"[2025-11-27 14:24:32] GET /apibot/messages 404 12.220 ms","service":"api-server","timestamp":"2025-11-27 17:24:32"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:24:32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:24:32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:24:32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:24:32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:24:32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:24:32] GET /api/projects/ 200 413.993 ms","service":"api-server","timestamp":"2025-11-27 17:24:32"}
+{"level":"info","message":"[2025-11-27 14:24:32] GET /api/programs/ 200 391.970 ms","service":"api-server","timestamp":"2025-11-27 17:24:32"}
+{"level":"info","message":"[2025-11-27 14:24:32] GET /api/products/ 200 412.297 ms","service":"api-server","timestamp":"2025-11-27 17:24:32"}
+{"level":"info","message":"[2025-11-27 14:24:32] GET /api/projects/ 200 426.758 ms","service":"api-server","timestamp":"2025-11-27 17:24:33"}
+{"level":"info","message":"[2025-11-27 14:24:33] GET /api/programs/ 200 478.505 ms","service":"api-server","timestamp":"2025-11-27 17:24:33"}
+{"level":"info","message":"[2025-11-27 14:24:33] GET /api/products/ 200 506.235 ms","service":"api-server","timestamp":"2025-11-27 17:24:33"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 17:24:35"}
+{"level":"info","message":"[2025-11-27 14:24:35] GET /apibot/messages 404 6.486 ms","service":"api-server","timestamp":"2025-11-27 17:24:35"}
+{"level":"warn","message":"Маршрут не найден","method":"GET","path":"/apibot/messages","service":"api-server","timestamp":"2025-11-27 17:24:36"}
+{"level":"info","message":"[2025-11-27 14:24:36] GET /apibot/messages 404 9.780 ms","service":"api-server","timestamp":"2025-11-27 17:24:36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:25:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:25:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:25:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка проектов","service":"api-server","timestamp":"2025-11-27 17:25:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка программ","service":"api-server","timestamp":"2025-11-27 17:25:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"Запрос списка продуктов","service":"api-server","timestamp":"2025-11-27 17:25:42","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
+{"level":"info","message":"[2025-11-27 14:25:43] GET /api/projects/ 200 377.015 ms","service":"api-server","timestamp":"2025-11-27 17:25:43"}
+{"level":"info","message":"[2025-11-27 14:25:43] GET /api/programs/ 200 359.874 ms","service":"api-server","timestamp":"2025-11-27 17:25:43"}
+{"level":"info","message":"[2025-11-27 14:25:43] GET /api/products/ 200 360.460 ms","service":"api-server","timestamp":"2025-11-27 17:25:43"}
+{"level":"info","message":"[2025-11-27 14:25:43] GET /api/projects/ 200 361.549 ms","service":"api-server","timestamp":"2025-11-27 17:25:43"}
+{"level":"info","message":"[2025-11-27 14:25:43] GET /api/programs/ 200 368.613 ms","service":"api-server","timestamp":"2025-11-27 17:25:43"}
+{"level":"info","message":"[2025-11-27 14:25:43] GET /api/products/ 200 402.349 ms","service":"api-server","timestamp":"2025-11-27 17:25:43"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-11-27 17:29:19"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-11-27 17:29:20"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-11-27 17:29:21"}
+{"level":"info","message":"🛑 Получен SIGINT, завершаем работу...","service":"api-server","timestamp":"2025-11-27 17:29:21"}

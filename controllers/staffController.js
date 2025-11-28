@@ -1,131 +1,429 @@
 const fs = require('fs').promises;
-const Staff = require('../models/Staff');
 const path = require('path');
+const Staff = require('../models/Staff');
+const { logger } = require('../logger');
 
-// Функция для проверки существования файла
-async function fileExists(filePath) {
+// Вспомогательная функция для проверки существования файла
+const fileExists = async (filePath) => {
     try {
         await fs.access(filePath);
         return true;
     } catch {
         return false;
     }
-}
+};
+
+// Безопасное удаление файла
+const safeUnlink = async (filePath) => {
+    try {
+        if (await fileExists(filePath)) {
+            await fs.unlink(filePath);
+            logger.info('Файл сотрудника удален', { path: filePath });
+            return true;
+        }
+        return false;
+    } catch (error) {
+        logger.warn('Не удалось удалить файл сотрудника', { 
+            path: filePath, 
+            error: error.message 
+        });
+        return false;
+    }
+};
 
 class StaffController {
     async getAll(req, res) {
         try {
-            const staff = await Staff.findAll();
-            res.json(staff);
+            logger.info('Запрос списка сотрудников', {
+                ip: req.ip,
+                userAgent: req.get('User-Agent')
+            });
+
+            const staff = await Staff.findAll({
+                order: [['createdAt', 'DESC']]
+            });
+
+            logger.debug('Список сотрудников получен', { 
+                count: staff.length 
+            });
+
+            res.json({
+                success: true,
+                data: staff,
+                count: staff.length
+            });
+
         } catch (error) {
-            res.status(500).json({ error: 'Ошибка при получении списка сотрудников' });
+            logger.error('Ошибка получения сотрудников:', {
+                error: error.message,
+                stack: error.stack,
+                ip: req.ip
+            });
+
+            res.status(500).json({ 
+                success: false,
+                error: 'Внутренняя ошибка сервера',
+                message: 'Не удалось получить список сотрудников'
+            });
         }
     }
 
     async create(req, res) {
         try {
-            let mediaPath = null;
-            if (req.file) {
-                mediaPath = `/uploads/${req.file.filename}`;
-            }
-
-            const staff = await Staff.create({
-                fullname: req.body.fullname || req.body.name,
-                position: req.body.position,
-                callsign: req.body.callsign || null,
-                description: req.body.description || req.body.about || null,
-                media: mediaPath
+            logger.info('Создание нового сотрудника', {
+                ip: req.ip,
+                body: req.body,
+                hasFile: !!req.file
             });
 
-            res.status(201).json(staff);
+            // Валидация обязательных полей
+            if (!req.body.fullname || req.body.fullname.trim() === '') {
+                return res.status(400).json({ 
+                    success: false,
+                    error: 'ФИО сотрудника обязательно' 
+                });
+            }
+
+            if (!req.body.position || req.body.position.trim() === '') {
+                return res.status(400).json({ 
+                    success: false,
+                    error: 'Должность сотрудника обязательна' 
+                });
+            }
+
+            if (!req.body.callsign || req.body.callsign.trim() === '') {
+                return res.status(400).json({ 
+                    success: false,
+                    error: 'Позывной сотрудника обязателен' 
+                });
+            }
+
+            const staffData = {
+                fullname: req.body.fullname.trim(),
+                position: req.body.position.trim(),
+                callsign: req.body.callsign.trim(),
+                description: req.body.description ? req.body.description.trim() : null,
+                media: null
+            };
+
+            // Обработка файла
+            if (req.file) {
+                staffData.media = `/uploads/${req.file.filename}`;
+                
+                // Проверяем что файл действительно сохранился
+                const fullPath = path.join('/var/www', staffData.media);
+                if (!await fileExists(fullPath)) {
+                    logger.error('Загруженный файл сотрудника не найден на диске', {
+                        expectedPath: fullPath,
+                        filename: req.file.filename
+                    });
+                    return res.status(500).json({
+                        success: false,
+                        error: 'Ошибка при сохранении файла'
+                    });
+                }
+            }
+
+            const staff = await Staff.create(staffData);
+
+            logger.info('Сотрудник успешно создан', {
+                staffId: staff.id,
+                fullname: staff.fullname,
+                callsign: staff.callsign,
+                hasMedia: !!staff.media
+            });
+
+            res.status(201).json({
+                success: true,
+                data: staff,
+                message: 'Сотрудник успешно создан'
+            });
+
         } catch (error) {
-            console.error('Ошибка создания сотрудника:', error);
+            logger.error('Ошибка создания сотрудника:', {
+                error: error.message,
+                stack: error.stack,
+                body: req.body,
+                ip: req.ip
+            });
+
+            // Удаляем загруженный файл если сотрудник не создался
+            if (req.file) {
+                const filePath = path.join('/var/www/uploads', req.file.filename);
+                await safeUnlink(filePath);
+            }
+
+            if (error.name === 'SequelizeValidationError') {
+                return res.status(400).json({ 
+                    success: false,
+                    error: 'Ошибка валидации',
+                    details: error.errors.map(e => e.message)
+                });
+            }
+
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                // Определяем какое поле вызвало ошибку уникальности
+                const field = error.errors[0]?.path;
+                if (field === 'callsign') {
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Сотрудник с таким позывным уже существует'
+                    });
+                }
+                return res.status(400).json({
+                    success: false,
+                    error: 'Нарушение уникальности данных'
+                });
+            }
+
             res.status(500).json({ 
-                error: 'Ошибка при создании сотрудника',
-                details: error.message 
+                success: false,
+                error: 'Внутренняя ошибка сервера',
+                message: 'Не удалось создать сотрудника'
             });
         }
     }
 
     async getOne(req, res) {
         try {
-            const staff = await Staff.findByPk(req.params.id);
+            const staffId = req.params.id;
+
+            logger.debug('Запрос сотрудника', {
+                staffId,
+                ip: req.ip
+            });
+
+            const staff = await Staff.findByPk(staffId);
+            
             if (!staff) {
-                return res.status(404).json({ error: 'Сотрудник не найден' });
+                logger.warn('Сотрудник не найден', { staffId });
+                return res.status(404).json({ 
+                    success: false,
+                    error: 'Сотрудник не найден' 
+                });
             }
-            res.json(staff);
+
+            res.json({
+                success: true,
+                data: staff
+            });
+
         } catch (error) {
-            res.status(500).json({ error: 'Ошибка при получении сотрудника' });
+            logger.error('Ошибка получения сотрудника:', {
+                error: error.message,
+                staffId: req.params.id,
+                ip: req.ip
+            });
+
+            res.status(500).json({ 
+                success: false,
+                error: 'Внутренняя ошибка сервера',
+                message: 'Не удалось получить сотрудника'
+            });
         }
     }
 
     async update(req, res) {
         try {
-            const staff = await Staff.findByPk(req.params.id);
-            if (!staff) {
-                return res.status(404).json({ error: 'Сотрудник не найден' });
-            }
+            const staffId = req.params.id;
 
-            let mediaPath = staff.media;
-
-            if (req.file) {
-                // Удаляем старый файл, если существует
-                if (staff.media) {
-                    try {
-                        const fullPath = `/var/www${staff.media}`;
-                        if (await fileExists(fullPath)) {
-                            await fs.unlink(fullPath);
-                        }
-                    } catch (err) {
-                        console.warn('Не удалось удалить старый файл:', err);
-                    }
-                }
-
-                mediaPath = `/uploads/${req.file.filename}`;
-            }
-
-            await staff.update({
-                fullname: req.body.fullname || req.body.name,
-                position: req.body.position,
-                callsign: req.body.callsign || null,
-                description: req.body.description || req.body.about || null,
-                media: mediaPath
+            logger.info('Обновление сотрудника', {
+                staffId,
+                ip: req.ip,
+                body: req.body,
+                hasFile: !!req.file
             });
 
-            res.json(staff);
+            const staff = await Staff.findByPk(staffId);
+            if (!staff) {
+                return res.status(404).json({ 
+                    success: false,
+                    error: 'Сотрудник не найден' 
+                });
+            }
+
+            const updateData = {};
+            
+            // Обновляем только переданные поля с валидацией
+            if (req.body.fullname !== undefined) {
+                if (req.body.fullname.trim() === '') {
+                    return res.status(400).json({
+                        success: false,
+                        error: 'ФИО не может быть пустым'
+                    });
+                }
+                updateData.fullname = req.body.fullname.trim();
+            }
+
+            if (req.body.position !== undefined) {
+                if (req.body.position.trim() === '') {
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Должность не может быть пустой'
+                    });
+                }
+                updateData.position = req.body.position.trim();
+            }
+
+            if (req.body.callsign !== undefined) {
+                if (req.body.callsign.trim() === '') {
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Позывной не может быть пустым'
+                    });
+                }
+                updateData.callsign = req.body.callsign.trim();
+            }
+
+            if (req.body.description !== undefined) {
+                updateData.description = req.body.description ? req.body.description.trim() : null;
+            }
+
+            // Обработка дополнительных полей если они есть в модели
+            if (req.body.email !== undefined) {
+                updateData.email = req.body.email || null;
+            }
+
+            if (req.body.phone !== undefined) {
+                updateData.phone = req.body.phone || null;
+            }
+
+            if (req.body.is_active !== undefined) {
+                updateData.is_active = Boolean(req.body.is_active);
+            }
+
+            let oldMediaPath = null;
+
+            // Обработка нового файла
+            if (req.file) {
+                oldMediaPath = staff.media ? path.join('/var/www', staff.media) : null;
+                updateData.media = `/uploads/${req.file.filename}`;
+
+                // Проверяем что новый файл сохранился
+                const newFullPath = path.join('/var/www', updateData.media);
+                if (!await fileExists(newFullPath)) {
+                    logger.error('Новый файл сотрудника не найден на диске', {
+                        expectedPath: newFullPath
+                    });
+                    return res.status(500).json({
+                        success: false,
+                        error: 'Ошибка при сохранении файла'
+                    });
+                }
+            }
+
+            await staff.update(updateData);
+
+            // Удаляем старый файл после успешного обновления
+            if (oldMediaPath) {
+                await safeUnlink(oldMediaPath);
+            }
+
+            logger.info('Сотрудник успешно обновлен', {
+                staffId: staff.id,
+                updatedFields: Object.keys(updateData)
+            });
+
+            res.json({
+                success: true,
+                data: staff,
+                message: 'Сотрудник успешно обновлен'
+            });
+
         } catch (error) {
-            console.error('Ошибка обновления сотрудника:', error);
+            logger.error('Ошибка обновления сотрудника:', {
+                error: error.message,
+                staffId: req.params.id,
+                ip: req.ip
+            });
+
+            // Удаляем загруженный файл если обновление не удалось
+            if (req.file) {
+                const filePath = path.join('/var/www/uploads', req.file.filename);
+                await safeUnlink(filePath);
+            }
+
+            if (error.name === 'SequelizeValidationError') {
+                return res.status(400).json({ 
+                    success: false,
+                    error: 'Ошибка валидации',
+                    details: error.errors.map(e => e.message)
+                });
+            }
+
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                const field = error.errors[0]?.path;
+                if (field === 'callsign') {
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Сотрудник с таким позывным уже существует'
+                    });
+                }
+                return res.status(400).json({
+                    success: false,
+                    error: 'Нарушение уникальности данных'
+                });
+            }
+
             res.status(500).json({ 
-                error: 'Ошибка при обновлении сотрудника',
-                details: error.message 
+                success: false,
+                error: 'Внутренняя ошибка сервера',
+                message: 'Не удалось обновить сотрудника'
             });
         }
     }
 
     async delete(req, res) {
         try {
-            const staff = await Staff.findByPk(req.params.id);
+            const staffId = req.params.id;
+
+            logger.info('Удаление сотрудника', {
+                staffId,
+                ip: req.ip,
+                userId: req.user?.id // из authMiddleware
+            });
+
+            const staff = await Staff.findByPk(staffId);
             if (!staff) {
-                return res.status(404).json({ error: 'Сотрудник не найден' });
+                return res.status(404).json({ 
+                    success: false,
+                    error: 'Сотрудник не найден' 
+                });
             }
 
-            if (staff.media) {
-                try {
-                    const fullPath = `/var/www${staff.media}`;
-                    if (await fileExists(fullPath)) {
-                        await fs.unlink(fullPath);
-                    }
-                } catch (unlinkError) {
-                    console.warn('Не удалось удалить файл:', unlinkError);
-                }
-            }
+            const mediaPath = staff.media ? path.join('/var/www', staff.media) : null;
 
             await staff.destroy();
-            res.json({ message: 'Сотрудник успешно удален' });
+
+            // Удаляем файл после успешного удаления записи
+            if (mediaPath) {
+                await safeUnlink(mediaPath);
+            }
+
+            logger.info('Сотрудник успешно удален', {
+                staffId,
+                fullname: staff.fullname,
+                callsign: staff.callsign,
+                hadMedia: !!mediaPath
+            });
+
+            res.json({ 
+                success: true,
+                message: 'Сотрудник успешно удален',
+                deletedId: staffId
+            });
+
         } catch (error) {
+            logger.error('Ошибка удаления сотрудника:', {
+                error: error.message,
+                staffId: req.params.id,
+                ip: req.ip
+            });
+
             res.status(500).json({ 
-                error: 'Ошибка при удалении сотрудника',
-                details: error.message 
+                success: false,
+                error: 'Внутренняя ошибка сервера',
+                message: 'Не удалось удалить сотрудника'
             });
         }
     }

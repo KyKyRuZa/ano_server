@@ -1,12 +1,30 @@
 const express = require('express');
 const router = express.Router();
 const staffController = require('../controllers/StaffController');
-const { upload } = require('../middleware/Multer');
+const authMiddleware = require('../middleware/authMiddleware');
+const { upload, handleMulterErrors, validateUploadedFiles } = require('../middleware/Multer');
 
 router.get('/', staffController.getAll);
-router.post('/', upload.single('media'), staffController.create);
 router.get('/:id', staffController.getOne);
-router.put('/:id', upload.single('media'), staffController.update);
-router.delete('/:id', staffController.delete);
+
+router.post('/',
+    authMiddleware,
+    upload.single('media'),
+    handleMulterErrors,
+    validateUploadedFiles,
+    staffController.create
+);
+
+router.put('/:id',
+    authMiddleware,
+    upload.single('media'),
+    handleMulterErrors,
+    staffController.update
+);
+
+router.delete('/:id',
+    authMiddleware,
+    staffController.delete
+);
 
 module.exports = router;

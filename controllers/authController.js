@@ -1,74 +1,144 @@
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
+const { logger } = require('../logger');
+
 require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = '24h';
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+const generateToken = (admin) => {
+  return jwt.sign({ 
+    id: admin.id, 
+    login: admin.login 
+  }, JWT_SECRET, { 
+    expiresIn: JWT_EXPIRES_IN,
+    issuer: 'your-app-name',
+    subject: admin.id.toString()
+  });
 };
 
 const login = async (req, res) => {
   try {
-    const { login, password } = req.body;
-    console.log('Запрос на вход:', { login });
-
-    // 1. Находим администратора
-    const admin = await Admin.findOne({ where: { login } });
-    console.log('Найденный администратор:', admin ? { 
-      id: admin.id, 
-      login: admin.login,
-      hashPrefix: admin.password?.slice(0, 20) 
-    } : null);
-
-    if (!admin) {
-      console.log('Администратор не найден');
-      return res.status(401).json({ error: 'Неверный логин или пароль' });
+    const { login: username, password } = req.body; // ✅ переименовали login в username
+    
+    if (!username || !password) {
+      logger.warn('Попытка входа без логина или пароля', { 
+        ip: req.ip,
+        hasLogin: !!username,
+        hasPassword: !!password 
+      });
+      return res.status(400).json({ 
+        success: false,
+        error: 'Логин и пароль обязательны' 
+      });
     }
 
-    // 2. Проверяем пароль
-    console.log('Сравнение пароля:', {
-      inputPassword: password,
-      dbHash: admin.password,
-      hashStartsWith: admin.password?.slice(0, 6)
-    });
+    logger.info('Попытка входа', { login: username, ip: req.ip });
 
-    const trimmedPassword = password.trim();
-    const adminPassword = admin.password;
-    const isMatch = await bcrypt.compare(trimmedPassword, adminPassword);
+    const admin = await Admin.findOne({ where: { login: username } }); // ✅ используем переименованную переменную
+    
+    if (!admin) {
+      logger.warn('Администратор не найден', { login: username, ip: req.ip });
+      return res.status(401).json({ 
+        success: false,
+        error: 'Неверный логин или пароль' 
+      });
+    }
+
+    const isMatch = await bcrypt.compare(password.trim(), admin.password);
 
     if (!isMatch) {
-      console.log('Пароль не совпал');
-      return res.status(401).json({ error: 'Неверный логин или пароль' });
+      logger.warn('Неверный пароль', { login: username, ip: req.ip });
+      return res.status(401).json({ 
+        success: false,
+        error: 'Неверный логин или пароль' 
+      });
     }
 
-    // 3. Генерируем токен
-    const token = generateToken(admin.id);
-    console.log('Успешная авторизация. Сгенерирован токен');
+    const token = generateToken(admin);
     
-    const responseData = { 
+    logger.info('Успешная авторизация', { 
+      adminId: admin.id, 
+      login: admin.login,
+      ip: req.ip 
+    });
+    
+    res.json({
+      success: true,
       token,
       admin: { 
         id: admin.id, 
         login: admin.login 
       }
-    };
-
-    res.json(responseData);
+    });
 
   } catch (error) {
-    console.error('Ошибка в login:', error);
+    logger.error('Ошибка в login', {
+      error: error.message,
+      stack: error.stack,
+      ip: req.ip
+    });
     
-    const errorResponse = { 
-      error: 'Ошибка сервера'
-    };
+    res.status(500).json({ 
+      success: false,
+      error: 'Внутренняя ошибка сервера' 
+    });
+  }
+};
+
+// Проверка токена
+const verify = async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      admin: {
+        id: req.user.id,
+        login: req.user.login
+      }
+    });
+  } catch (error) {
+    logger.error('Ошибка в verify', {
+      error: error.message,
+      userId: req.user?.id
+    });
     
-    res.status(500).json(errorResponse);
+    res.status(500).json({ 
+      success: false,
+      error: 'Ошибка проверки токена' 
+    });
+  }
+};
+
+// Выход
+const logout = async (req, res) => {
+  try {
+    logger.info('Выход из системы', { 
+      adminId: req.user.id,
+      login: req.user.login,
+      ip: req.ip 
+    });
+    
+    res.json({
+      success: true,
+      message: 'Успешный выход из системы'
+    });
+  } catch (error) {
+    logger.error('Ошибка в logout', {
+      error: error.message,
+      userId: req.user?.id
+    });
+    
+    res.status(500).json({ 
+      success: false,
+      error: 'Ошибка при выходе из системы' 
+    });
   }
 };
 
 module.exports = {
-  login
+  login,
+  verify,
+  logout
 };

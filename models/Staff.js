@@ -17,13 +17,14 @@ const Staff = sequelize.define('Staff', {
     },
     callsign: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     description: {
         type: DataTypes.TEXT
     },
     media: {
-        type: DataTypes.STRING, // Путь к медиафайлу
+        type: DataTypes.STRING,
         allowNull: true
     }
 }, {
