@@ -22,7 +22,7 @@ const morganMiddleware = morgan((tokens, req, res) => {
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: 'https://anotsenimzhizn.ru',
     credentials: true
 }));
 app.use(express.json());
