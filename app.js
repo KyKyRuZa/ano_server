@@ -30,8 +30,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morganMiddleware);
 
-app.use('/api/auth/login', authLimiter); 
-app.use('/api/', apiLimiter); 
+app.use('/api/auth/login'); 
+app.use('/api/'); 
 
 app.use('/uploads', express.static('/var/www/uploads'));
 

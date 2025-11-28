@@ -21,7 +21,7 @@ const authLimiter = createRateLimit(
     15 * 60 * 1000, 
     5,
     'Слишком много попыток входа. Попробуйте через 15 минут.',
-    true // не считать успешные запросы
+    true
 );
 
 const apiLimiter = createRateLimit(
