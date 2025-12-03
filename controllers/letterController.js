@@ -427,48 +427,6 @@ class LetterController {
         }
     }
 
-    async getStats(req, res) {
-        try {
-            logger.info('Запрос статистики по письмам', {
-                ip: req.ip
-            });
-
-            const totalLetters = await Letter.count();
-            const recentLetters = await Letter.count({
-                where: {
-                    created_at: {
-                        [Letter.sequelize.Op.gte]: new Date(new Date() - 30 * 24 * 60 * 60 * 1000) // Последние 30 дней
-                    }
-                }
-            });
-
-            const stats = {
-                total: totalLetters,
-                recent: recentLetters,
-                lastCreated: await Letter.findOne({
-                    order: [['created_at', 'DESC']],
-                    attributes: ['title', 'created_at']
-                })
-            };
-
-            res.json({
-                success: true,
-                data: stats
-            });
-
-        } catch (error) {
-            logger.error('Ошибка получения статистики:', {
-                error: error.message,
-                ip: req.ip
-            });
-
-            res.status(500).json({ 
-                success: false,
-                error: 'Внутренняя ошибка сервера',
-                message: 'Не удалось получить статистику'
-            });
-        }
-    }
 }
 
 module.exports = new LetterController();

@@ -5,7 +5,6 @@ const authMiddleware = require('../middleware/authMiddleware');
 const { upload, handleMulterErrors, validateUploadedFiles } = require('../middleware/Multer');
 
 router.get('/', letterController.getAll);
-router.get('/stats', letterController.getStats);
 router.get('/:id', letterController.getOne);
 router.post(
     '/',
