@@ -21,7 +21,7 @@ const generateToken = (admin) => {
 
 const login = async (req, res) => {
   try {
-    const { login: username, password } = req.body; // ✅ переименовали login в username
+    const { login: username, password } = req.body;
     
     if (!username || !password) {
       logger.warn('Попытка входа без логина или пароля', { 
@@ -37,7 +37,7 @@ const login = async (req, res) => {
 
     logger.info('Попытка входа', { login: username, ip: req.ip });
 
-    const admin = await Admin.findOne({ where: { login: username } }); // ✅ используем переименованную переменную
+    const admin = await Admin.findOne({ where: { login: username } }); 
     
     if (!admin) {
       logger.warn('Администратор не найден', { login: username, ip: req.ip });

@@ -1,0 +1,3 @@
+{"error":"Cannot read properties of undefined (reading 'gte')","ip":"::1","level":"error","message":"Ошибка получения статистики:","service":"api-server","timestamp":"2025-12-01 20:59:12"}
+{"error":"Cannot read properties of undefined (reading 'gte')","ip":"::1","level":"error","message":"Ошибка получения статистики:","service":"api-server","timestamp":"2025-12-01 20:59:12"}
+{"error":"Cannot read properties of undefined (reading 'gte')","ip":"::1","level":"error","message":"Ошибка получения статистики:","service":"api-server","timestamp":"2025-12-01 21:00:00"}

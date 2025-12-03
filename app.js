@@ -1,14 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-// const { authLimiter, apiLimiter, strictLimiter } = require('./middleware/rateLimit');
 
 const AuthRoute = require('./routes/AuthRoute');
 const StaffRoute = require('./routes/StaffRoute');
 const ProjectRoute = require('./routes/ProjectRoute');
 const ProgramRoute = require('./routes/ProgramRoute');
 const ProductRoute = require('./routes/ProductRoute');
-const articleRoutes = require('./routes/articleRoutes');
+const articleRoutes = require('./routes/ArticleRoutes');
+const letterRoutes = require('./routes/LettersRoute');
 
 const { logger, morganStream } = require('./logger');
 
@@ -28,9 +28,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morganMiddleware);
 
-// app.use('/api/auth/login'); 
-// app.use('/api/'); 
-
 app.use('/uploads', express.static('/var/www/uploads'));
 
 app.use('/api/auth', AuthRoute);
@@ -39,6 +36,7 @@ app.use('/api/projects', ProjectRoute);
 app.use('/api/programs', ProgramRoute);
 app.use('/api/products', ProductRoute);
 app.use('/api/articles', articleRoutes);
+app.use('/api/letters', letterRoutes);
 
 app.get('/health', (req, res) => {
     res.status(200).json({ 
