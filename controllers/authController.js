@@ -88,7 +88,6 @@ const login = async (req, res) => {
   }
 };
 
-// Проверка токена
 const verify = async (req, res) => {
   try {
     res.json({
@@ -111,7 +110,6 @@ const verify = async (req, res) => {
   }
 };
 
-// Выход
 const logout = async (req, res) => {
   try {
     logger.info('Выход из системы', { 

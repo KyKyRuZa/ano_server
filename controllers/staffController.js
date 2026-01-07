@@ -3,7 +3,6 @@ const path = require('path');
 const Staff = require('../models/Staff');
 const { logger } = require('../logger');
 
-// Вспомогательная функция для проверки существования файла
 const fileExists = async (filePath) => {
     try {
         await fs.access(filePath);
@@ -13,7 +12,6 @@ const fileExists = async (filePath) => {
     }
 };
 
-// Безопасное удаление файла
 const safeUnlink = async (filePath) => {
     try {
         if (await fileExists(filePath)) {
@@ -76,7 +74,6 @@ class StaffController {
                 hasFile: !!req.file
             });
 
-            // Валидация обязательных полей
             if (!req.body.fullname || req.body.fullname.trim() === '') {
                 return res.status(400).json({ 
                     success: false,
@@ -106,11 +103,9 @@ class StaffController {
                 media: null
             };
 
-            // Обработка файла
             if (req.file) {
                 staffData.media = `/uploads/${req.file.filename}`;
                 
-                // Проверяем что файл действительно сохранился
                 const fullPath = path.join('/var/www', staffData.media);
                 if (!await fileExists(fullPath)) {
                     logger.error('Загруженный файл сотрудника не найден на диске', {
@@ -147,7 +142,6 @@ class StaffController {
                 ip: req.ip
             });
 
-            // Удаляем загруженный файл если сотрудник не создался
             if (req.file) {
                 const filePath = path.join('/var/www/uploads', req.file.filename);
                 await safeUnlink(filePath);
@@ -162,7 +156,6 @@ class StaffController {
             }
 
             if (error.name === 'SequelizeUniqueConstraintError') {
-                // Определяем какое поле вызвало ошибку уникальности
                 const field = error.errors[0]?.path;
                 if (field === 'callsign') {
                     return res.status(400).json({
@@ -244,7 +237,6 @@ class StaffController {
 
             const updateData = {};
             
-            // Обновляем только переданные поля с валидацией
             if (req.body.fullname !== undefined) {
                 if (req.body.fullname.trim() === '') {
                     return res.status(400).json({
@@ -279,7 +271,6 @@ class StaffController {
                 updateData.description = req.body.description ? req.body.description.trim() : null;
             }
 
-            // Обработка дополнительных полей если они есть в модели
             if (req.body.email !== undefined) {
                 updateData.email = req.body.email || null;
             }
@@ -294,12 +285,10 @@ class StaffController {
 
             let oldMediaPath = null;
 
-            // Обработка нового файла
             if (req.file) {
                 oldMediaPath = staff.media ? path.join('/var/www', staff.media) : null;
                 updateData.media = `/uploads/${req.file.filename}`;
 
-                // Проверяем что новый файл сохранился
                 const newFullPath = path.join('/var/www', updateData.media);
                 if (!await fileExists(newFullPath)) {
                     logger.error('Новый файл сотрудника не найден на диске', {
@@ -314,7 +303,6 @@ class StaffController {
 
             await staff.update(updateData);
 
-            // Удаляем старый файл после успешного обновления
             if (oldMediaPath) {
                 await safeUnlink(oldMediaPath);
             }
@@ -337,7 +325,6 @@ class StaffController {
                 ip: req.ip
             });
 
-            // Удаляем загруженный файл если обновление не удалось
             if (req.file) {
                 const filePath = path.join('/var/www/uploads', req.file.filename);
                 await safeUnlink(filePath);
@@ -380,7 +367,7 @@ class StaffController {
             logger.info('Удаление сотрудника', {
                 staffId,
                 ip: req.ip,
-                userId: req.user?.id // из authMiddleware
+                userId: req.user?.id
             });
 
             const staff = await Staff.findByPk(staffId);
@@ -395,7 +382,6 @@ class StaffController {
 
             await staff.destroy();
 
-            // Удаляем файл после успешного удаления записи
             if (mediaPath) {
                 await safeUnlink(mediaPath);
             }

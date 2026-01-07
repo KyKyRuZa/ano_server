@@ -3,7 +3,6 @@ const path = require('path');
 const Program = require('../models/Program');
 const { logger } = require('../logger');
 
-// Вспомогательная функция для проверки существования файла
 const fileExists = async (filePath) => {
     try {
         await fs.access(filePath);
@@ -13,7 +12,6 @@ const fileExists = async (filePath) => {
     }
 };
 
-// Безопасное удаление файла
 const safeUnlink = async (filePath) => {
     try {
         if (await fileExists(filePath)) {
@@ -76,7 +74,6 @@ class ProgramController {
                 hasFile: !!req.file
             });
 
-            // Валидация
             if (!req.body.title || req.body.title.trim() === '') {
                 return res.status(400).json({ 
                     success: false,
@@ -90,11 +87,9 @@ class ProgramController {
                 media: null
             };
 
-            // Обработка файла
             if (req.file) {
                 programData.media = `/uploads/${req.file.filename}`;
                 
-                // Проверяем что файл действительно сохранился
                 const fullPath = path.join('/var/www', programData.media);
                 if (!await fileExists(fullPath)) {
                     logger.error('Загруженный файл программы не найден на диске', {
@@ -130,7 +125,6 @@ class ProgramController {
                 ip: req.ip
             });
 
-            // Удаляем загруженный файл если программа не создалась
             if (req.file) {
                 const filePath = path.join('/var/www/uploads', req.file.filename);
                 await safeUnlink(filePath);
@@ -219,7 +213,6 @@ class ProgramController {
 
             const updateData = {};
             
-            // Обновляем только переданные поля
             if (req.body.title !== undefined) {
                 if (req.body.title.trim() === '') {
                     return res.status(400).json({
@@ -236,12 +229,10 @@ class ProgramController {
 
             let oldMediaPath = null;
 
-            // Обработка нового файла
             if (req.file) {
                 oldMediaPath = program.media ? path.join('/var/www', program.media) : null;
                 updateData.media = `/uploads/${req.file.filename}`;
 
-                // Проверяем что новый файл сохранился
                 const newFullPath = path.join('/var/www', updateData.media);
                 if (!await fileExists(newFullPath)) {
                     logger.error('Новый файл программы не найден на диске', {
@@ -256,7 +247,6 @@ class ProgramController {
 
             await program.update(updateData);
 
-            // Удаляем старый файл после успешного обновления
             if (oldMediaPath) {
                 await safeUnlink(oldMediaPath);
             }
@@ -279,7 +269,6 @@ class ProgramController {
                 ip: req.ip
             });
 
-            // Удаляем загруженный файл если обновление не удалось
             if (req.file) {
                 const filePath = path.join('/var/www/uploads', req.file.filename);
                 await safeUnlink(filePath);
@@ -308,7 +297,7 @@ class ProgramController {
             logger.info('Удаление программы', {
                 programId,
                 ip: req.ip,
-                userId: req.user?.id // из authMiddleware
+                userId: req.user?.id
             });
 
             const program = await Program.findByPk(programId);
@@ -323,7 +312,6 @@ class ProgramController {
 
             await program.destroy();
 
-            // Удаляем файл после успешного удаления записи
             if (mediaPath) {
                 await safeUnlink(mediaPath);
             }

@@ -59,7 +59,6 @@ class ArticleController {
                 body: req.body
             });
 
-            // Валидация обязательных полей
             if (!req.body.title || req.body.title.trim() === '') {
                 return res.status(400).json({ 
                     success: false,

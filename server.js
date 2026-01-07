@@ -34,13 +34,11 @@ const startServer = async () => {
                 logger.info(`🔒 Продакшен HTTPS сервер запущен на порту ${PORT}`);
             });
         } else {
-            // Локальная разработка с HTTP
             server = http.createServer(app).listen(PORT, 'localhost', () => {
                 logger.info(`🚀 Локальный сервер запущен на http://localhost:${PORT}`);
             });
         }
 
-        // Общий graceful shutdown
         const gracefulShutdown = async (signal) => {
             logger.info(`🛑 Получен ${signal}, завершаем работу...`);
             server.close(async () => {

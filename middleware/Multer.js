@@ -151,7 +151,6 @@ const handleMulterErrors = (error, req, res, next) => {
                 });
         }
     } else if (error) {
-        // Ошибка из fileFilter или другая
         logger.warn('Ошибка при загрузке файла', {
             error: error.message,
             ip: req.ip
@@ -164,7 +163,6 @@ const handleMulterErrors = (error, req, res, next) => {
     next();
 };
 
-// Middleware для проверки загруженных файлов
 const validateUploadedFiles = (req, res, next) => {
     if (!req.file && !req.files) {
         return res.status(400).json({ 
@@ -173,7 +171,6 @@ const validateUploadedFiles = (req, res, next) => {
         });
     }
     
-    // Проверяем что файлы действительно были сохранены
     try {
         const files = req.file ? [req.file] : req.files;
         
@@ -182,7 +179,6 @@ const validateUploadedFiles = (req, res, next) => {
                 throw new Error('Ошибка при сохранении файла');
             }
             
-            // Проверяем что файл существует на диске
             if (!fs.existsSync(file.path)) {
                 logger.error('Загруженный файл не найден на диске', {
                     path: file.path,
@@ -191,7 +187,6 @@ const validateUploadedFiles = (req, res, next) => {
                 throw new Error('Ошибка при сохранении файла');
             }
             
-            // Логируем успешную загрузку
             logger.info('Файл успешно загружен', {
                 filename: file.filename,
                 originalname: file.originalname,

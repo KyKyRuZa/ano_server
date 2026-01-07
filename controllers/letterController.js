@@ -48,7 +48,6 @@ class LetterController {
 
             const offset = (page - 1) * limit;
             
-            // Создаем условия для поиска
             const whereConditions = {};
             if (search && search.trim() !== '') {
                 whereConditions.title = {
@@ -109,9 +108,7 @@ class LetterController {
                 } : null
             });
 
-            // Валидация обязательных полей
             if (!req.body.title || req.body.title.trim() === '') {
-                // Удаляем загруженный файл, если валидация не прошла
                 if (req.file) {
                     const filePath = path.join('/var/www/uploads/', req.file.filename);
                     await safeUnlink(filePath);
@@ -129,7 +126,6 @@ class LetterController {
                 });
             }
 
-            // Проверяем что файл действительно сохранился
             const fullPath = path.join('/var/www/uploads/', req.file.filename);
             if (!await fileExists(fullPath)) {
                 logger.error('Загруженный файл письма не найден на диске', {
@@ -145,7 +141,7 @@ class LetterController {
             const letterData = {
                 title: req.body.title.trim(),
                 description: req.body.description ? req.body.description.trim() : null,
-                image_url: `/uploads/${req.file.filename}` // Используем относительный путь как в StaffController
+                image_url: `/uploads/${req.file.filename}` 
             };
 
             const letter = await Letter.create(letterData);
@@ -163,7 +159,6 @@ class LetterController {
             });
 
         } catch (error) {
-            // Удаляем загруженный файл если письмо не создалось
             if (req.file) {
                 const filePath = path.join('/var/www/uploads/', req.file.filename);
                 await safeUnlink(filePath);
@@ -258,7 +253,6 @@ class LetterController {
 
             const letter = await Letter.findByPk(letterId);
             if (!letter) {
-                // Удаляем загруженный файл, если письмо не найдено
                 if (req.file) {
                     const filePath = path.join('/var/www/uploads/', req.file.filename);
                     await safeUnlink(filePath);
@@ -272,7 +266,6 @@ class LetterController {
             const oldImageUrl = letter.image_url;
             let oldFilePath = null;
             
-            // Получаем путь к старому файлу
             if (oldImageUrl) {
                 const filename = path.basename(oldImageUrl);
                 oldFilePath = path.join('/var/www/uploads/', filename);
@@ -298,9 +291,7 @@ class LetterController {
                 updateData.description = req.body.description.trim();
             }
 
-            // Если загружено новое изображение
             if (req.file) {
-                // Проверяем что новый файл сохранился
                 const newFullPath = path.join('/var/www/uploads/', req.file.filename);
                 if (!await fileExists(newFullPath)) {
                     logger.error('Новый файл письма не найден на диске', {
@@ -316,7 +307,6 @@ class LetterController {
 
             await letter.update(updateData);
 
-            // Удаляем старый файл, если было загружено новое изображение
             if (req.file && oldFilePath) {
                 await safeUnlink(oldFilePath);
             }
@@ -334,7 +324,6 @@ class LetterController {
             });
 
         } catch (error) {
-            // Удаляем загруженный файл если обновление не удалось
             if (req.file) {
                 const filePath = path.join('/var/www/uploads/', req.file.filename);
                 await safeUnlink(filePath);
@@ -392,7 +381,6 @@ class LetterController {
                 });
             }
 
-            // Удаляем файл изображения
             if (letter.image_url) {
                 const filename = path.basename(letter.image_url);
                 const filePath = path.join('/var/www/uploads/', filename);

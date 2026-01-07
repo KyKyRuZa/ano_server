@@ -3,7 +3,6 @@ const path = require('path');
 const Product = require('../models/Product');
 const { logger } = require('../logger');
 
-// Вспомогательная функция для проверки существования файла
 const fileExists = async (filePath) => {
     try {
         await fs.access(filePath);
@@ -13,7 +12,6 @@ const fileExists = async (filePath) => {
     }
 };
 
-// Безопасное удаление файла
 const safeUnlink = async (filePath) => {
     try {
         if (await fileExists(filePath)) {
@@ -76,7 +74,6 @@ class ProductController {
                 hasFile: !!req.file
             });
 
-            // Валидация
             if (!req.body.title || req.body.title.trim() === '') {
                 return res.status(400).json({ 
                     success: false,
@@ -90,11 +87,9 @@ class ProductController {
                 media: null
             };
 
-            // Обработка файла
             if (req.file) {
                 productData.media = `/uploads/${req.file.filename}`;
                 
-                // Проверяем что файл действительно сохранился
                 const fullPath = path.join('/var/www', productData.media);
                 if (!await fileExists(fullPath)) {
                     logger.error('Загруженный файл не найден на диске', {

@@ -15,7 +15,7 @@ const Program = sequelize.define('Program', {
         type: DataTypes.TEXT
     },
     media: {
-        type: DataTypes.STRING, // Путь к медиафайлу
+        type: DataTypes.STRING,
         allowNull: true
     }
 }, {

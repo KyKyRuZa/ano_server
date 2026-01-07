@@ -3,7 +3,6 @@ const path = require('path');
 const Project = require('../models/Project');
 const { logger } = require('../logger');
 
-// Вспомогательная функция для проверки существования файла
 const fileExists = async (filePath) => {
     try {
         await fs.access(filePath);
@@ -13,7 +12,6 @@ const fileExists = async (filePath) => {
     }
 };
 
-// Безопасное удаление файла
 const safeUnlink = async (filePath) => {
     try {
         if (await fileExists(filePath)) {
@@ -76,7 +74,6 @@ class ProjectController {
                 hasFile: !!req.file
             });
 
-            // Валидация
             if (!req.body.title || req.body.title.trim() === '') {
                 return res.status(400).json({ 
                     success: false,
@@ -90,11 +87,9 @@ class ProjectController {
                 media: null
             };
 
-            // Обработка файла
             if (req.file) {
                 projectData.media = `/uploads/${req.file.filename}`;
                 
-                // Проверяем что файл действительно сохранился
                 const fullPath = path.join('/var/www', projectData.media);
                 if (!await fileExists(fullPath)) {
                     logger.error('Загруженный файл проекта не найден на диске', {
@@ -130,7 +125,6 @@ class ProjectController {
                 ip: req.ip
             });
 
-            // Удаляем загруженный файл если проект не создался
             if (req.file) {
                 const filePath = path.join('/var/www/uploads', req.file.filename);
                 await safeUnlink(filePath);
@@ -219,7 +213,6 @@ class ProjectController {
 
             const updateData = {};
             
-            // Обновляем только переданные поля
             if (req.body.title !== undefined) {
                 if (req.body.title.trim() === '') {
                     return res.status(400).json({
@@ -234,7 +227,6 @@ class ProjectController {
                 updateData.description = req.body.description ? req.body.description.trim() : null;
             }
 
-            // Обработка дополнительных полей если они есть в модели
             if (req.body.status !== undefined) {
                 updateData.status = req.body.status;
             }
@@ -249,12 +241,10 @@ class ProjectController {
 
             let oldMediaPath = null;
 
-            // Обработка нового файла
             if (req.file) {
                 oldMediaPath = project.media ? path.join('/var/www', project.media) : null;
                 updateData.media = `/uploads/${req.file.filename}`;
 
-                // Проверяем что новый файл сохранился
                 const newFullPath = path.join('/var/www', updateData.media);
                 if (!await fileExists(newFullPath)) {
                     logger.error('Новый файл проекта не найден на диске', {
@@ -269,7 +259,6 @@ class ProjectController {
 
             await project.update(updateData);
 
-            // Удаляем старый файл после успешного обновления
             if (oldMediaPath) {
                 await safeUnlink(oldMediaPath);
             }
@@ -292,7 +281,6 @@ class ProjectController {
                 ip: req.ip
             });
 
-            // Удаляем загруженный файл если обновление не удалось
             if (req.file) {
                 const filePath = path.join('/var/www/uploads', req.file.filename);
                 await safeUnlink(filePath);
@@ -321,7 +309,7 @@ class ProjectController {
             logger.info('Удаление проекта', {
                 projectId,
                 ip: req.ip,
-                userId: req.user?.id // из authMiddleware
+                userId: req.user?.id
             });
 
             const project = await Project.findByPk(projectId);
@@ -336,7 +324,6 @@ class ProjectController {
 
             await project.destroy();
 
-            // Удаляем файл после успешного удаления записи
             if (mediaPath) {
                 await safeUnlink(mediaPath);
             }

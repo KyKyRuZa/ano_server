@@ -871,3 +871,8 @@
 {"ip":"::1","level":"info","message":"Запрос списка благодарственных писем","query":{"limit":"12","order":"DESC","page":"1","sortBy":"created_at"},"service":"api-server","timestamp":"2025-12-01 21:22:17","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"}
 {"level":"info","message":"[2025-12-01 18:22:17] GET /uploads/1764612000519-rsgple-image.jpg 304 0.411 ms","service":"api-server","timestamp":"2025-12-01 21:22:17"}
 {"level":"info","message":"[2025-12-01 18:22:17] GET /api/letters/?page=1&limit=12&sortBy=created_at&order=DESC 304 111.591 ms","service":"api-server","timestamp":"2025-12-01 21:22:17"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-12-05 19:42:50"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-12-05 19:42:51"}
+{"level":"info","message":"Директория загрузок доступна для записи: /var/www/uploads/","service":"api-server","timestamp":"2025-12-06 13:00:28"}
+{"level":"info","message":"🔗 Подключение к базе данных установлено (development)","service":"api-server","timestamp":"2025-12-06 13:00:29"}
+{"level":"info","message":"🚀 Локальный сервер запущен на http://localhost:3000","service":"api-server","timestamp":"2025-12-06 13:00:30"}
